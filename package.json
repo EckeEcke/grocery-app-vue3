@@ -2,16 +2,15 @@
   "name": "grocery-app-vue3",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
     "test:unit": "vitest",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "build-only": "vite build",
+    "dev": "vite",
+    "format": "prettier --write src/",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -20,6 +19,7 @@
     "axios": "^1.7.3",
     "konami": "^1.6.3",
     "pinia": "^2.1.7",
+    "register-service-worker": "^1.7.1",
     "running-mario": "^1.0.8",
     "vue": "^3.4.29"
   },
@@ -29,6 +29,7 @@
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.14.5",
     "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/cli-plugin-pwa": "^5.0.8",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.6",
@@ -42,5 +43,6 @@
     "vite": "^5.3.1",
     "vitest": "^1.6.0",
     "vue-tsc": "^2.0.21"
-  }
+  },
+  "type": "module"
 }
