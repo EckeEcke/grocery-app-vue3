@@ -1,5 +1,6 @@
 {
   "files": [],
+  "include": ["src/types/konami.d.ts"],
   "references": [
     {
       "path": "./tsconfig.node.json"
