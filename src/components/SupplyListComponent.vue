@@ -39,8 +39,10 @@
       <div class="row container px-0">
         <p v-if="plannedItems && plannedItems.length >= 1" class="px-2 my-4 font-small">
           <transition name="fade" mode="out-in">
-            <span :key="plannedItems.length">{{ plannedItems.length }}</span></transition
-          >
+            <span :key="plannedItems.length">
+              {{ plannedItems.length }}
+            </span>
+          </transition>
           item(s) left
         </p>
       </div>
@@ -99,7 +101,7 @@
           <transition-group name="slide-fade">
             <div
               class="row px-3 hover-zoom"
-              v-for="(item, index) in entry.filter((item) => item.name !== undefined)"
+              v-for="(item, index) in onlyListItems(entry)"
               :key="index"
             >
               <div class="col-11 text-nowrap overflow-hidden px-0 mx-0">
@@ -156,7 +158,6 @@ const listStore = useListsStore()
 const showInput = ref<boolean>(false)
 const quantityItem = ref<ListItem | undefined>(undefined)
 const manualList = ref<string>('')
-const entriesByFirstLetter = ref<Meal[]>([])
 const textarea = ref<any>(null)
 
 const groceryList = computed(() => {
@@ -270,6 +271,12 @@ const resizeTextArea = () => {
 }
 const deleteSingleItem = (element: ListItem) => {
   listStore.deleteSingleItem(element)
+}
+
+const onlyListItems = (array: (ListItem | string)[]): ListItem[] => {
+  return array.filter((entry): entry is ListItem => {
+    return typeof entry === 'object' && entry !== null && 'name' in entry
+  })
 }
 </script>
 

@@ -120,60 +120,54 @@
           <h3 class="text-white m-2">Cook Book</h3>
         </div>
       </div>
-      <transition name="slide-fade">
-        <div class="container">
-          <div v-for="entry in filteredItemsByFirstLetter" :key="entry.name">
-            <div class="mt-5 mb-3">
-              <strong>{{ entry[0] }}</strong>
-            </div>
-            <transition-group name="slide-fade">
-              <div
-                class="row px-3 hover-zoom"
-                v-for="meal in entry.filter((item: Meal) => item.name)"
-                :key="meal.id"
-              >
-                <div class="col-10 text-nowrap overflow-hidden px-0 mx-0">
-                  <button
-                    class="btn w-100 mx-0"
-                    style="text-align: left"
-                    :class="meal.planned ? 'btn-success' : 'btn-outline-secondary'"
-                    :key="meal.id"
-                    @click="setMealPlanned(meal)"
-                  >
-                    {{ meal.name }}
-                  </button>
-                </div>
-                <div class="col-1 p-0">
-                  <button
-                    class="btn btn-outline-secondary delete-item-btn px-0 mx-0 w-100"
-                    @click="$emit('show-details', meal)"
-                  >
-                    <font-awesome-icon :icon="['fas', 'search']" class="trash-icon-item" />
-                  </button>
-                </div>
-                <div class="col-1 px-0 mx-0">
-                  <button
-                    class="btn w-100 btn-outline-secondary align-bottom delete-item-btn"
-                    @click="deleteMeal(meal)"
-                  >
-                    <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
-                  </button>
-                </div>
-                <hr />
+      <div class="container">
+        <div v-for="(entry, index) in filteredItemsByFirstLetter" :key="index">
+          <div class="mt-5 mb-3">
+            <strong>{{ entry[0] }}</strong>
+          </div>
+          <transition-group name="slide-fade">
+            <div class="row px-3 hover-zoom" v-for="meal in onlyMealEntries(entry)" :key="meal.id">
+              <div class="col-10 text-nowrap overflow-hidden px-0 mx-0">
+                <button
+                  class="btn w-100 mx-0"
+                  style="text-align: left"
+                  :class="meal.planned ? 'btn-success' : 'btn-outline-secondary'"
+                  :key="meal.id"
+                  @click="setMealPlanned(meal)"
+                >
+                  {{ meal.name }}
+                </button>
               </div>
-            </transition-group>
-          </div>
-          <div class="d-flex justify-content-end my-4">
-            <button
-              v-if="sortedItems.length >= 1"
-              class="btn btn-outline-secondary mx-2 mb-1"
-              @click="deleteCookbook"
-            >
-              <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" /> Delete all
-            </button>
-          </div>
+              <div class="col-1 p-0">
+                <button
+                  class="btn btn-outline-secondary delete-item-btn px-0 mx-0 w-100"
+                  @click="$emit('show-details', meal)"
+                >
+                  <font-awesome-icon :icon="['fas', 'search']" class="trash-icon-item" />
+                </button>
+              </div>
+              <div class="col-1 px-0 mx-0">
+                <button
+                  class="btn w-100 btn-outline-secondary align-bottom delete-item-btn"
+                  @click="deleteMeal(meal)"
+                >
+                  <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
+                </button>
+              </div>
+              <hr />
+            </div>
+          </transition-group>
         </div>
-      </transition>
+        <div class="d-flex justify-content-end my-4">
+          <button
+            v-if="sortedItems.length >= 1"
+            class="btn btn-outline-secondary mx-2 mb-1"
+            @click="deleteCookbook"
+          >
+            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" /> Delete all
+          </button>
+        </div>
+      </div>
     </div>
     <img class="illustration mb-5" src="../assets/cooking-illustration.svg" />
   </div>
@@ -239,6 +233,12 @@ const pushIngredient = (event: any) => {
 const deleteIngredient = (ingredient: string) => {
   const index = ingredients.value.indexOf(ingredient)
   ingredients.value.splice(index, 1)
+}
+
+const onlyMealEntries = (array: (Meal | string)[]): Meal[] => {
+  return array.filter((entry): entry is Meal => {
+    return typeof entry === 'object' && entry !== null && 'name' in entry
+  })
 }
 </script>
 

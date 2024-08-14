@@ -120,6 +120,13 @@ export const useListsStore = defineStore('lists', () => {
         entriesByFirstLetter[index].push(item)
       }
     })
+
+    entriesByFirstLetter.sort((a, b) => {
+      const letterA = a[0] as string
+      const letterB = b[0] as string
+      return letterA.localeCompare(letterB)
+    })
+
     return entriesByFirstLetter
   }
 
@@ -136,6 +143,13 @@ export const useListsStore = defineStore('lists', () => {
         entriesByFirstLetter[index].push(item)
       }
     })
+
+    entriesByFirstLetter.sort((a, b) => {
+      const letterA = a[0] as string
+      const letterB = b[0] as string
+      return letterA.localeCompare(letterB)
+    })
+
     return entriesByFirstLetter
   }
 
