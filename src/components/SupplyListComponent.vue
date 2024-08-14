@@ -151,7 +151,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useListsStore } from '../stores/lists'
-import type { Meal } from '../types/meal'
+import { toast } from 'vue3-toastify'
 import type { ListItem } from '../types/listitem'
 import QuantityInput from './QuantityInputComponent.vue'
 const listStore = useListsStore()
@@ -231,14 +231,18 @@ const checkSingleItem = (element: string) => {
 }
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
-  // this.$toast("Copied list to clipboard")
+  toast.success('Copied list to clipboard', {
+    autoClose: 1000
+  })
 }
 const deleteGrocerylist = () => {
   let confirmed = confirm('Do you really want to delete your list?')
   if (confirmed) {
     localStorage.removeItem('grocerylist')
     listStore.setGroceryList([])
-    // this.$toast("Item list was deleted")
+    toast.success('Item list was deleted', {
+      autoClose: 1000
+    })
   }
 }
 const createModal = (element: ListItem) => {

@@ -177,6 +177,7 @@
 import { computed, ref } from 'vue'
 import { useListsStore } from '@/stores/lists'
 import type { Meal } from '../types/meal'
+import { toast } from 'vue3-toastify'
 
 const listStore = useListsStore()
 const newMeal = ref('')
@@ -204,7 +205,9 @@ const setMealPlanned = (element: Meal) => {
 }
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
-  // this.$toast("Copied list to clipboard")
+  toast.success('Copied list to clipboard', {
+    autoClose: 1000
+  })
 }
 const formSubmit = (event: any) => {
   event.preventDefault()
@@ -222,7 +225,9 @@ const deleteCookbook = () => {
   const confirmed = confirm('Do you really want to delete your list?')
   if (confirmed) {
     localStorage.removeItem('mealPlan')
-    // this.$toast("Cookbook was deleted")
+    toast.success('Cookbook was deleted', {
+      autoClose: 1000
+    })
   }
 }
 const pushIngredient = (event: any) => {

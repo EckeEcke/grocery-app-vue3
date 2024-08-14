@@ -91,6 +91,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useListsStore } from '../stores/lists'
 import axios from 'axios'
+import { toast } from 'vue3-toastify'
 
 const showInstructions = ref(false)
 const showIngredients = ref(false)
@@ -148,7 +149,9 @@ const addRecipe = () => {
     name: randomMeal.value?.data.meals[0].strMeal,
     ingredients: ingredients.value
   })
-  //    this.$toast(`${this.randomMeal.data.meals[0].strMeal} was added to your cookbook`)
+  toast.success(`${randomMeal.value.data.meals[0].strMeal} was added to your cookbook`, {
+    autoClose: 1000
+  })
 }
 </script>
 
