@@ -29,6 +29,10 @@
             </li>
             <li>install Vue Meal Planner as PWA on your device</li>
             <li>konami code 😉</li>
+            <li>
+              Vue Mealplanner on
+              <a href="https://github.com/EckeEcke/grocery-app-vue3" target="_blank">Github</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -50,5 +54,9 @@ p {
 }
 .vue-logo {
   max-width: 30%;
+}
+
+a {
+  color: black;
 }
 </style>
