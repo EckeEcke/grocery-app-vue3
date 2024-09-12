@@ -24,11 +24,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { PropType } from 'vue'
-import { useListsStore } from '../stores/lists'
 import type { ListItem } from '../types/listitem'
 
 const emit = defineEmits(['hide'])
-const listStore = useListsStore()
+
 const props = defineProps({
   item: {
     type: Object as PropType<ListItem>
@@ -37,6 +36,7 @@ const props = defineProps({
 })
 
 const input = ref<any>(null)
+
 const quantity = ref('')
 
 onMounted(() => {

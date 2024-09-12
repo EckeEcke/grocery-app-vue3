@@ -30,12 +30,14 @@ import type { Meal } from '../types/meal'
 import type { ListItem } from '../types/listitem'
 
 const listStore = useListsStore()
+
 const props = defineProps({
   meal: {
     type: Object as PropType<Meal>,
     required: true
   }
 })
+
 const emit = defineEmits(['hide'])
 
 const groceryList = computed(() => {
@@ -48,12 +50,14 @@ const isItemPlanned = (ingredient: string) => {
     return groceryList.value[index].planned
   } else return false
 }
+
 const checkIngredients = (ingredient: string) => {
   if (isItemPlanned(ingredient)) {
     const index = groceryList.value.findIndex((item: ListItem) => item.name === ingredient)
     listStore.setItemPlanned(index)
   } else listStore.addNewItem(ingredient)
 }
+
 const deleteItem = () => {
   listStore.deleteSingleMeal(props.meal)
   emit('hide')

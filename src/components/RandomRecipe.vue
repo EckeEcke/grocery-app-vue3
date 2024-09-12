@@ -110,6 +110,7 @@ const measures = computed(() => {
   }
   return list
 })
+
 const ingredients = computed(() => {
   let list: string[] = []
   for (let i = 1; i <= 20; i++) {

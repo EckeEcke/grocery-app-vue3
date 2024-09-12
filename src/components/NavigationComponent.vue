@@ -42,6 +42,7 @@ const emit = defineEmits(['close'])
   top: 50%;
   transform: translateY(-50%);
 }
+
 #sidebar-btn-close {
   position: absolute;
   top: 12px;
@@ -52,6 +53,7 @@ const emit = defineEmits(['close'])
   margin-right: 0;
   color: white;
 }
+
 ul {
   width: 100vw;
   max-width: 450px;
@@ -72,6 +74,7 @@ a {
 a:hover {
   font-weight: bolder;
 }
+
 .sidebar {
   z-index: 10;
   overflow-y: auto;

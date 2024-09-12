@@ -187,9 +187,11 @@ const ingredients = ref<string[]>([])
 const sortedItems = computed(() => {
   return listStore.mealPlan
 })
+
 const plannedItems = computed(() => {
   return sortedItems.value.filter((item) => item.planned == true)
 })
+
 const filteredItemsByFirstLetter = computed(() => {
   return listStore.splitUpMealsAndSortByFirstLetter()
 })
@@ -203,12 +205,14 @@ const setMealPlanned = (element: Meal) => {
     .indexOf(element.name)
   listStore.setMealPlanned(index)
 }
+
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
   toast.success('Copied list to clipboard', {
     autoClose: 1000
   })
 }
+
 const formSubmit = (event: any) => {
   event.preventDefault()
   if (newMeal.value.length > 0) {
@@ -221,6 +225,7 @@ const formSubmit = (event: any) => {
 const deleteMeal = (meal: Meal) => {
   listStore.deleteSingleMeal(meal)
 }
+
 const deleteCookbook = () => {
   const confirmed = confirm('Do you really want to delete your list?')
   if (confirmed) {
@@ -230,11 +235,13 @@ const deleteCookbook = () => {
     })
   }
 }
+
 const pushIngredient = (event: any) => {
   event.preventDefault()
   ingredients.value.push(newIngredient.value)
   newIngredient.value = ''
 }
+
 const deleteIngredient = (ingredient: string) => {
   const index = ingredients.value.indexOf(ingredient)
   ingredients.value.splice(index, 1)
@@ -251,6 +258,7 @@ const onlyMealEntries = (array: (Meal | string)[]): Meal[] => {
 .hover-zoom {
   transition: all 0.3s;
 }
+
 .hover-zoom:hover {
   transform: translate(0.5%, -1%);
 }

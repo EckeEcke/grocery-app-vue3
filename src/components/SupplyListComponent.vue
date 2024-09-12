@@ -154,6 +154,7 @@ import { useListsStore } from '../stores/lists'
 import { toast } from 'vue3-toastify'
 import type { ListItem } from '../types/listitem'
 import QuantityInput from './QuantityInputComponent.vue'
+
 const listStore = useListsStore()
 const showInput = ref<boolean>(false)
 const quantityItem = ref<ListItem | undefined>(undefined)
@@ -163,6 +164,7 @@ const textarea = ref<any>(null)
 const groceryList = computed(() => {
   return listStore.groceryList
 })
+
 const filteredItemsForSuggestions = computed(() => {
   if (currentInput.value === '') return groceryList.value
   const entriesIdenticalFirstLetter = groceryList.value.filter(
@@ -176,23 +178,27 @@ const filteredItemsForSuggestions = computed(() => {
     return item.name.toLowerCase().includes(currentInput.value.toLowerCase())
   })
 })
+
 const suggestedItems = computed(() => {
   if (!filteredItemsForSuggestions.value) return []
   return filteredItemsForSuggestions.value.length > 5
     ? filteredItemsForSuggestions.value.slice(0, 10)
     : filteredItemsForSuggestions.value
 })
+
 const plannedItems = computed(() => {
   return groceryList.value.filter(function (item) {
     return item.planned == true
   })
 })
+
 const currentInput = computed(() => {
   return manualList.value
     .split(/,\s+|,|\n/)
     .slice(-1)
     .toString()
 })
+
 const filteredItemsByFirstLetter = computed(() => {
   return listStore.splitUpListItemsAndSortByFirstLetter()
 })
@@ -200,9 +206,11 @@ const filteredItemsByFirstLetter = computed(() => {
 const addNewItem = (item: string) => {
   listStore.addNewItem(item)
 }
+
 const addNewItems = (items: string[]) => {
   items.forEach((item) => addNewItem(item))
 }
+
 const pushNewItemfromList = (element: string) => {
   const clonedGroceryList = [...groceryList.value]
   const index = clonedGroceryList
@@ -212,9 +220,11 @@ const pushNewItemfromList = (element: string) => {
     .indexOf(element)
   listStore.setItemPlanned(index)
 }
+
 const checkItem = (element: ListItem) => {
   listStore.checkSingleItem(element)
 }
+
 const checkSingleItem = (element: string) => {
   const clonedGroceryList = [...groceryList.value]
   const indexGrocerylist = clonedGroceryList
@@ -229,12 +239,14 @@ const checkSingleItem = (element: string) => {
   listStore.setGroceryList(clonedGroceryList)
   localStorage.setItem('grocerylist', JSON.stringify(clonedGroceryList))
 }
+
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
   toast.success('Copied list to clipboard', {
     autoClose: 1000
   })
 }
+
 const deleteGrocerylist = () => {
   let confirmed = confirm('Do you really want to delete your list?')
   if (confirmed) {
@@ -245,15 +257,18 @@ const deleteGrocerylist = () => {
     })
   }
 }
+
 const createModal = (element: ListItem) => {
   document.documentElement.style.overflow = 'hidden'
   quantityItem.value = element
   showInput.value = true
 }
+
 const hideInput = () => {
   showInput.value = false
   document.documentElement.style.overflow = 'auto'
 }
+
 const setInput = (newValue: string) => {
   const newManualList = manualList.value.split(/,\s+|,|\n/)
   newManualList[newManualList.length - 1] = newValue + ','
@@ -261,6 +276,7 @@ const setInput = (newValue: string) => {
   textarea.value.focus()
   resizeTextArea()
 }
+
 const emitManualList = () => {
   const convertedToArray = manualList.value
     .split(/,\s+|,|\n/)
@@ -268,11 +284,13 @@ const emitManualList = () => {
   addNewItems(convertedToArray)
   manualList.value = ''
 }
+
 const resizeTextArea = () => {
   const element = textarea.value
   element.style.height = '18px'
   element.style.height = element.scrollHeight + 'px'
 }
+
 const deleteSingleItem = (element: ListItem) => {
   listStore.deleteSingleItem(element)
 }
@@ -288,6 +306,7 @@ const onlyListItems = (array: (ListItem | string)[]): ListItem[] => {
 .hover-zoom {
   transition: all 0.3s;
 }
+
 .hover-zoom:hover {
   transform: translate(0.5%, -1%);
 }

@@ -45,13 +45,16 @@
   position: sticky;
   top: 2rem;
 }
+
 .list-about,
 p {
   text-align: left;
 }
+
 .list-about li {
   list-style-type: disc;
 }
+
 .vue-logo {
   max-width: 30%;
 }
