@@ -26,7 +26,11 @@
                         maxlength="30"
                       />
                       <div class="input-group-append">
-                        <button class="btn btn-primary col-12" @click="pushIngredient">
+                        <button
+                          class="btn btn-primary col-12"
+                          aria-label="add ingredient"
+                          @click="pushIngredient"
+                        >
                           <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
                         </button>
                       </div>
@@ -42,6 +46,7 @@
                         class="btn btn-secondary mx-1 mb-1"
                         v-for="ingredient in ingredients"
                         :key="ingredient"
+                        aria-label="delete ingredient"
                         @click="deleteIngredient(ingredient)"
                       >
                         {{ ingredient }} X
@@ -52,6 +57,7 @@
                 <button
                   v-if="newMeal.length > 0"
                   class="btn col-12 btn-primary search-btn"
+                  aria-label="add new meal"
                   @click="formSubmit"
                 >
                   <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
@@ -63,7 +69,11 @@
         </div>
       </div>
       <div v-if="plannedItems.length == 0">
-        <img class="illustration mt-5 mb-3" src="../assets/meal-illustration.svg" />
+        <img
+          class="illustration mt-5 mb-3"
+          alt="persons having dinner"
+          src="../assets/meal-illustration.svg"
+        />
         <p class="mb-5">Add new meals or choose from your cookbook</p>
       </div>
 
@@ -83,6 +93,7 @@
                 v-if="meal"
                 class="btn btn-outline-secondary w-100 mx-0"
                 style="text-align: left"
+                aria-label="set meal planned"
                 :key="meal.id + meal.name"
                 @click="setMealPlanned(meal)"
               >
@@ -92,6 +103,7 @@
             <div class="col-1 px-0">
               <button
                 class="btn btn-outline-secondary delete-item-btn px-0 mx-0 w-100"
+                aria-label="show meal details"
                 @click="$emit('show-details', meal)"
               >
                 <font-awesome-icon :icon="['fas', 'search']" class="trash-icon-item" />
@@ -100,6 +112,7 @@
             <div class="col-1 px-0 mx-0">
               <button
                 class="btn btn-outline-secondary align-bottom delete-item-btn"
+                aria-label="set meal planned"
                 @click="setMealPlanned(meal)"
               >
                 <font-awesome-icon :icon="['fas', 'check']" class="trash-icon-item" />
@@ -109,7 +122,11 @@
           </div>
         </transition-group>
         <div class="d-flex justify-content-end">
-          <button class="btn btn-outline-secondary my-4" @click="copyList">
+          <button
+            class="btn btn-outline-secondary my-4"
+            aria-label="copy mealplan"
+            @click="copyList"
+          >
             <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" /> Copy plan
           </button>
         </div>
@@ -132,6 +149,7 @@
                   class="btn w-100 mx-0"
                   style="text-align: left"
                   :class="meal.planned ? 'btn-success' : 'btn-outline-secondary'"
+                  aria-label="set meal planned"
                   :key="meal.id"
                   @click="setMealPlanned(meal)"
                 >
@@ -141,6 +159,7 @@
               <div class="col-1 p-0">
                 <button
                   class="btn btn-outline-secondary delete-item-btn px-0 mx-0 w-100"
+                  aria-label="show meal details"
                   @click="$emit('show-details', meal)"
                 >
                   <font-awesome-icon :icon="['fas', 'search']" class="trash-icon-item" />
@@ -149,6 +168,7 @@
               <div class="col-1 px-0 mx-0">
                 <button
                   class="btn w-100 btn-outline-secondary align-bottom delete-item-btn"
+                  aria-label="delete meal"
                   @click="deleteMeal(meal)"
                 >
                   <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
@@ -162,6 +182,7 @@
           <button
             v-if="sortedItems.length >= 1"
             class="btn btn-outline-secondary mx-2 mb-1"
+            aria-label="delete cookbook"
             @click="deleteCookbook"
           >
             <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" /> Delete all
@@ -169,7 +190,11 @@
         </div>
       </div>
     </div>
-    <img class="illustration mb-5" src="../assets/cooking-illustration.svg" />
+    <img
+      class="illustration mb-5"
+      alt="illustration of a cook"
+      src="../assets/cooking-illustration.svg"
+    />
   </div>
 </template>
 

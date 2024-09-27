@@ -14,8 +14,20 @@
         />
       </div>
       <div class="card-footer">
-        <button class="btn btn-outline-secondary mx-3" @click="emit('hide')">Cancel</button>
-        <button class="btn btn-primary" @click="submit(item?.name)">Submit and close</button>
+        <button
+          class="btn btn-outline-secondary mx-3"
+          aria-label="close modal"
+          @click="emit('hide')"
+        >
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary"
+          aria-label="add selection and close modal"
+          @click="submit(item?.name)"
+        >
+          Submit and close
+        </button>
       </div>
     </div>
   </div>

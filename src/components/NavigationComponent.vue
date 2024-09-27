@@ -22,6 +22,7 @@
           id="sidebar-btn-close"
           class="btn text-white"
           style="font-size: 2.5em"
+          aria-label="close navigation menu"
           @click="() => emit('close')"
         >
           <font-awesome-icon :icon="['fas', 'times']" />

@@ -12,7 +12,7 @@
               @input="resizeTextArea()"
             >
             </textarea>
-            <button @click="emitManualList" class="btn btn-primary">
+            <button class="btn btn-primary" aria-label="add list of items" @click="emitManualList">
               <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
             </button>
           </div>
@@ -32,7 +32,11 @@
         </div>
       </div>
       <div v-if="plannedItems && plannedItems.length == 0">
-        <img class="illustration mt-5 mb-3" src="../assets/grocery-illustration.svg" />
+        <img
+          class="illustration mt-5 mb-3"
+          alt="shopping cart with groceries"
+          src="../assets/grocery-illustration.svg"
+        />
         <p class="mb-4 p-3">Add new items or choose from your item list</p>
       </div>
 
@@ -58,6 +62,7 @@
                 v-if="groceryItem"
                 class="btn btn-outline-secondary w-100 mx-0"
                 :key="groceryItem.name"
+                aria-label="check single item"
                 style="text-align: left"
                 @click="checkSingleItem(groceryItem.name)"
               >
@@ -68,6 +73,7 @@
             <div class="col-1 px-0 mx-0">
               <button
                 class="btn btn-outline-secondary align-bottom delete-item-btn"
+                aria-label="open modal"
                 @click="createModal(groceryItem)"
               >
                 <font-awesome-icon :icon="['fas', 'sort']" class="trash-icon-item" />
@@ -76,6 +82,7 @@
             <div class="col-1 px-0 mx-0">
               <button
                 class="btn btn-outline-secondary align-bottom delete-item-btn"
+                aria-label="check item"
                 @click="checkItem(groceryItem)"
               >
                 <font-awesome-icon :icon="['fas', 'check']" class="trash-icon-item" />
@@ -85,7 +92,7 @@
           </div>
         </transition-group>
         <div class="d-flex justify-content-end">
-          <button class="btn btn-outline-secondary my-4" @click="copyList">
+          <button class="btn btn-outline-secondary my-4" aria-label="copy list" @click="copyList">
             <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" /> Copy list
           </button>
         </div>
@@ -110,6 +117,7 @@
                   :class="item.planned ? 'btn-success' : 'btn-outline-secondary'"
                   :key="item.name"
                   style="text-align: left"
+                  aria-label="push new item from list"
                   @click="pushNewItemfromList(item.name)"
                 >
                   {{ item.name }}
@@ -118,6 +126,7 @@
               <div class="col-1 px-0 mx-0">
                 <button
                   class="btn btn-outline-secondary align-bottom delete-item-btn"
+                  aria-label="delete single item"
                   @click="deleteSingleItem(item)"
                 >
                   <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
@@ -131,6 +140,7 @@
           <button
             v-if="groceryList.length >= 1"
             class="btn btn-outline-secondary mx-2 mb-1"
+            aria-label="delete grocery list"
             @click="deleteGrocerylist"
           >
             <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" /> Delete all
@@ -138,7 +148,11 @@
         </div>
       </div>
     </div>
-    <img class="illustration mb-5" src="../assets/supplylist-illustration.svg" />
+    <img
+      class="illustration mb-5"
+      alt="illustration of a grocery list"
+      src="../assets/supplylist-illustration.svg"
+    />
     <QuantityInput
       v-if="showInput"
       :item="quantityItem"

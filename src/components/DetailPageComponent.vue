@@ -9,14 +9,23 @@
           :class="isItemPlanned(ingredient) ? 'btn-success' : 'btn-secondary'"
           v-for="ingredient in meal.ingredients"
           :key="ingredient"
+          aria-label="toggle planned status of ingredient"
           @click="checkIngredients(ingredient)"
         >
           {{ ingredient }}
         </button>
       </div>
       <div class="card-footer">
-        <button class="btn btn-outline-secondary mx-3" @click="deleteItem()">Delete</button>
-        <button class="btn btn-primary" @click="emit('hide')">Close</button>
+        <button
+          class="btn btn-outline-secondary mx-3"
+          aria-label="delete item"
+          @click="deleteItem()"
+        >
+          Delete
+        </button>
+        <button class="btn btn-primary" aria-label="close modal" @click="emit('hide')">
+          Close
+        </button>
       </div>
     </div>
   </div>

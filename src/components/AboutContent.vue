@@ -10,7 +10,7 @@
             This meal planner is a single page application I built in Vue.js. It combines the
             planning of upcoming meals and groceries.
           </p>
-          <img src="../assets/logo.png" class="vue-logo mt-2 mb-4" />
+          <img src="../assets/logo.png" alt="logo" class="vue-logo mt-2 mb-4" />
           <p><b>Features included:</b></p>
 
           <ul class="list-about">

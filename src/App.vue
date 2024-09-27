@@ -8,6 +8,7 @@
           id="toggle-nav-BTN"
           class="btn"
           style="font-size: 2em"
+          aria-label="show navigation menu"
           @click="showMenu"
         >
           <font-awesome-icon :icon="['fas', 'bars']" />
@@ -26,6 +27,7 @@
                 <button
                   class="btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder"
                   :class="{ inactive: cookbookShown }"
+                  aria-label="show grocerylist"
                   @click="cookbookShown = false"
                 >
                   <h3 class="text-white mb-0 px-0">Grocery List</h3>
@@ -33,6 +35,7 @@
                 <button
                   class="btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder"
                   :class="{ inactive: !cookbookShown }"
+                  aria-label="show cookbook"
                   @click="cookbookShown = true"
                 >
                   <h3 class="text-white mb-0 px-0">Meal Plan</h3>
@@ -59,7 +62,12 @@
     />
     <NavbarComponent v-if="menuShown" :menuShown="menuShown" @close="hideMenu" class="container" />
     <transition name="fade">
-      <button v-if="showScrollBtn" class="scroll-btn btn bg-primary" @click="scrollToTop">
+      <button
+        v-if="showScrollBtn"
+        class="scroll-btn btn bg-primary"
+        aria-label="scroll back to top"
+        @click="scrollToTop"
+      >
         <font-awesome-icon :icon="['fas', 'chevron-up']" />
       </button>
     </transition>

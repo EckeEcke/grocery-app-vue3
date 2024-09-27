@@ -16,7 +16,11 @@
       <div v-if="!isLoading && !requestFailed && randomMeal" class="py-3 container">
         <div class="row bg-light p-1">
           <div class="col-4 rounded">
-            <img class="dish-image" :src="randomMeal.data.meals[0].strMealThumb" />
+            <img
+              class="dish-image"
+              alt="recipe image"
+              :src="randomMeal.data.meals[0].strMealThumb"
+            />
           </div>
 
           <div class="col-8" style="text-align: left">
@@ -78,10 +82,17 @@
         <hr />
       </div>
       <div class="card-footer no-br-mobile border-0 bg-white" style="text-align: right">
-        <button v-if="!requestFailed" class="btn btn-primary my-2" @click="addRecipe">
+        <button
+          v-if="!requestFailed"
+          class="btn btn-primary my-2"
+          aria-label="add recipe"
+          @click="addRecipe"
+        >
           <font-awesome-icon :icon="['fas', 'plus']" />Add to cookbook
         </button>
-        <button class="btn btn-outline-secondary" @click="loadRecipe">Load new recipe</button>
+        <button class="btn btn-outline-secondary" aria-label="load recipe idea" @click="loadRecipe">
+          Load new recipe
+        </button>
       </div>
     </div>
   </div>
