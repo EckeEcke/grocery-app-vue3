@@ -37,7 +37,7 @@
           alt="shopping cart with groceries"
           src="../assets/grocery-illustration.svg"
         />
-        <p class="mb-4 p-3">{{ $t('addNewItems') }}</p>
+        <p class="mb-4 p-3">{{ $t('noItems') }}</p>
       </div>
 
       <div class="row container px-0">
