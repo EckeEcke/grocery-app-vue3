@@ -12,27 +12,35 @@
                       class="form-control"
                       type="text"
                       v-model="newMeal"
-                      placeholder="Add new meal"
+                      :placeholder="t('placeholders.addMeal')"
                       maxlength="30"
                     />
                   </div>
                   <transition name="fade">
-                    <div v-if="newMeal.length > 0" class="input-group my-3">
+                    <div v-if="newMeal.length > 0">
                       <input
-                        class="form-control"
+                        class="form-control my-3"
                         type="text"
-                        v-model="newIngredient"
-                        placeholder="Add ingredient (optional)"
-                        maxlength="30"
+                        v-model="recipe"
+                        :placeholder="t('placeholders.addRecipeLink')"
                       />
-                      <div class="input-group-append">
-                        <button
-                          class="btn btn-primary col-12"
-                          aria-label="add ingredient"
-                          @click="pushIngredient"
-                        >
-                          <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
-                        </button>
+                      <div class="input-group my-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          v-model="newIngredient"
+                          :placeholder="t('placeholders.addIngredient')"
+                          maxlength="30"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-primary col-12"
+                            aria-label="add ingredient"
+                            @click="pushIngredient"
+                          >
+                            <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </transition>
@@ -61,7 +69,7 @@
                   @click="formSubmit"
                 >
                   <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
-                  Add meal
+                  {{ $t('buttons.addMeal') }}
                 </button>
               </div>
             </div>
@@ -74,7 +82,7 @@
           alt="persons having dinner"
           src="../assets/meal-illustration.svg"
         />
-        <p class="mb-5">Add new meals or choose from your cookbook</p>
+        <p class="mb-5">{{ $t('noMeals') }}</p>
       </div>
 
       <div class="row container px-0">
@@ -82,7 +90,7 @@
           <transition name="fade" mode="out-in"
             ><span :key="plannedItems.length">{{ plannedItems.length }}</span></transition
           >
-          meal(s) planned
+          {{ $t('mealsPlanned') }}
         </p>
       </div>
       <div v-if="plannedItems.length >= 1" class="pb-1 container">
@@ -127,14 +135,15 @@
             aria-label="copy mealplan"
             @click="copyList"
           >
-            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" /> Copy plan
+            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
+            {{ $t('buttons.copyPlan') }}
           </button>
         </div>
       </div>
 
       <div class="mb-4">
         <div class="container mb-4 p-1 bg-warning">
-          <h3 class="text-white m-2">Cook Book</h3>
+          <h3 class="text-white m-2">{{ $t('cookbook') }}</h3>
         </div>
       </div>
       <div class="container">
@@ -185,7 +194,8 @@
             aria-label="delete cookbook"
             @click="deleteCookbook"
           >
-            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" /> Delete all
+            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
+            {{ $t('buttons.deleteAll') }}
           </button>
         </div>
       </div>
@@ -203,9 +213,12 @@ import { computed, ref } from 'vue'
 import { useListsStore } from '@/stores/lists'
 import type { Meal } from '../types/meal'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const listStore = useListsStore()
 const newMeal = ref('')
+const recipe = ref<string | undefined>(undefined)
 const newIngredient = ref('')
 const ingredients = ref<string[]>([])
 
@@ -233,7 +246,7 @@ const setMealPlanned = (element: Meal) => {
 
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
-  toast.success('Copied list to clipboard', {
+  toast.success(t('toasts.copiedListToClipboad'), {
     autoClose: 1000
   })
 }
@@ -241,9 +254,14 @@ const copyList = () => {
 const formSubmit = (event: any) => {
   event.preventDefault()
   if (newMeal.value.length > 0) {
-    listStore.addNewMeal({ name: newMeal.value, ingredients: ingredients.value })
+    listStore.addNewMeal({
+      name: newMeal.value,
+      ingredients: ingredients.value,
+      recipe: recipe.value
+    })
     newMeal.value = ''
     ingredients.value = []
+    recipe.value = undefined
   }
 }
 
@@ -252,10 +270,10 @@ const deleteMeal = (meal: Meal) => {
 }
 
 const deleteCookbook = () => {
-  const confirmed = confirm('Do you really want to delete your list?')
+  const confirmed = confirm(t('toasts.confirmDeleteCookbook'))
   if (confirmed) {
     localStorage.removeItem('mealPlan')
-    toast.success('Cookbook was deleted', {
+    toast.success(t('toasts.cookbookDeleted'), {
       autoClose: 1000
     })
   }

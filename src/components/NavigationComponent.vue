@@ -18,6 +18,27 @@
           </li>
           <li class="py-2"><a href="https://eckeecke.github.io/templelooter">Temple Looter</a></li>
         </ul>
+        <div id="language-switch">
+          <button
+            class="language-selector"
+            :class="{ inactive: locale !== 'en' }"
+            data-value="en"
+            tabindex="0"
+            @click="changeLocale('en')"
+          >
+            EN
+          </button>
+          <span class="divider-pipe"></span>
+          <button
+            class="language-selector"
+            :class="{ inactive: locale !== 'de' }"
+            data-value="de"
+            tabindex="0"
+            @click="changeLocale('de')"
+          >
+            DE
+          </button>
+        </div>
         <button
           id="sidebar-btn-close"
           class="btn text-white"
@@ -33,10 +54,51 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useRouter, useRoute } from 'vue-router'
+
+const { locale } = useI18n()
+
+const router = useRouter()
+const route = useRoute()
+
+const changeLocale = (lang: string) => {
+  locale.value = lang
+  router.push({
+    query: {
+      ...route.query,
+      locale: lang
+    }
+  })
+}
 const emit = defineEmits(['close'])
 </script>
 
 <style scoped>
+#language-switch {
+  position: absolute;
+  top: 28px;
+  left: 8px;
+}
+
+.language-selector {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 0 16px;
+  opacity: 1;
+}
+
+.language-selector.inactive {
+  opacity: 0.7;
+}
+
+.language-selector:first-of-type {
+  border-right: 2px solid white;
+}
+
 #toggle-nav-BTN {
   position: absolute;
   right: 2px;

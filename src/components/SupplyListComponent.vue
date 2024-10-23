@@ -8,7 +8,7 @@
               ref="textarea"
               v-model="manualList"
               class="form-control"
-              placeholder="Add item(s) - seperate by comma or line break"
+              :placeholder="t('placeholders.addArticle')"
               @input="resizeTextArea()"
             >
             </textarea>
@@ -37,7 +37,7 @@
           alt="shopping cart with groceries"
           src="../assets/grocery-illustration.svg"
         />
-        <p class="mb-4 p-3">Add new items or choose from your item list</p>
+        <p class="mb-4 p-3">{{ $t('addNewItems') }}</p>
       </div>
 
       <div class="row container px-0">
@@ -47,7 +47,7 @@
               {{ plannedItems.length }}
             </span>
           </transition>
-          item(s) left
+          {{ $t('itemsLeft') }}
         </p>
       </div>
       <div v-if="plannedItems && plannedItems.length >= 1" class="pb-1 container">
@@ -93,12 +93,13 @@
         </transition-group>
         <div class="d-flex justify-content-end">
           <button class="btn btn-outline-secondary my-4" aria-label="copy list" @click="copyList">
-            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" /> Copy list
+            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
+            {{ $t('buttons.copyList') }}
           </button>
         </div>
       </div>
       <div class="container mb-4 p-1 bg-warning">
-        <h3 class="text-white m-2">Item List</h3>
+        <h3 class="text-white m-2">{{ $t('itemList') }}</h3>
       </div>
       <div class="container" v-if="filteredItemsByFirstLetter">
         <div v-for="(entry, index) in filteredItemsByFirstLetter" :key="index">
@@ -143,7 +144,8 @@
             aria-label="delete grocery list"
             @click="deleteGrocerylist"
           >
-            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" /> Delete all
+            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
+            {{ $t('buttons.deleteAll') }}
           </button>
         </div>
       </div>
@@ -168,6 +170,9 @@ import { useListsStore } from '../stores/lists'
 import { toast } from 'vue3-toastify'
 import type { ListItem } from '../types/listitem'
 import QuantityInput from './QuantityInputComponent.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const listStore = useListsStore()
 const showInput = ref<boolean>(false)
@@ -256,17 +261,17 @@ const checkSingleItem = (element: string) => {
 
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
-  toast.success('Copied list to clipboard', {
+  toast.success(t('toasts.copiedListToClipboard'), {
     autoClose: 1000
   })
 }
 
 const deleteGrocerylist = () => {
-  let confirmed = confirm('Do you really want to delete your list?')
+  const confirmed = confirm(t('toasts.confirmDeleteList'))
   if (confirmed) {
     localStorage.removeItem('grocerylist')
     listStore.setGroceryList([])
-    toast.success('Item list was deleted', {
+    toast.success(t('toasts.itemListDeleted'), {
       autoClose: 1000
     })
   }

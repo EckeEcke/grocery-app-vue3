@@ -30,7 +30,7 @@
                   aria-label="show grocerylist"
                   @click="cookbookShown = false"
                 >
-                  <h3 class="text-white mb-0 px-0">Grocery List</h3>
+                  <h3 class="text-white mb-0 px-0">{{ $t('groceryList') }}</h3>
                 </button>
                 <button
                   class="btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder"
@@ -38,7 +38,7 @@
                   aria-label="show cookbook"
                   @click="cookbookShown = true"
                 >
-                  <h3 class="text-white mb-0 px-0">Meal Plan</h3>
+                  <h3 class="text-white mb-0 px-0">{{ $t('mealPlan') }}</h3>
                 </button>
               </div>
             </div>
@@ -88,6 +88,11 @@ import Konami from 'konami'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useListsStore } from './stores/lists'
 import type { Meal } from './types/meal'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+
+const { locale } = useI18n()
+const route = useRoute()
 
 const menuShown = ref(false)
 const cookbookShown = ref(false)
@@ -112,6 +117,7 @@ window.addEventListener('scroll', toggleScrollbutton)
 
 onUnmounted(() => window.removeEventListener('scroll', toggleScrollbutton))
 onMounted(() => {
+  locale.value = route.query.locale || 'de'
   const hasFaultyLocalStorageEntryItemList =
     localStorage.getItem('grocerylist') === 'undefined' ||
     localStorage.getItem('grocerylist') === undefined ||

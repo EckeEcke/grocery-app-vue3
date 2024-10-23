@@ -15,16 +15,19 @@
           {{ ingredient }}
         </button>
       </div>
+      <a v-if="meal.recipe" :href="meal.recipe" target="_blank" class="mx-3 mb-3">{{
+        $t('buttons.openRecipe')
+      }}</a>
       <div class="card-footer">
         <button
           class="btn btn-outline-secondary mx-3"
           aria-label="delete item"
           @click="deleteItem()"
         >
-          Delete
+          {{ $t('buttons.delete') }}
         </button>
         <button class="btn btn-primary" aria-label="close modal" @click="emit('hide')">
-          Close
+          {{ $t('buttons.close') }}
         </button>
       </div>
     </div>

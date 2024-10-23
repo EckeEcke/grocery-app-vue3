@@ -3,4 +3,5 @@ export interface Meal {
   planned?: boolean
   id?: number
   ingredients: string[]
+  recipe?: string
 }

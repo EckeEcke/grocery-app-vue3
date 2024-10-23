@@ -2,7 +2,7 @@
   <div class="border-0 mx-auto my-5">
     <div class="card bg-white border-0">
       <div class="card-header bg-warning rounded-0 py-1 px-4 mb-4">
-        <h3 class="text-white m-2 p-2">Random recipe</h3>
+        <h3 class="text-white m-2 p-2">{{ $t('randomRecipe') }}</h3>
       </div>
       <div v-if="isLoading" class="card-body container">
         <div class="spinner-3 mx-auto my-5"></div>
@@ -28,22 +28,26 @@
               {{ randomMeal.data.meals[0].strMeal }}
             </h4>
             <span class="recipe-description">
-              Category: {{ randomMeal.data.meals[0].strCategory }}
+              {{ $t('category') }}: {{ randomMeal.data.meals[0].strCategory }}
             </span>
             <br />
-            <span class="recipe-description"> Area: {{ randomMeal.data.meals[0].strArea }} </span>
+            <span class="recipe-description">
+              {{ $t('area') }}: {{ randomMeal.data.meals[0].strArea }}
+            </span>
             <br />
             <span class="recipe-description">
-              <a class="link-info" :href="randomMeal.data.meals[0].strSource" target="_blank"
-                >Link to recipe</a
-              >
+              <a class="link-info" :href="randomMeal.data.meals[0].strSource" target="_blank">{{
+                $t('buttons.openRecipe')
+              }}</a>
             </span>
           </div>
         </div>
 
         <div class="row mt-5">
           <div class="col-1 mb-2"></div>
-          <h5 class="col-10" @click="() => (showInstructions = !showInstructions)">Instructions</h5>
+          <h5 class="col-10" @click="() => (showInstructions = !showInstructions)">
+            {{ $t('buttons.instructions') }}
+          </h5>
           <h5 class="col-1 px-0" @click="showInstructions = !showInstructions">
             <font-awesome-icon
               :icon="['fas', 'chevron-up']"
@@ -60,7 +64,9 @@
         <hr class="mb-2" />
         <div class="row">
           <div class="col-1 mb-2"></div>
-          <h5 class="col-10" @click="() => (showIngredients = !showIngredients)">Ingredients</h5>
+          <h5 class="col-10" @click="() => (showIngredients = !showIngredients)">
+            {{ $t('buttons.ingredients') }}
+          </h5>
           <h5 class="col-1 px-0" @click="showIngredients = !showIngredients">
             <font-awesome-icon
               :icon="['fas', 'chevron-up']"
@@ -88,10 +94,10 @@
           aria-label="add recipe"
           @click="addRecipe"
         >
-          <font-awesome-icon :icon="['fas', 'plus']" />Add to cookbook
+          <font-awesome-icon :icon="['fas', 'plus']" />{{ $t('buttons.addToCookbook') }}
         </button>
         <button class="btn btn-outline-secondary" aria-label="load recipe idea" @click="loadRecipe">
-          Load new recipe
+          {{ $t('buttons.loadNewRecipe') }}
         </button>
       </div>
     </div>
@@ -103,6 +109,9 @@ import { ref, computed, onMounted } from 'vue'
 import { useListsStore } from '../stores/lists'
 import axios from 'axios'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const showInstructions = ref(false)
 const showIngredients = ref(false)
@@ -159,9 +168,10 @@ const loadRecipe = () => {
 const addRecipe = () => {
   listStore.addNewMeal({
     name: randomMeal.value?.data.meals[0].strMeal,
-    ingredients: ingredients.value
+    ingredients: ingredients.value,
+    recipe: randomMeal.value?.data.meals[0].strSource
   })
-  toast.success(`${randomMeal.value.data.meals[0].strMeal} was added to your cookbook`, {
+  toast.success(t('toasts.savedRandomRecipe', { recipe: randomMeal.value.data.meals[0].strMeal }), {
     autoClose: 1000
   })
 }

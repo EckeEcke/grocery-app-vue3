@@ -69,7 +69,8 @@ export const useListsStore = defineStore('lists', () => {
         name: payload.name,
         planned: true,
         id: newMealId(),
-        ingredients: payload.ingredients
+        ingredients: payload.ingredients,
+        recipe: payload.recipe
       })
     } else {
       clonedList[index].planned = true
