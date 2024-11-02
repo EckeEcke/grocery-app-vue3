@@ -50,12 +50,12 @@ const props = defineProps({
   groceryList: Array as PropType<ListItem[]>
 })
 
-const input = ref<any>(null)
+const input = ref<HTMLElement | null>(null)
 
 const quantity = ref('')
 
 onMounted(() => {
-  input.value.focus()
+  input.value!.focus()
 })
 
 const submit = (element: string) => {

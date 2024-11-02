@@ -101,7 +101,7 @@ const hiddenDetailpage = ref(true)
 const detailedMeal = ref<Meal | undefined>(undefined)
 const touchstartX = ref(0)
 const touchstartY = ref(0)
-const app = ref<any>(null)
+const app = ref<HTMLElement | null>(null)
 
 const listStore = useListsStore()
 
@@ -117,7 +117,7 @@ window.addEventListener('scroll', toggleScrollbutton)
 
 onUnmounted(() => window.removeEventListener('scroll', toggleScrollbutton))
 onMounted(() => {
-  locale.value = route.query.locale || 'de'
+  locale.value = (route.query.locale as string) || 'de'
   const hasFaultyLocalStorageEntryItemList =
     localStorage.getItem('grocerylist') === 'undefined' ||
     localStorage.getItem('grocerylist') === undefined ||
@@ -171,11 +171,11 @@ const hideDetailpage = () => {
   hiddenDetailpage.value = true
   document.documentElement.style.overflow = 'auto'
 }
-const handleTouchStart = (event: any) => {
+const handleTouchStart = (event: TouchEvent) => {
   touchstartX.value = event.changedTouches[0].screenX
   touchstartY.value = event.changedTouches[0].screenY
 }
-const handleTouchEnd = (event: any) => {
+const handleTouchEnd = (event: TouchEvent) => {
   const touchendX = event.changedTouches[0].screenX
   const touchendY = event.changedTouches[0].screenY
   if (!(touchendY <= touchstartY.value + 40 && touchendY >= touchstartY.value - 40)) return

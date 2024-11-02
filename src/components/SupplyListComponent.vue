@@ -178,7 +178,7 @@ const listStore = useListsStore()
 const showInput = ref<boolean>(false)
 const quantityItem = ref<ListItem | undefined>(undefined)
 const manualList = ref<string>('')
-const textarea = ref<any>(null)
+const textarea = ref<HTMLElement | null>(null)
 
 const groceryList = computed(() => {
   return listStore.groceryList
@@ -292,7 +292,7 @@ const setInput = (newValue: string) => {
   const newManualList = manualList.value.split(/,\s+|,|\n/)
   newManualList[newManualList.length - 1] = newValue + ','
   manualList.value = newManualList.toString()
-  textarea.value.focus()
+  textarea.value!.focus()
   resizeTextArea()
 }
 
@@ -306,6 +306,7 @@ const emitManualList = () => {
 
 const resizeTextArea = () => {
   const element = textarea.value
+  if (!element) return
   element.style.height = '18px'
   element.style.height = element.scrollHeight + 'px'
 }

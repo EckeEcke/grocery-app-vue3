@@ -251,7 +251,7 @@ const copyList = () => {
   })
 }
 
-const formSubmit = (event: any) => {
+const formSubmit = (event: Event) => {
   event.preventDefault()
   if (newMeal.value.length > 0) {
     listStore.addNewMeal({
@@ -279,7 +279,7 @@ const deleteCookbook = () => {
   }
 }
 
-const pushIngredient = (event: any) => {
+const pushIngredient = (event: Event) => {
   event.preventDefault()
   ingredients.value.push(newIngredient.value)
   newIngredient.value = ''
