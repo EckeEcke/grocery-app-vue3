@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="backdrop" @click="emit('hide')"></div>
+  <div v-if="meal">
+    <div class="backdrop" @click="hide()"></div>
     <div class="modal-detailpage card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ meal.name }}</h4>
       <div class="card-body" style="text-align: left">
@@ -26,7 +26,7 @@
         >
           {{ $t('buttons.delete') }}
         </button>
-        <button class="btn btn-primary" aria-label="close modal" @click="emit('hide')">
+        <button class="btn btn-primary" aria-label="close modal" @click="hide()">
           {{ $t('buttons.close') }}
         </button>
       </div>
@@ -37,20 +37,13 @@
 <script setup lang="ts">
 import { useListsStore } from '../stores/lists'
 import { computed } from 'vue'
-import type { PropType } from 'vue'
 import type { Meal } from '../types/meal'
 import type { ListItem } from '../types/listitem'
+import { useConfigStore } from '@/stores/config'
 
 const listStore = useListsStore()
 
-const props = defineProps({
-  meal: {
-    type: Object as PropType<Meal>,
-    required: true
-  }
-})
-
-const emit = defineEmits(['hide'])
+const meal = computed(() => useConfigStore().mealToShow)
 
 const groceryList = computed(() => {
   return listStore.groceryList
@@ -71,7 +64,9 @@ const checkIngredients = (ingredient: string) => {
 }
 
 const deleteItem = () => {
-  listStore.deleteSingleMeal(props.meal)
-  emit('hide')
+  listStore.deleteSingleMeal(meal.value as Meal)
+  hide()
 }
+
+const hide = () => useConfigStore().setShowDetailpage(false)
 </script>

@@ -95,39 +95,9 @@
       </div>
       <div v-if="plannedItems.length >= 1" class="pb-1 container">
         <transition-group name="slide-fade">
-          <div class="row px-3 hover-zoom" v-for="meal in plannedItems" :key="meal.name">
-            <div class="col-10 px-0 mx-0 text-nowrap overflow-hidden">
-              <button
-                v-if="meal"
-                class="btn btn-outline-secondary w-100 mx-0"
-                style="text-align: left"
-                aria-label="set meal planned"
-                :key="meal.id + meal.name"
-                @click="setMealPlanned(meal)"
-              >
-                {{ meal.name }}
-              </button>
-            </div>
-            <div class="col-1 px-0">
-              <button
-                class="btn btn-outline-secondary delete-item-btn px-0 mx-0 w-100"
-                aria-label="show meal details"
-                @click="$emit('show-details', meal)"
-              >
-                <font-awesome-icon :icon="['fas', 'search']" class="trash-icon-item" />
-              </button>
-            </div>
-            <div class="col-1 px-0 mx-0">
-              <button
-                class="btn btn-outline-secondary align-bottom delete-item-btn"
-                aria-label="set meal planned"
-                @click="setMealPlanned(meal)"
-              >
-                <font-awesome-icon :icon="['fas', 'check']" class="trash-icon-item" />
-              </button>
-            </div>
-            <hr />
-          </div>
+          <template v-for="meal in plannedItems" :key="meal.name">
+            <CookBookItem :meal="meal" />
+          </template>
         </transition-group>
         <div class="d-flex justify-content-end">
           <button
@@ -214,9 +184,11 @@ import { useListsStore } from '@/stores/lists'
 import type { Meal } from '../types/meal'
 import { toast } from 'vue3-toastify'
 import { useI18n } from 'vue-i18n'
+import CookBookItem from './CookBookItem.vue'
 
 const { t } = useI18n()
 const listStore = useListsStore()
+
 const newMeal = ref('')
 const recipe = ref<string | undefined>(undefined)
 const newIngredient = ref('')

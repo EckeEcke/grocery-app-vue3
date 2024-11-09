@@ -44,7 +44,7 @@
             </div>
 
             <transition-group name="fade">
-              <CookBook v-if="cookbookShown" key="component" @show-details="showDetailpage" />
+              <CookBook v-if="cookbookShown" key="component" />
               <RandomRecipe v-if="cookbookShown" key="random" />
               <SupplyList v-if="!cookbookShown" key="component" />
             </transition-group>
@@ -55,11 +55,7 @@
         </div>
       </div>
     </div>
-    <DetailPage
-      v-if="!hiddenDetailpage && detailedMeal"
-      :meal="detailedMeal"
-      @hide="hideDetailpage"
-    />
+    <DetailPage v-if="showDetailpage" />
     <NavbarComponent v-if="menuShown" :menuShown="menuShown" @close="hideMenu" class="container" />
     <transition name="fade">
       <button
@@ -87,9 +83,9 @@ import runMario from 'running-mario'
 import Konami from 'konami'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useListsStore } from './stores/lists'
-import type { Meal } from './types/meal'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
+import { useConfigStore } from './stores/config'
 
 const { locale } = useI18n()
 const route = useRoute()
@@ -97,13 +93,12 @@ const route = useRoute()
 const menuShown = ref(false)
 const cookbookShown = ref(false)
 const showScrollBtn = ref(false)
-const hiddenDetailpage = ref(true)
-const detailedMeal = ref<Meal | undefined>(undefined)
 const touchstartX = ref(0)
 const touchstartY = ref(0)
 const app = ref<HTMLElement | null>(null)
 
 const listStore = useListsStore()
+const configStore = useConfigStore()
 
 const isStandAlone = computed(() => window.matchMedia('(display-mode: standalone)').matches)
 const toggleScrollbutton = () => {
@@ -145,8 +140,8 @@ onMounted(() => {
   new Konami(() => {
     runMario()
   })
-  app.value.addEventListener('touchstart', handleTouchStart, false)
-  app.value.addEventListener('touchend', handleTouchEnd, false)
+  app.value!.addEventListener('touchstart', handleTouchStart, false)
+  app.value!.addEventListener('touchend', handleTouchEnd, false)
   const urlParams = new URLSearchParams(window.location.search)
   if (urlParams.get('view') === 'mealplan') cookbookShown.value = true
 })
@@ -162,15 +157,8 @@ const hideMenu = () => {
 const scrollToTop = () => {
   window.scrollTo(0, 0)
 }
-const showDetailpage = (meal: Meal) => {
-  detailedMeal.value = meal
-  hiddenDetailpage.value = false
-  document.documentElement.style.overflow = 'hidden'
-}
-const hideDetailpage = () => {
-  hiddenDetailpage.value = true
-  document.documentElement.style.overflow = 'auto'
-}
+const showDetailpage = computed(() => configStore.showDetailPage)
+
 const handleTouchStart = (event: TouchEvent) => {
   touchstartX.value = event.changedTouches[0].screenX
   touchstartY.value = event.changedTouches[0].screenY
