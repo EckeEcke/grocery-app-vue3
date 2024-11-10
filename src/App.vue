@@ -23,14 +23,7 @@
     <DetailPage v-if="showDetailpage" />
     <NavbarComponent v-if="showNavMenu" class="container" />
     <transition name="fade">
-      <button
-        v-if="showScrollBtn"
-        class="scroll-btn btn bg-primary"
-        aria-label="scroll back to top"
-        @click="scrollToTop"
-      >
-        <font-awesome-icon :icon="['fas', 'chevron-up']" />
-      </button>
+      <ScrollTopButton />
     </transition>
   </div>
 </template>
@@ -44,11 +37,12 @@ import NavbarComponent from './components/NavigationComponent.vue'
 import CookBook from './components/CookBookComponent.vue'
 import SupplyList from './components/SupplyListComponent.vue'
 import DetailPage from './components/DetailPageComponent.vue'
+import ScrollTopButton from './components/ScrollTopButton.vue'
 import supplyListData from './static/supplyListData.json'
 import cookBookData from './static/cookBookData.json'
 import runMario from 'running-mario'
 import Konami from 'konami'
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useListsStore } from './stores/lists'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
@@ -58,7 +52,6 @@ import { Tab } from './types/tabs'
 const { locale } = useI18n()
 const route = useRoute()
 
-const showScrollBtn = ref(false)
 const touchstartX = ref(0)
 const touchstartY = ref(0)
 const app = ref<HTMLElement | null>(null)
@@ -70,16 +63,6 @@ const showNavMenu = computed(() => configStore.showNavMenu)
 
 const displayedTab = computed(() => configStore.displayedTab)
 
-const toggleScrollbutton = () => {
-  if (window.scrollY > window.innerHeight * 0.75) {
-    showScrollBtn.value = true
-  } else {
-    showScrollBtn.value = false
-  }
-}
-window.addEventListener('scroll', toggleScrollbutton)
-
-onUnmounted(() => window.removeEventListener('scroll', toggleScrollbutton))
 onMounted(() => {
   locale.value = (route.query.locale as string) || 'de'
   const hasFaultyLocalStorageEntryItemList =
@@ -114,8 +97,6 @@ onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search)
   if (urlParams.get('view') === Tab.cookbook) configStore.setDisplayedTab(Tab.cookbook)
 })
-
-const scrollToTop = () => window.scrollTo(0, 0)
 
 const showDetailpage = computed(() => configStore.showDetailPage)
 
