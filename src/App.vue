@@ -5,33 +5,13 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-6 px-0 mx-auto bg-white box-shadow">
           <div class="rounded no-br-mobile pb-4 border-0 card mb-0 mb-sm-5">
-            <div
-              class="btn-toolbar no-br-top-mobile justify-content-center rounded-top no-br-mobile overflow-hidden sticky-mobile bg-white"
-            >
-              <div class="btn-group w-100" role="group">
-                <button
-                  class="btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder"
-                  :class="{ inactive: cookbookShown }"
-                  aria-label="show grocerylist"
-                  @click="cookbookShown = false"
-                >
-                  <h3 class="text-white mb-0 px-0">{{ $t('groceryList') }}</h3>
-                </button>
-                <button
-                  class="btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder"
-                  :class="{ inactive: !cookbookShown }"
-                  aria-label="show cookbook"
-                  @click="cookbookShown = true"
-                >
-                  <h3 class="text-white mb-0 px-0">{{ $t('mealPlan') }}</h3>
-                </button>
-              </div>
-            </div>
-
+            <ToggleTabs />
             <transition-group name="fade">
-              <CookBook v-if="cookbookShown" key="component" />
-              <RandomRecipe v-if="cookbookShown" key="random" />
-              <SupplyList v-if="!cookbookShown" key="component" />
+              <template v-if="displayedTab === Tab.cookbook">
+                <CookBook key="component" />
+                <RandomRecipe key="random" />
+              </template>
+              <SupplyList v-if="displayedTab === Tab.groceries" key="component" />
             </transition-group>
           </div>
         </div>
@@ -57,6 +37,7 @@
 
 <script setup lang="ts">
 import Header from './components/HeaderComponent.vue'
+import ToggleTabs from './components/ToggleTabs.vue'
 import RandomRecipe from './components/RandomRecipe.vue'
 import AboutContent from './components/AboutContent.vue'
 import NavbarComponent from './components/NavigationComponent.vue'
@@ -72,11 +53,11 @@ import { useListsStore } from './stores/lists'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useConfigStore } from './stores/config'
+import { Tab } from './types/tabs'
 
 const { locale } = useI18n()
 const route = useRoute()
 
-const cookbookShown = ref(false)
 const showScrollBtn = ref(false)
 const touchstartX = ref(0)
 const touchstartY = ref(0)
@@ -86,6 +67,8 @@ const listStore = useListsStore()
 const configStore = useConfigStore()
 
 const showNavMenu = computed(() => configStore.showNavMenu)
+
+const displayedTab = computed(() => configStore.displayedTab)
 
 const toggleScrollbutton = () => {
   if (window.scrollY > window.innerHeight * 0.75) {
@@ -129,7 +112,7 @@ onMounted(() => {
   app.value!.addEventListener('touchstart', handleTouchStart, false)
   app.value!.addEventListener('touchend', handleTouchEnd, false)
   const urlParams = new URLSearchParams(window.location.search)
-  if (urlParams.get('view') === 'mealplan') cookbookShown.value = true
+  if (urlParams.get('view') === Tab.cookbook) configStore.setDisplayedTab(Tab.cookbook)
 })
 
 const scrollToTop = () => window.scrollTo(0, 0)
@@ -145,20 +128,20 @@ const handleTouchEnd = (event: TouchEvent) => {
   const touchendY = event.changedTouches[0].screenY
   if (!(touchendY <= touchstartY.value + 40 && touchendY >= touchstartY.value - 40)) return
   if (touchendX + 60 < touchstartX.value) {
-    cookbookShown.value = true
+    configStore.setDisplayedTab(Tab.cookbook)
   }
   if (touchendX - 60 > touchstartX.value) {
-    cookbookShown.value = false
+    configStore.setDisplayedTab(Tab.groceries)
   }
 }
 
-watch(cookbookShown, (val: boolean) => {
+watch(displayedTab, (val: Tab) => {
   window.scrollTo({ top: 0, behavior: 'instant' })
   const url = new URL(window.location.href)
-  if (val === true) {
-    url.searchParams.set('view', 'mealplan')
+  if (val === Tab.cookbook) {
+    url.searchParams.set('view', Tab.cookbook)
   } else {
-    url.searchParams.set('view', 'grocerylist')
+    url.searchParams.set('view', Tab.groceries)
   }
   window.history.replaceState(null, '', url)
 })
