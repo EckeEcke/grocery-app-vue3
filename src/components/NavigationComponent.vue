@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="backdrop" @click="() => emit('close')"></div>
+    <div class="backdrop" @click="closeMenu()"></div>
     <nav class="sidebar bg-white">
       <div class="bg-warning py-5" />
       <div>
@@ -44,7 +44,7 @@
           class="btn text-white"
           style="font-size: 2.5em"
           aria-label="close navigation menu"
-          @click="() => emit('close')"
+          @click="closeMenu()"
         >
           <font-awesome-icon :icon="['fas', 'times']" />
         </button>
@@ -54,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { useConfigStore } from '@/stores/config'
 import { useI18n } from 'vue-i18n'
 import { useRouter, useRoute } from 'vue-router'
 
@@ -61,6 +62,8 @@ const { locale } = useI18n()
 
 const router = useRouter()
 const route = useRoute()
+
+const configStore = useConfigStore()
 
 const changeLocale = (lang: string) => {
   locale.value = lang
@@ -71,7 +74,8 @@ const changeLocale = (lang: string) => {
     }
   })
 }
-const emit = defineEmits(['close'])
+
+const closeMenu = () => configStore.setShowNavMenu(false)
 </script>
 
 <style scoped>

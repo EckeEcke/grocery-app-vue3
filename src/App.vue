@@ -1,21 +1,6 @@
 <template>
   <div id="app" ref="app">
-    <header class="box-shadow position-relative mb-0 mb-sm-5">
-      <div class="container d-flex justify-content-between">
-        <h1 class="text-white">Vue Meal Planner</h1>
-        <button
-          v-if="!menuShown && !isStandAlone"
-          id="toggle-nav-BTN"
-          class="btn"
-          style="font-size: 2em"
-          aria-label="show navigation menu"
-          @click="showMenu"
-        >
-          <font-awesome-icon :icon="['fas', 'bars']" />
-        </button>
-      </div>
-    </header>
-
+    <Header />
     <div class="container pb-5">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-6 px-0 mx-auto bg-white box-shadow">
@@ -56,7 +41,7 @@
       </div>
     </div>
     <DetailPage v-if="showDetailpage" />
-    <NavbarComponent v-if="menuShown" :menuShown="menuShown" @close="hideMenu" class="container" />
+    <NavbarComponent v-if="showNavMenu" class="container" />
     <transition name="fade">
       <button
         v-if="showScrollBtn"
@@ -71,6 +56,7 @@
 </template>
 
 <script setup lang="ts">
+import Header from './components/HeaderComponent.vue'
 import RandomRecipe from './components/RandomRecipe.vue'
 import AboutContent from './components/AboutContent.vue'
 import NavbarComponent from './components/NavigationComponent.vue'
@@ -90,7 +76,6 @@ import { useConfigStore } from './stores/config'
 const { locale } = useI18n()
 const route = useRoute()
 
-const menuShown = ref(false)
 const cookbookShown = ref(false)
 const showScrollBtn = ref(false)
 const touchstartX = ref(0)
@@ -100,7 +85,8 @@ const app = ref<HTMLElement | null>(null)
 const listStore = useListsStore()
 const configStore = useConfigStore()
 
-const isStandAlone = computed(() => window.matchMedia('(display-mode: standalone)').matches)
+const showNavMenu = computed(() => configStore.showNavMenu)
+
 const toggleScrollbutton = () => {
   if (window.scrollY > window.innerHeight * 0.75) {
     showScrollBtn.value = true
@@ -146,17 +132,8 @@ onMounted(() => {
   if (urlParams.get('view') === 'mealplan') cookbookShown.value = true
 })
 
-const showMenu = () => {
-  menuShown.value = true
-  document.documentElement.style.overflow = 'hidden'
-}
-const hideMenu = () => {
-  menuShown.value = false
-  document.documentElement.style.overflow = 'auto'
-}
-const scrollToTop = () => {
-  window.scrollTo(0, 0)
-}
+const scrollToTop = () => window.scrollTo(0, 0)
+
 const showDetailpage = computed(() => configStore.showDetailPage)
 
 const handleTouchStart = (event: TouchEvent) => {
