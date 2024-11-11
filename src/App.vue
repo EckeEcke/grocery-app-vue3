@@ -11,7 +11,7 @@
                 <CookBook key="component" />
                 <RandomRecipe key="random" />
               </template>
-              <SupplyList v-if="displayedTab === Tab.groceries" key="component" />
+              <GroceryList v-if="displayedTab === Tab.groceries" key="component" />
             </transition-group>
           </div>
         </div>
@@ -35,7 +35,7 @@ import RandomRecipe from './components/RandomRecipe.vue'
 import AboutContent from './components/AboutContent.vue'
 import NavbarComponent from './components/NavigationComponent.vue'
 import CookBook from './components/CookBookComponent.vue'
-import SupplyList from './components/SupplyListComponent.vue'
+import GroceryList from './components/GroceryList.vue'
 import DetailPage from './components/DetailPageComponent.vue'
 import ScrollTopButton from './components/ScrollTopButton.vue'
 import supplyListData from './static/supplyListData.json'
