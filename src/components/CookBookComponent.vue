@@ -22,7 +22,7 @@
       <div v-if="plannedItems.length >= 1" class="pb-1 container">
         <transition-group name="slide-fade">
           <template v-for="meal in plannedItems" :key="meal.name">
-            <CookBookItem :meal="meal" />
+            <CookBookItem :isPlanned="true" :meal="meal" />
           </template>
         </transition-group>
         <div class="d-flex justify-content-end">
@@ -48,39 +48,12 @@
             <strong>{{ entry[0] }}</strong>
           </div>
           <transition-group name="slide-fade">
-            <div class="row px-3 hover-zoom" v-for="meal in onlyMealEntries(entry)" :key="meal.id">
-              <div class="col-10 text-nowrap overflow-hidden px-0 mx-0">
-                <button
-                  class="btn w-100 mx-0"
-                  style="text-align: left"
-                  :class="meal.planned ? 'btn-success' : 'btn-outline-secondary'"
-                  aria-label="set meal planned"
-                  :key="meal.id"
-                  @click="setMealPlanned(meal)"
-                >
-                  {{ meal.name }}
-                </button>
-              </div>
-              <div class="col-1 p-0">
-                <button
-                  class="btn btn-outline-secondary delete-item-btn px-0 mx-0 w-100"
-                  aria-label="show meal details"
-                  @click="showDetails(meal)"
-                >
-                  <font-awesome-icon :icon="['fas', 'search']" class="trash-icon-item" />
-                </button>
-              </div>
-              <div class="col-1 px-0 mx-0">
-                <button
-                  class="btn w-100 btn-outline-secondary align-bottom delete-item-btn"
-                  aria-label="delete meal"
-                  @click="deleteMeal(meal)"
-                >
-                  <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
-                </button>
-              </div>
-              <hr />
-            </div>
+            <CookBookItem
+              v-for="meal in onlyMealEntries(entry)"
+              :meal="meal"
+              :isPlanned="false"
+              :key="meal.id"
+            />
           </transition-group>
         </div>
         <div class="d-flex justify-content-end my-4">
