@@ -23,44 +23,7 @@
       </div>
       <div v-if="plannedItems && plannedItems.length >= 1" class="pb-1 container">
         <transition-group name="slide-fade">
-          <div
-            class="row px-3 hover-zoom"
-            v-for="groceryItem in plannedItems"
-            :key="groceryItem.id"
-          >
-            <div class="col-10 px-0 mx-0 text-nowrap overflow-hidden hover-zoom">
-              <button
-                v-if="groceryItem"
-                class="btn btn-outline-secondary w-100 mx-0"
-                :key="groceryItem.name"
-                aria-label="check single item"
-                style="text-align: left"
-                @click="checkSingleItem(groceryItem.name)"
-              >
-                {{ groceryItem.name }}
-                <span v-if="groceryItem.quantity !== ''">{{ groceryItem.quantity }}</span>
-              </button>
-            </div>
-            <div class="col-1 px-0 mx-0">
-              <button
-                class="btn btn-outline-secondary align-bottom delete-item-btn"
-                aria-label="open modal"
-                @click="createModal(groceryItem)"
-              >
-                <font-awesome-icon :icon="['fas', 'sort']" class="trash-icon-item" />
-              </button>
-            </div>
-            <div class="col-1 px-0 mx-0">
-              <button
-                class="btn btn-outline-secondary align-bottom delete-item-btn"
-                aria-label="check item"
-                @click="checkItem(groceryItem)"
-              >
-                <font-awesome-icon :icon="['fas', 'check']" class="trash-icon-item" />
-              </button>
-            </div>
-            <hr />
-          </div>
+          <GroceryListItem v-for="item in plannedItems" :item="item" :key="item.id" />
         </transition-group>
         <div class="d-flex justify-content-end">
           <button class="btn btn-outline-secondary my-4" aria-label="copy list" @click="copyList">
@@ -78,34 +41,11 @@
             <strong>{{ entry[0] }}</strong>
           </div>
           <transition-group name="slide-fade">
-            <div
-              class="row px-3 hover-zoom"
+            <GroceryListItemUnplanned
               v-for="(item, index) in onlyListItems(entry)"
+              :item="item"
               :key="index"
-            >
-              <div class="col-11 text-nowrap overflow-hidden px-0 mx-0">
-                <button
-                  class="btn w-100 mx-0 list-btn"
-                  :class="item.planned ? 'btn-success' : 'btn-outline-secondary'"
-                  :key="item.name"
-                  style="text-align: left"
-                  aria-label="push new item from list"
-                  @click="pushNewItemfromList(item.name)"
-                >
-                  {{ item.name }}
-                </button>
-              </div>
-              <div class="col-1 px-0 mx-0">
-                <button
-                  class="btn btn-outline-secondary align-bottom delete-item-btn"
-                  aria-label="delete single item"
-                  @click="deleteSingleItem(item)"
-                >
-                  <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
-                </button>
-              </div>
-              <hr />
-            </div>
+            />
           </transition-group>
         </div>
         <div class="d-flex justify-content-end my-4">
@@ -126,29 +66,30 @@
       alt="illustration of a grocery list"
       src="../assets/supplylist-illustration.svg"
     />
-    <QuantityInput
-      v-if="showInput"
-      :item="quantityItem"
-      @hide="hideInput"
-      :groceryList="groceryList"
-    />
+    <QuantityInput v-if="showQuantityInput" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useListsStore } from '../stores/lists'
 import { toast } from 'vue3-toastify'
 import type { ListItem } from '../types/listitem'
 import QuantityInput from './QuantityInputComponent.vue'
 import GroceryListForm from './GroceryListForm.vue'
+import GroceryListItem from './GroceryListItem.vue'
+import GroceryListItemUnplanned from './GroceryListItemUnplanned.vue'
 import { useI18n } from 'vue-i18n'
+import { useConfigStore } from '@/stores/config'
 
 const { t } = useI18n()
 
 const listStore = useListsStore()
-const showInput = ref<boolean>(false)
-const quantityItem = ref<ListItem | undefined>(undefined)
+const configStore = useConfigStore()
+
+const showQuantityInput = computed(
+  () => configStore.showQuantityInput && configStore.itemToShow !== undefined
+)
 
 const groceryList = computed(() => {
   return listStore.groceryList
@@ -163,35 +104,6 @@ const plannedItems = computed(() => {
 const filteredItemsByFirstLetter = computed(() => {
   return listStore.splitUpListItemsAndSortByFirstLetter()
 })
-
-const pushNewItemfromList = (element: string) => {
-  const clonedGroceryList = [...groceryList.value]
-  const index = clonedGroceryList
-    .map(function (element) {
-      return element.name
-    })
-    .indexOf(element)
-  listStore.setItemPlanned(index)
-}
-
-const checkItem = (element: ListItem) => {
-  listStore.checkSingleItem(element)
-}
-
-const checkSingleItem = (element: string) => {
-  const clonedGroceryList = [...groceryList.value]
-  const indexGrocerylist = clonedGroceryList
-    .map(function (element) {
-      return element.name
-    })
-    .indexOf(element)
-  if (clonedGroceryList[indexGrocerylist]) {
-    clonedGroceryList[indexGrocerylist].planned = false
-    clonedGroceryList[indexGrocerylist].quantity = ''
-  }
-  listStore.setGroceryList(clonedGroceryList)
-  localStorage.setItem('grocerylist', JSON.stringify(clonedGroceryList))
-}
 
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
@@ -209,21 +121,6 @@ const deleteGrocerylist = () => {
       autoClose: 1000
     })
   }
-}
-
-const createModal = (element: ListItem) => {
-  document.documentElement.style.overflow = 'hidden'
-  quantityItem.value = element
-  showInput.value = true
-}
-
-const hideInput = () => {
-  showInput.value = false
-  document.documentElement.style.overflow = 'auto'
-}
-
-const deleteSingleItem = (element: ListItem) => {
-  listStore.deleteSingleItem(element)
 }
 
 const onlyListItems = (array: (ListItem | string)[]): ListItem[] => {

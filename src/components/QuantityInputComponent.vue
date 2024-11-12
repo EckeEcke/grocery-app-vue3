@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="backdrop" @click="emit('hide')"></div>
-    <div class="modal-detailpage card border-0" v-if="item">
+    <div class="backdrop" @click="hide()"></div>
+    <div class="modal-detailpage card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ item.name }}</h4>
       <div class="card-body" style="text-align: left">
         <p>{{ $t('quantity', { item: item.name }) }}</p>
@@ -14,11 +14,7 @@
         />
       </div>
       <div class="card-footer">
-        <button
-          class="btn btn-outline-secondary mx-3"
-          aria-label="close modal"
-          @click="emit('hide')"
-        >
+        <button class="btn btn-outline-secondary mx-3" aria-label="close modal" @click="hide()">
           {{ $t('buttons.cancel') }}
         </button>
         <button
@@ -34,22 +30,19 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import type { PropType } from 'vue'
-import type { ListItem } from '../types/listitem'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useConfigStore } from '@/stores/config'
+import { useListsStore } from '@/stores/lists'
 
 const { t } = useI18n()
 
-const emit = defineEmits(['hide'])
+const configStore = useConfigStore()
+const listsStore = useListsStore()
 
-const props = defineProps({
-  item: {
-    type: Object as PropType<ListItem>
-  },
-  groceryList: Array as PropType<ListItem[]>
-})
+const groceryList = computed(() => listsStore.groceryList)
 
+const item = computed(() => configStore.itemToShow)
 const input = ref<HTMLElement | null>(null)
 
 const quantity = ref('')
@@ -59,10 +52,12 @@ onMounted(() => {
 })
 
 const submit = (element: string) => {
-  const indexGrocerylist = props.groceryList!.findIndex((listitem) => listitem.name === element)
-  let clonedGroceryList = [...props.groceryList!]
+  const indexGrocerylist = groceryList.value.findIndex((listitem) => listitem.name === element)
+  let clonedGroceryList = [...groceryList.value]
   clonedGroceryList[indexGrocerylist].quantity = quantity.value
   localStorage.setItem('grocerylist', JSON.stringify(clonedGroceryList))
-  emit('hide')
+  hide()
 }
+
+const hide = () => configStore.setShowQuantityInput(false)
 </script>
