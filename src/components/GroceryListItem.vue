@@ -72,8 +72,6 @@ const checkSingleItem = (element: string) => {
 }
 
 const createModal = (item: ListItem) => {
-  document.documentElement.style.overflow = 'hidden'
-
   configStore.setItemToShow(item)
   configStore.setShowQuantityInput(true)
 }

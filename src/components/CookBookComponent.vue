@@ -103,25 +103,11 @@ const filteredItemsByFirstLetter = computed(() => {
   return listStore.splitUpMealsAndSortByFirstLetter()
 })
 
-const setMealPlanned = (element: Meal) => {
-  const clonedGroceryList = [...sortedItems.value]
-  const index = clonedGroceryList
-    .map(function (element) {
-      return element.name
-    })
-    .indexOf(element.name)
-  listStore.setMealPlanned(index)
-}
-
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
   toast.success(t('toasts.copiedListToClipboad'), {
     autoClose: 1000
   })
-}
-
-const deleteMeal = (meal: Meal) => {
-  listStore.deleteSingleMeal(meal)
 }
 
 const deleteCookbook = () => {
@@ -138,11 +124,6 @@ const onlyMealEntries = (array: (Meal | string)[]): Meal[] => {
   return array.filter((entry): entry is Meal => {
     return typeof entry === 'object' && entry !== null && 'name' in entry
   })
-}
-
-const showDetails = (meal: Meal) => {
-  configStore.setMealToShow(meal)
-  configStore.setShowDetailpage(true)
 }
 </script>
 

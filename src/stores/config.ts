@@ -13,14 +13,15 @@ export const useConfigStore = defineStore('config', () => {
   const displayedTab = ref(Tab.groceries)
 
   const setShowDetailpage = (bool: boolean) => {
-    document.documentElement.style.overflow = bool ? 'overflow' : 'auto'
     showDetailPage.value = bool
+    setOverflow()
   }
   const setMealToShow = (meal: Meal) => {
     mealToShow.value = meal
   }
   const setShowQuantityInput = (bool: boolean) => {
     showQuantityInput.value = bool
+    setOverflow()
   }
   const setItemToShow = (item: ListItem) => {
     itemToShow.value = item
@@ -31,6 +32,11 @@ export const useConfigStore = defineStore('config', () => {
 
   const setDisplayedTab = (tab: Tab) => {
     displayedTab.value = tab
+  }
+
+  const setOverflow = () => {
+    document.documentElement.style.overflow =
+      showDetailPage.value || showQuantityInput.value ? 'hidden' : 'auto'
   }
 
   return {

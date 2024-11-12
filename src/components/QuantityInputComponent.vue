@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="item">
     <div class="backdrop" @click="hide()"></div>
     <div class="modal-detailpage card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ item.name }}</h4>
@@ -20,7 +20,7 @@
         <button
           class="btn btn-primary"
           aria-label="add selection and close modal"
-          @click="submit(item?.name)"
+          @click="submit(item.name)"
         >
           {{ $t('buttons.submitAndClose') }}
         </button>
