@@ -52,7 +52,7 @@ const i18n = createI18n({
         copyPlan: 'Plan kopieren',
         copyList: 'Liste kopieren',
         cancel: 'Abbrechen',
-        submitAndClose: 'Bestätigen und schließen'
+        submitAndClose: 'Bestätigen'
       },
       toasts: {
         copiedListToClipboard: 'Liste in Zwischenablage kopiert',
@@ -114,7 +114,7 @@ const i18n = createI18n({
         copyPlan: 'Copy Plan',
         copyList: 'Copy List',
         cancel: 'Cancel',
-        submitAndClose: 'Submit and Close'
+        submitAndClose: 'Submit'
       },
       toasts: {
         copiedListToClipboard: 'Copied list to clipboard',
