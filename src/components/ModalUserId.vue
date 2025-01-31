@@ -29,16 +29,25 @@
 
 <script setup lang="ts">
 import { useConfigStore } from '@/stores/config'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useListsStore } from '@/stores/lists'
 
 const configStore = useConfigStore()
+const listsStore = useListsStore()
 
 const hideModal = () => configStore.setShowUserIdModal(false)
 
 const inputValue = ref('')
 const router = useRouter()
 const route = useRoute()
+
+const lists = computed(() => {
+  return {
+    groceryList: listsStore.groceryList,
+    mealPlan: listsStore.mealPlan
+  }
+})
 
 const emit = defineEmits(['idGenerated'])
 
@@ -57,6 +66,7 @@ const createEntry = async () => {
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(lists.value)
   })
 
   if (!response.ok) {
