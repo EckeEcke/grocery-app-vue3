@@ -16,9 +16,9 @@ const checkIdExists = async (db, id) => {
   return !!entry
 }
 
-const createEntry = async (db, id) => {
+const createEntry = async (db, id, reqBody) => {
   const collection = db.collection('listsById')
-  const newEntry = { _id: id, data: {} }
+  const newEntry = { _id: id, data: reqBody }
   await collection.insertOne(newEntry)
   return newEntry
 }
@@ -45,7 +45,7 @@ export default async (req, res) => {
       return res.status(500).json({ message: 'Failed to generate a unique ID after multiple attempts' })
     }
 
-    const newEntry = await createEntry(db, id)
+    const newEntry = await createEntry(db, id, req.body)
     return res.status(201).json({ message: 'Entry created', entry: newEntry })
   } catch (error) {
     console.error('Error generating and creating entry:', error)

@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { useConfigStore } from '@/stores/config'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useListsStore } from '@/stores/lists'
 
@@ -41,12 +41,6 @@ const hideModal = () => configStore.setShowUserIdModal(false)
 const inputValue = ref('')
 const router = useRouter()
 const route = useRoute()
-
-const lists = computed(() => {
-  return {
-
-  }
-})
 
 const emit = defineEmits(['idGenerated'])
 
