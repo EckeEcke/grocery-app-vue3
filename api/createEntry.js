@@ -1,54 +1,54 @@
-import { connectToDatabase } from './dbClient';
+import { connectToDatabase } from './dbClient'
 
 const generateRandomId = () => {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  const charactersLength = characters.length;
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let result = ''
+  const charactersLength = characters.length
   for (let i = 0; i < 8; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
   }
-  return result;
-};
+  return result
+}
 
 const checkIdExists = async (db, id) => {
-  const collection = db.collection('listsById');
-  const entry = await collection.findOne({ _id: id });
-  return !!entry;
-};
+  const collection = db.collection('listsById')
+  const entry = await collection.findOne({ _id: id })
+  return !!entry
+}
 
 const createEntry = async (db, id) => {
-  const collection = db.collection('listsById');
-  const newEntry = { _id: id, data: {} }; // Customize the data schema as needed
-  await collection.insertOne(newEntry);
-  return newEntry;
-};
+  const collection = db.collection('listsById')
+  const newEntry = { _id: id, data: {} }
+  await collection.insertOne(newEntry)
+  return newEntry
+}
 
 export default async (req, res) => {
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
+    return res.status(405).json({ message: 'Method not allowed' })
   }
 
   try {
-    const db = await connectToDatabase();
+    const db = await connectToDatabase()
 
-    let id;
-    let exists = true;
-    let attempts = 0;
+    let id
+    let exists = true
+    let attempts = 0
 
     while (exists && attempts < 2) {
-      id = generateRandomId();
-      exists = await checkIdExists(db, id);
-      attempts++;
+      id = generateRandomId()
+      exists = await checkIdExists(db, id)
+      attempts++
     }
 
     if (exists) {
-      return res.status(500).json({ message: 'Failed to generate a unique ID after multiple attempts' });
+      return res.status(500).json({ message: 'Failed to generate a unique ID after multiple attempts' })
     }
 
-    const newEntry = await createEntry(db, id);
-    return res.status(201).json({ message: 'Entry created', entry: newEntry });
+    const newEntry = await createEntry(db, id)
+    return res.status(201).json({ message: 'Entry created', entry: newEntry })
   } catch (error) {
-    console.error('Error generating and creating entry:', error);
-    return res.status(500).json({ message: 'Internal server error' });
+    console.error('Error generating and creating entry:', error)
+    return res.status(500).json({ message: 'Internal server error' })
   }
 }
