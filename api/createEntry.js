@@ -1,4 +1,4 @@
-import { connectToDatabase } from './dbClient'
+import { connectToDatabase } from 'var/task/api/dbClient'
 
 const generateRandomId = () => {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
