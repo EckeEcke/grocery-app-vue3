@@ -44,8 +44,7 @@ const route = useRoute()
 
 const lists = computed(() => {
   return {
-    groceryList: listsStore.groceryList,
-    mealPlan: listsStore.mealPlan
+
   }
 })
 
@@ -66,7 +65,11 @@ const createEntry = async () => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(lists.value)
+    body: JSON.stringify({
+        groceryList: listsStore.groceryList,
+        mealPlan: listsStore.mealPlan
+      }
+    )
   })
 
   if (!response.ok) {
