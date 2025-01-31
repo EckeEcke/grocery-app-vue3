@@ -1,5 +1,6 @@
 <template>
   <div id="app" ref="app">
+    <ModalUserId v-if="showUserIdModal" @id-generated="showToast"/>
     <Header />
     <div class="container pb-5">
       <div class="row justify-content-center">
@@ -45,12 +46,15 @@ import Konami from 'konami'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useListsStore } from './stores/lists'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useConfigStore } from './stores/config'
 import { Tab } from './types/tabs'
+import ModalUserId from '@/components/ModalUserId.vue'
+import { toast } from 'vue3-toastify'
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const route = useRoute()
+const router = useRouter()
 
 const touchstartX = ref(0)
 const touchstartY = ref(0)
@@ -62,6 +66,17 @@ const configStore = useConfigStore()
 const showNavMenu = computed(() => configStore.showNavMenu)
 
 const displayedTab = computed(() => configStore.displayedTab)
+
+const showUserIdModal = computed(() => configStore.showUserIdModal)
+
+const showToast = (newId: string) => {
+  const url = new URL(window.location.href)
+  url.searchParams.set('id', newId)
+  window.history.replaceState(null, '', url)
+  setTimeout(() => toast.success(t('userModal.success'), {
+    autoClose: 1000
+  }), 100)
+}
 
 onMounted(() => {
   locale.value = (route.query.locale as string) || 'de'

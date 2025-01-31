@@ -86,6 +86,14 @@ const i18n = createI18n({
         feature8: 'Installierbar als Progressive Web App',
         feature9: 'Konami Code 😉',
         githubLink: ' Vue Mealplanner auf '
+      },
+      userModal: {
+        headline: 'Online Liste erstellen',
+        intro: 'Erstelle eine Online Liste, um mit anderen online gemeinsam eine Liste zu bearbeiten',
+        generateNewId: 'Generiere neue ID',
+        placeholder: 'Suche nach ID',
+        success: 'Neue ID erfolgreich generiert',
+        or: 'oder'
       }
     },
     en: {
@@ -148,6 +156,14 @@ const i18n = createI18n({
         feature8: 'Installable as a Progressive Web App',
         feature9: 'Konami Code',
         githubLink: ' Vue Mealplanner on '
+      },
+      userModal: {
+        headline: 'Create online list',
+        intro: 'Create an online list and collaborate with other users',
+        generateNewId: 'Generate new ID',
+        placeholder: 'Search by ID',
+        success: 'Create new ID',
+        or: 'or'
       }
     }
   }

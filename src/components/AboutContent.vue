@@ -9,7 +9,7 @@
           <p>
             {{ $t('about.intro') }}
           </p>
-          <img src="../assets/logo.png" alt="logo" class="vue-logo mt-2 mb-4" />
+          <img src="../assets/logo.png" alt="" class="vue-logo mt-2 mb-4" />
           <p>
             <b>{{ $t('about.featuresIncluded') }}</b>
           </p>

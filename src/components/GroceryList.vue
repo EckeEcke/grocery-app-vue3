@@ -5,7 +5,7 @@
       <div v-if="plannedItems && plannedItems.length == 0">
         <img
           class="illustration mt-5 mb-3"
-          alt="shopping cart with groceries"
+          alt=""
           src="../assets/grocery-illustration.svg"
         />
         <p class="mb-4 p-3">{{ $t('noItems') }}</p>
@@ -63,7 +63,7 @@
     </div>
     <img
       class="illustration mb-5"
-      alt="illustration of a grocery list"
+      alt=""
       src="../assets/supplylist-illustration.svg"
     />
     <QuantityInput v-if="showQuantityInput" />
