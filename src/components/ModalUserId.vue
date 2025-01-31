@@ -8,7 +8,7 @@
           {{ $t('userModal.intro') }}
         </p>
         <div class="d-flex flex-column justify-content-center">
-          <button class="btn btn-primary new-id-button mx-auto" @click="getNewId">{{ $t('userModal.generateNewId') }}</button>
+          <button class="btn btn-primary new-id-button mx-auto" @click="createEntry">{{ $t('userModal.generateNewId') }}</button>
           <p class="text-center">{{ $t('userModal.or') }}</p>
           <form @submit.prevent="searchForId">
             <input v-model="inputValue" class="form-control inline" type="text" :placeholder="$t('userModal.placeholder')" />
@@ -45,6 +45,21 @@ const emit = defineEmits(['idGenerated'])
 const searchForId = () => {
   router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
   hideModal()
+}
+
+const createEntry = async () => {
+  const response = await fetch('/api/createEntry', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  return response.json();
 }
 
 const getNewId = () => {
