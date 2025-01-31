@@ -42,7 +42,11 @@ const route = useRoute()
 
 const emit = defineEmits(['idGenerated'])
 
-const searchForId = () => {
+const searchForId = async () => {
+  const response = await fetch(`/api/getEntry?id=${inputValue.value}`)
+  if (!response.ok) {
+    throw new Error('Id not found')
+  }
   router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
   hideModal()
 }
@@ -53,13 +57,17 @@ const createEntry = async () => {
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
 
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error('Network response was not ok')
   }
 
-  return response.json();
+  const data = await response.json()
+
+  await router.push({ path: '/', query: { ...route.query, id: data.entry._id } })
+
+  return data
 }
 
 const getNewId = () => {
