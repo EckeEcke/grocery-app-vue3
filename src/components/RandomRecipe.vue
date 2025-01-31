@@ -18,7 +18,7 @@
           <div class="col-4 rounded">
             <img
               class="dish-image"
-              alt="recipe image"
+              alt=""
               :src="randomMeal.data.meals[0].strMealThumb"
             />
           </div>

@@ -11,6 +11,7 @@ export const useConfigStore = defineStore('config', () => {
   const itemToShow = ref<undefined | ListItem>(undefined)
   const showNavMenu = ref(false)
   const displayedTab = ref(Tab.groceries)
+  const showUserIdModal = ref(false)
 
   const setShowDetailpage = (bool: boolean) => {
     showDetailPage.value = bool
@@ -36,7 +37,12 @@ export const useConfigStore = defineStore('config', () => {
 
   const setOverflow = () => {
     document.documentElement.style.overflow =
-      showDetailPage.value || showQuantityInput.value ? 'hidden' : 'auto'
+      showDetailPage.value || showQuantityInput.value || showUserIdModal.value ? 'hidden' : 'auto'
+  }
+
+  const setShowUserIdModal = (bool: boolean) => {
+    showUserIdModal.value = bool
+    setOverflow()
   }
 
   return {
@@ -46,11 +52,14 @@ export const useConfigStore = defineStore('config', () => {
     itemToShow,
     showNavMenu,
     displayedTab,
+    showUserIdModal,
     setShowDetailpage,
     setMealToShow,
     setShowQuantityInput,
     setItemToShow,
     setShowNavMenu,
-    setDisplayedTab
+    setDisplayedTab,
+    setShowUserIdModal,
+
   }
 })
