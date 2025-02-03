@@ -42,7 +42,9 @@ export default async (req, res) => {
     }
 
     if (exists) {
-      return res.status(500).json({ message: 'Failed to generate a unique ID after multiple attempts' })
+      return res
+        .status(500)
+        .json({ message: 'Failed to generate a unique ID after multiple attempts' })
     }
 
     const newEntry = await createEntry(db, id, req.body)

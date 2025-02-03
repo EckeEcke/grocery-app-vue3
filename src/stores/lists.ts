@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { ListItem } from '../types/listitem'
 import type { Meal } from '../types/meal'
+import { useConfigStore } from './config'
 
 export const useListsStore = defineStore('lists', () => {
   const groceryList = ref<[] | ListItem[]>([])
@@ -16,13 +17,38 @@ export const useListsStore = defineStore('lists', () => {
     mealPlan.value = newPlan
     localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
   }
-  const setItemPlanned = (index: number) => {
+  const setItemPlanned = async (index: number) => {
     const clonedWithNewState = [...groceryList.value]
     const isPlanned = clonedWithNewState[index].planned
     clonedWithNewState[index].planned = !isPlanned
     groceryList.value = clonedWithNewState
+    const item = clonedWithNewState[index]
+    const userId = useConfigStore().userId
     if (clonedWithNewState === undefined) return
     localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
+    try {
+      const response = await fetch('/api/updateItem', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          entryId: userId,
+          groceryItemId: item.id,
+          name: item.name,
+          planned: item.planned,
+          quantity: item.quantity
+        })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to update grocery item')
+      }
+    } catch (error) {
+      console.error('Error updating grocery item:', error)
+    }
   }
   const addNewItem = (name: string) => {
     const clonedList = [...groceryList.value]
@@ -49,7 +75,7 @@ export const useListsStore = defineStore('lists', () => {
     groceryList.value.splice(index, 1)
     localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
   }
-  const checkSingleItem = (element: ListItem) => {
+  const checkSingleItem = async (element: ListItem) => {
     const indexGrocerylist = groceryList.value
       .map(function (element: ListItem) {
         return element.name
@@ -60,6 +86,33 @@ export const useListsStore = defineStore('lists', () => {
       groceryList.value[indexGrocerylist].quantity = ''
     }
     localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
+    const item = groceryList.value[indexGrocerylist]
+    const userId = useConfigStore().userId
+    try {
+      const response = await fetch('/api/updateItem', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          entryId: userId,
+          groceryItemId: item.id,
+          name: item.name,
+          planned: item.planned,
+          quantity: item.quantity
+        })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to update grocery item')
+      }
+
+      console.log('Grocery item updated:', data)
+    } catch (error) {
+      console.error('Error updating grocery item:', error)
+    }
   }
   const addNewMeal = (payload: Meal) => {
     const clonedList = [...mealPlan.value]

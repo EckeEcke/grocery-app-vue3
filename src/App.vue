@@ -1,6 +1,6 @@
 <template>
   <div id="app" ref="app">
-    <ModalUserId v-if="showUserIdModal" @id-generated="showToast"/>
+    <ModalUserId v-if="showUserIdModal" @id-generated="showToast" />
     <Header />
     <div class="container pb-5">
       <div class="row justify-content-center">
@@ -55,6 +55,7 @@ import { toast } from 'vue3-toastify'
 const { locale, t } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const listsStore = useListsStore()
 
 const touchstartX = ref(0)
 const touchstartY = ref(0)
@@ -73,12 +74,33 @@ const showToast = (newId: string) => {
   const url = new URL(window.location.href)
   url.searchParams.set('id', newId)
   window.history.replaceState(null, '', url)
-  setTimeout(() => toast.success(t('userModal.success'), {
-    autoClose: 1000
-  }), 100)
+  setTimeout(
+    () =>
+      toast.success(t('userModal.success'), {
+        autoClose: 1000
+      }),
+    100
+  )
 }
 
-onMounted(() => {
+const searchForId = async () => {
+  const params = new URLSearchParams(window.location.search)
+  const id = params.get('id')
+  if (!id) return
+  const response = await fetch(`/api/getEntry?id=${id}`)
+  const responseData = await response.json()
+  if (!responseData.exists) {
+    console.log('failed here')
+    router.push({ path: '/' })
+    throw new Error('Id not found')
+  }
+  configStore.setUserId(id)
+  const receivedGroceryList = responseData.entry.data.groceryList
+  listsStore.setGroceryList(receivedGroceryList)
+}
+
+onMounted(async () => {
+  searchForId()
   locale.value = (route.query.locale as string) || 'de'
   const hasFaultyLocalStorageEntryItemList =
     localStorage.getItem('grocerylist') === 'undefined' ||

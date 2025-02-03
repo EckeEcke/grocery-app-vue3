@@ -8,11 +8,18 @@
           {{ $t('userModal.intro') }}
         </p>
         <div class="d-flex flex-column justify-content-center">
-          <button class="btn btn-primary new-id-button mx-auto" @click="createEntry">{{ $t('userModal.generateNewId') }}</button>
+          <button class="btn btn-primary new-id-button mx-auto" @click="createEntry">
+            {{ $t('userModal.generateNewId') }}
+          </button>
           <p class="text-center">{{ $t('userModal.or') }}</p>
           <form @submit.prevent="searchForId">
-            <input v-model="inputValue" class="form-control inline" type="text" :placeholder="$t('userModal.placeholder')" />
-            <button :disabled="inputValue.length !== 8" class="btn btn-primary" @click="searchForId">
+            <input
+              v-model="inputValue"
+              class="form-control inline"
+              type="text"
+              :placeholder="$t('userModal.placeholder')"
+            />
+            <button :disabled="inputValue.length !== 8" class="btn btn-primary" type="submit">
               <font-awesome-icon :icon="['fas', 'search']" />
             </button>
           </form>
@@ -49,7 +56,11 @@ const searchForId = async () => {
   if (!response.ok) {
     throw new Error('Id not found')
   }
+  const responseData = await response.json()
+  const receivedGroceryList = responseData.entry.data.groceryList
   router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
+  configStore.setUserId(inputValue.value)
+  listsStore.setGroceryList(receivedGroceryList)
   hideModal()
 }
 
@@ -57,13 +68,12 @@ const createEntry = async () => {
   const response = await fetch('/api/createEntry', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        groceryList: listsStore.groceryList,
-        mealPlan: listsStore.mealPlan
-      }
-    )
+      groceryList: listsStore.groceryList,
+      mealPlan: listsStore.mealPlan
+    })
   })
 
   if (!response.ok) {

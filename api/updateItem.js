@@ -3,13 +3,13 @@ import { connectToDatabase } from './dbClient.js'
 const updateGroceryItem = async (db, entryId, groceryItemId, updatedData) => {
   const collection = db.collection('listsById')
 
-  // Update the grocery item with the new data
   const result = await collection.updateOne(
-    { _id: entryId, "data.grocerylist.id": groceryItemId }, // Match by entryId and nested grocery item id
-    { $set: {
-        "data.grocerylist.$.name": updatedData.name,
-        "data.grocerylist.$.planned": updatedData.planned,
-        "data.grocerylist.$.quantity": updatedData.quantity
+    { _id: entryId, 'data.groceryList.id': groceryItemId },
+    {
+      $set: {
+        'data.groceryList.$.name': updatedData.name,
+        'data.groceryList.$.planned': updatedData.planned,
+        'data.groceryList.$.quantity': updatedData.quantity
       }
     }
   )
@@ -28,7 +28,7 @@ export default async (req, res) => {
 
   const { entryId, groceryItemId, name, planned, quantity } = req.body
 
-  if (!entryId || !groceryItemId || !name || typeof planned !== 'boolean' || !quantity) {
+  if (!entryId || !groceryItemId || !name || typeof planned !== 'boolean') {
     return res.status(400).json({ message: 'Invalid request data' })
   }
 
