@@ -40,9 +40,9 @@ export default async (req, res) => {
 
   try {
     const newItem = {
-      id: new Date().getTime().toString(), // Generate a unique ID for the new item
+      id: new Date().getTime().toString(),
       name,
-      planned: true,
+      planned: true
     }
     const result = await createGroceryItem(entryId, newItem)
     const updatedList = await getUpdatedList(entryId)

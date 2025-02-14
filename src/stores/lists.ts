@@ -42,6 +42,7 @@ export const useListsStore = defineStore('lists', () => {
       })
 
       const data = await response.json()
+      if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
       if (!response.ok) {
         throw new Error(data.message || 'Failed to update grocery item')
@@ -64,11 +65,12 @@ export const useListsStore = defineStore('lists', () => {
           },
           body: JSON.stringify({
             entryId: userId,
-            name: name,
+            name: name
           })
         })
 
         const data = await response.json()
+        if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
         if (!response.ok) {
           throw new Error(data.message || 'Failed to update grocery item')
@@ -99,6 +101,7 @@ export const useListsStore = defineStore('lists', () => {
         })
 
         const data = await response.json()
+        if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
         if (!response.ok) {
           throw new Error(data.message || 'Failed to update grocery item')
@@ -106,6 +109,7 @@ export const useListsStore = defineStore('lists', () => {
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
+
       clonedList[index].planned = true
     }
     groceryList.value = clonedList
@@ -117,9 +121,9 @@ export const useListsStore = defineStore('lists', () => {
       const response = await fetch('/api/deleteItem', {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ entryId: userId, groceryItemId: element.id }),
+        body: JSON.stringify({ entryId: userId, groceryItemId: element.id })
       })
 
       if (!response.ok) {
@@ -127,7 +131,7 @@ export const useListsStore = defineStore('lists', () => {
       }
 
       const result = await response.json()
-      if (result.updatedList) setGroceryList(result.updatedList)
+      if (result.updatedList?.data?.groceryList) setGroceryList(result.updatedList.data.groceryList)
     } catch (error: any) {
       console.error('Error deleting grocery item:', error.message)
     }
@@ -168,6 +172,7 @@ export const useListsStore = defineStore('lists', () => {
       })
 
       const data = await response.json()
+      if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
       if (!response.ok) {
         throw new Error(data.message || 'Failed to update grocery item')
