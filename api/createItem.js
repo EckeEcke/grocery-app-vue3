@@ -40,7 +40,7 @@ export default async (req, res) => {
 
   try {
     const newItem = {
-      id: new Date().getTime().toString(),
+      id: new Date().getTime().toString() + name,
       name,
       planned: true
     }
