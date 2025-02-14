@@ -119,7 +119,7 @@ export const useListsStore = defineStore('lists', () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ entryId: userId, id: element.id }),
+        body: JSON.stringify({ entryId: userId, groceryItemId: element.id }),
       })
 
       if (!response.ok) {
