@@ -33,9 +33,9 @@ export default async (req, res) => {
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const { entryId, name, planned, quantity } = req.body
+  const { entryId, name } = req.body
 
-  if (!entryId || !name || typeof planned !== 'boolean' || typeof quantity !== 'number') {
+  if (!entryId || !name) {
     return res.status(400).json({ message: 'Invalid request data' })
   }
 
@@ -43,8 +43,7 @@ export default async (req, res) => {
     const newItem = {
       id: new Date().getTime().toString(), // Generate a unique ID for the new item
       name,
-      planned,
-      quantity
+      planned: true,
     }
     const result = await createGroceryItem(entryId, newItem)
     const updatedList = await getUpdatedList()
