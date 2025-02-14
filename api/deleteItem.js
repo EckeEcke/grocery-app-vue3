@@ -1,15 +1,15 @@
 import { connectToDatabase } from './dbClient.js'
 import { ObjectId } from 'mongodb'
 
-const createGroceryItem = async (entryId, newItem) => {
+const deleteGroceryItem = async (entryId, groceryItemId) => {
   const db = await connectToDatabase()
   const collection = db.collection('listsById')
 
   const result = await collection.updateOne(
     { _id: entryId },
     {
-      $push: {
-        'data.groceryList': newItem
+      $pull: {
+        'data.groceryList': { id: groceryItemId }
       }
     }
   )
@@ -29,28 +29,23 @@ const getUpdatedList = async (entryId) => {
 }
 
 export default async (req, res) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'DELETE') {
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const { entryId, name } = req.body
+  const { entryId, groceryItemId } = req.body
 
-  if (!entryId || !name) {
+  if (!entryId || !groceryItemId) {
     return res.status(400).json({ message: 'Invalid request data' })
   }
 
   try {
-    const newItem = {
-      id: new Date().getTime().toString(), // Generate a unique ID for the new item
-      name,
-      planned: true,
-    }
-    const result = await createGroceryItem(entryId, newItem)
+    const result = await deleteGroceryItem(entryId, groceryItemId)
     const updatedList = await getUpdatedList(entryId)
 
-    return res.status(201).json({ message: 'Grocery item created', result, updatedList })
+    return res.status(200).json({ message: 'Grocery item deleted', result, updatedList })
   } catch (error) {
-    console.error('Error creating grocery item:', error)
+    console.error('Error deleting grocery item:', error)
     return res.status(500).json({ message: 'Internal server error' })
   }
 }

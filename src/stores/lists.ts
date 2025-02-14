@@ -111,7 +111,26 @@ export const useListsStore = defineStore('lists', () => {
     groceryList.value = clonedList
     localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
   }
-  const deleteSingleItem = (element: ListItem) => {
+  const deleteSingleItem = async (element: ListItem) => {
+    try {
+      const userId = useConfigStore().userId
+      const response = await fetch('/api/deleteItem', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ entryId: userId, id: element.id }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to delete grocery item')
+      }
+
+      const result = await response.json()
+      if (result.updatedList) setGroceryList(result.updatedList)
+    } catch (error: any) {
+      console.error('Error deleting grocery item:', error.message)
+    }
     const index = groceryList.value
       .map(function (entry) {
         return entry.name
