@@ -23,7 +23,7 @@ const deleteGroceryItem = async (entryId, groceryItemId) => {
 const getUpdatedList = async (entryId) => {
   const db = await connectToDatabase()
   const collection = db.collection('listsById')
-  const updatedDocument = await collection.findOne({ _id: new entryId })
+  const updatedDocument = await collection.findOne({ _id: entryId })
   return updatedDocument
 }
 

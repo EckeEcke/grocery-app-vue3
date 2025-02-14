@@ -1,5 +1,4 @@
 import { connectToDatabase } from './dbClient.js'
-import { ObjectId } from 'mongodb'
 
 const createGroceryItem = async (entryId, newItem) => {
   const db = await connectToDatabase()
@@ -24,7 +23,7 @@ const createGroceryItem = async (entryId, newItem) => {
 const getUpdatedList = async (entryId) => {
   const db = await connectToDatabase()
   const collection = db.collection('listsById')
-  const updatedDocument = await collection.findOne({ _id: new ObjectId(entryId) })
+  const updatedDocument = await collection.findOne({ _id: entryId })
   return updatedDocument
 }
 
