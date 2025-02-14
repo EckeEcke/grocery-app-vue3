@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { ListItem } from '../types/listitem'
-import type { Meal } from '../types/meal'
+import type { ListItem } from '@/types/listitem'
+import type { Meal } from '@/types/meal'
 import { useConfigStore } from './config'
 
 export const useListsStore = defineStore('lists', () => {
@@ -24,7 +24,7 @@ export const useListsStore = defineStore('lists', () => {
     groceryList.value = clonedWithNewState
     const item = clonedWithNewState[index]
     const userId = useConfigStore().userId
-    if (clonedWithNewState === undefined) return
+    if (!clonedWithNewState) return
     localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     try {
       const response = await fetch('/api/updateItem', {
@@ -50,17 +50,62 @@ export const useListsStore = defineStore('lists', () => {
       console.error('Error updating grocery item:', error)
     }
   }
-  const addNewItem = (name: string) => {
+  const addNewItem = async (name: string) => {
     const clonedList = [...groceryList.value]
     const index = clonedList.findIndex((listItem) => listItem.name === name)
     if (name === undefined || name.length === 0) return
     if (index == -1) {
+      try {
+        const userId = useConfigStore().userId
+        const response = await fetch('/api/createItem', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            entryId: userId,
+            name: name,
+          })
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to update grocery item')
+        }
+      } catch (error) {
+        console.error('Error updating grocery item:', error)
+      }
       clonedList.push({
         name: name,
         planned: true,
         id: newGroceryItemId()
       })
     } else {
+      try {
+        const userId = useConfigStore().userId
+        const response = await fetch('/api/updateItem', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            entryId: userId,
+            groceryItemId: clonedList[index].id,
+            name: name,
+            planned: true,
+            quantity: clonedList[index].quantity
+          })
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to update grocery item')
+        }
+      } catch (error) {
+        console.error('Error updating grocery item:', error)
+      }
       clonedList[index].planned = true
     }
     groceryList.value = clonedList
@@ -136,7 +181,7 @@ export const useListsStore = defineStore('lists', () => {
     const isPlanned = clonedWithNewState[index].planned
     clonedWithNewState[index].planned = !isPlanned
     mealPlan.value = clonedWithNewState
-    if (clonedWithNewState === undefined) return
+    if (!clonedWithNewState) return
     localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
   }
   const deleteSingleMeal = (element: Meal) => {
