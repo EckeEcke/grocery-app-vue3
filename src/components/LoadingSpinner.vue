@@ -4,11 +4,11 @@
 
 <style>
 .spinner {
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   display: block;
-  margin: 15px auto;
+  margin: 12px auto;
   position: relative;
   background: #fff;
   box-shadow:
