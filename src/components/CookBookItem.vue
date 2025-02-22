@@ -8,7 +8,7 @@
         style="text-align: left"
         aria-label="set meal planned"
         :key="meal.id + meal.name"
-        @click="setMealPlanned()"
+        @click="setMealPlanned(meal)"
       >
         {{ meal.name }}
       </button>
@@ -26,7 +26,7 @@
       <button
         class="btn btn-outline-secondary align-bottom delete-item-btn"
         aria-label="set meal planned"
-        @click="setMealPlanned()"
+        @click="setMealPlanned(meal)"
       >
         <font-awesome-icon :icon="['fas', 'check']" class="trash-icon-item" />
       </button>
@@ -48,7 +48,7 @@
 import { useListsStore } from '@/stores/lists'
 import { useConfigStore } from '@/stores/config'
 import type { Meal } from '../types/meal'
-import { computed, type PropType } from 'vue'
+import { type PropType } from 'vue'
 
 const props = defineProps({
   meal: {
@@ -64,16 +64,8 @@ const props = defineProps({
 const listStore = useListsStore()
 const configStore = useConfigStore()
 
-const sortedItems = computed(() => listStore.mealPlan)
-
-const setMealPlanned = () => {
-  const clonedGroceryList = [...sortedItems.value]
-  const index = clonedGroceryList
-    .map(function (entry) {
-      return entry.name
-    })
-    .indexOf(props.meal.name)
-  listStore.setMealPlanned(index)
+const setMealPlanned = (meal: Meal) => {
+  listStore.setMealPlanned(meal)
 }
 
 const deleteMeal = (meal: Meal) => {
