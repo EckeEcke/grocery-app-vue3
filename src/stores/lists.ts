@@ -196,13 +196,14 @@ export const useListsStore = defineStore('lists', () => {
   }
   const addNewMeal = async (payload: Meal) => {
     const index = mealPlan.value.findIndex((listItem) => listItem.name === payload.name)
+    const clonedList = [...mealPlan.value]
     const { name, ingredients, recipe } = payload
     const userId = useConfigStore().userId
     if (userId) {
       if (index === -1) {
         try {
-          const response = await fetch('/api/updateMeal', {
-            method: 'PUT',
+          const response = await fetch('/api/createMeal', {
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
@@ -227,9 +228,34 @@ export const useListsStore = defineStore('lists', () => {
         } catch (error) {
           console.error('Error updating meal:', error)
         }
+      } else {
+        try {
+          const response = await fetch('/api/updateMeal', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              entryId: userId,
+              id: clonedList[index].id,
+              name: name,
+              planned: !clonedList[index].planned,
+              ingredients: clonedList[index].ingredients ?? [],
+              recipe: clonedList[index].recipe ?? ''
+            })
+          })
+
+          const data = await response.json()
+          if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
+
+          if (!response.ok) {
+            throw new Error(data.message || 'Failed to update grocery item')
+          }
+        } catch (error) {
+          console.error('Error updating grocery item:', error)
+        }
       }
     } else {
-      const clonedList = [...mealPlan.value]
       if (index === -1) {
         clonedList.push({
           name: payload.name,
