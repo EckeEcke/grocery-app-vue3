@@ -21,7 +21,7 @@ export const useListsStore = defineStore('lists', () => {
   const setItemPlanned = async (item: ListItem) => {
     const clonedWithNewState = [...groceryList.value]
     const userId = useConfigStore().userId
-    console.log(item.planned)
+
     if (!clonedWithNewState) return
     if (userId) {
       try {
@@ -48,7 +48,6 @@ export const useListsStore = defineStore('lists', () => {
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
-      console.log(item.planned)
     } else {
       const isPlanned = item.planned
       const index = clonedWithNewState.findIndex((entry) => entry.name === item.name)
@@ -175,7 +174,6 @@ export const useListsStore = defineStore('lists', () => {
         })
 
         const data = await response.json()
-        console.log('here', data.updatedList?.data?.groceryList)
         if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
         if (!response.ok) {
@@ -222,7 +220,6 @@ export const useListsStore = defineStore('lists', () => {
           })
 
           const data = await response.json()
-          console.log('here', data.updatedList?.data?.mealPlan)
           if (data.updatedList?.data?.mealPlan) setMealPlan(data.updatedList.data.mealPlan)
 
           if (!response.ok) {
