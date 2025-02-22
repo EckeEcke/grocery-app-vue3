@@ -1,5 +1,8 @@
 <template>
-  <div class="row px-3 hover-zoom">
+  <div v-if="isLoading">
+    <LoadingSpinner />
+  </div>
+  <div v-else class="row px-3 hover-zoom">
     <div class="col-10 px-0 mx-0 text-nowrap overflow-hidden hover-zoom">
       <button
         v-if="item"
@@ -7,7 +10,7 @@
         :key="item.name"
         aria-label="check single item"
         style="text-align: left"
-        @click="checkSingleItem(item.name)"
+        @click="checkItem(item)"
       >
         {{ item.name }}
         <span v-if="item.quantity !== ''">{{ item.quantity }}</span>
@@ -39,7 +42,8 @@
 import { useConfigStore } from '@/stores/config'
 import { useListsStore } from '@/stores/lists'
 import type { ListItem } from '@/types/listitem'
-import { computed, type PropType } from 'vue'
+import { type PropType, ref } from 'vue'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 const props = defineProps({
   item: {
@@ -50,25 +54,12 @@ const props = defineProps({
 
 const listStore = useListsStore()
 const configStore = useConfigStore()
-const groceryList = computed(() => listStore.groceryList)
+const isLoading = ref(false)
 
-const checkItem = (element: ListItem) => {
-  listStore.checkSingleItem(element)
-}
-
-const checkSingleItem = (element: string) => {
-  const clonedGroceryList = [...groceryList.value]
-  const indexGrocerylist = clonedGroceryList
-    .map(function (element) {
-      return element.name
-    })
-    .indexOf(element)
-  if (clonedGroceryList[indexGrocerylist]) {
-    clonedGroceryList[indexGrocerylist].planned = false
-    clonedGroceryList[indexGrocerylist].quantity = ''
-  }
-  listStore.setGroceryList(clonedGroceryList)
-  localStorage.setItem('grocerylist', JSON.stringify(clonedGroceryList))
+const checkItem = async (item: ListItem) => {
+  isLoading.value = true
+  await listStore.setItemPlanned(item)
+  isLoading.value = false
 }
 
 const createModal = (item: ListItem) => {

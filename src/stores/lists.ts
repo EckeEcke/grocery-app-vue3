@@ -18,13 +18,10 @@ export const useListsStore = defineStore('lists', () => {
     mealPlan.value = newPlan
     localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
   }
-  const setItemPlanned = async (index: number) => {
+  const setItemPlanned = async (item: ListItem) => {
     const clonedWithNewState = [...groceryList.value]
-    const isPlanned = clonedWithNewState[index].planned
-    clonedWithNewState[index].planned = !isPlanned
-    groceryList.value = clonedWithNewState
-    const item = clonedWithNewState[index]
     const userId = useConfigStore().userId
+    console.log(item.planned)
     if (!clonedWithNewState) return
     if (userId) {
       try {
@@ -37,7 +34,7 @@ export const useListsStore = defineStore('lists', () => {
             entryId: userId,
             groceryItemId: item.id,
             name: item.name,
-            planned: item.planned,
+            planned: !item.planned,
             quantity: item.quantity
           })
         })
@@ -51,7 +48,15 @@ export const useListsStore = defineStore('lists', () => {
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
-    } else localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
+      console.log(item.planned)
+    } else {
+      const isPlanned = item.planned
+      const index = clonedWithNewState.findIndex((entry) => entry.name === item.name)
+      clonedWithNewState[index].planned = !isPlanned
+      groceryList.value = clonedWithNewState
+      localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
+    }
+    Promise.resolve()
   }
   const addNewItem = async (name: string) => {
     const clonedList = [...groceryList.value]
@@ -314,6 +319,7 @@ export const useListsStore = defineStore('lists', () => {
       localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
     }
   }
+  Promise.resolve()
   const deleteSingleMeal = (element: Meal) => {
     const index = mealPlan.value
       .map(function (entry) {

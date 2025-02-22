@@ -1,5 +1,8 @@
 <template>
-  <div class="row px-3 hover-zoom">
+  <div v-if="isLoading">
+    <LoadingSpinner />
+  </div>
+  <div v-else class="row px-3 hover-zoom">
     <div class="col-11 text-nowrap overflow-hidden px-0 mx-0">
       <button
         class="btn w-100 mx-0 list-btn"
@@ -7,7 +10,7 @@
         :key="item.name"
         style="text-align: left"
         aria-label="push new item from list"
-        @click="pushNewItemfromList(item.name)"
+        @click="pushNewItemfromList(item)"
       >
         {{ item.name }}
       </button>
@@ -27,8 +30,9 @@
 
 <script setup lang="ts">
 import { useListsStore } from '@/stores/lists'
+import LoadingSpinner from './LoadingSpinner.vue'
 import type { ListItem } from '@/types/listitem'
-import { computed, type PropType } from 'vue'
+import { type PropType, ref } from 'vue'
 
 const props = defineProps({
   item: {
@@ -38,20 +42,15 @@ const props = defineProps({
 })
 
 const listStore = useListsStore()
-
-const groceryList = computed(() => listStore.groceryList)
+const isLoading = ref(false)
 
 const deleteSingleItem = (element: ListItem) => {
   listStore.deleteSingleItem(element)
 }
 
-const pushNewItemfromList = (element: string) => {
-  const clonedGroceryList = [...groceryList.value]
-  const index = clonedGroceryList
-    .map(function (element) {
-      return element.name
-    })
-    .indexOf(element)
-  listStore.setItemPlanned(index)
+const pushNewItemfromList = async (item: ListItem) => {
+  isLoading.value = true
+  await listStore.setItemPlanned(item)
+  isLoading.value = false
 }
 </script>

@@ -1,5 +1,8 @@
 <template>
-  <div class="row px-3 hover-zoom">
+  <div v-if="isLoading">
+    <LoadingSpinner />
+  </div>
+  <div v-else class="row px-3 hover-zoom">
     <div class="col-10 px-0 mx-0 text-nowrap overflow-hidden">
       <button
         v-if="meal"
@@ -47,8 +50,9 @@
 <script setup lang="ts">
 import { useListsStore } from '@/stores/lists'
 import { useConfigStore } from '@/stores/config'
+import LoadingSpinner from './LoadingSpinner.vue'
 import type { Meal } from '../types/meal'
-import { type PropType } from 'vue'
+import { type PropType, ref } from 'vue'
 
 const props = defineProps({
   meal: {
@@ -64,8 +68,12 @@ const props = defineProps({
 const listStore = useListsStore()
 const configStore = useConfigStore()
 
-const setMealPlanned = (meal: Meal) => {
-  listStore.setMealPlanned(meal)
+const isLoading = ref(false)
+
+const setMealPlanned = async (meal: Meal) => {
+  isLoading.value = true
+  await listStore.setMealPlanned(meal)
+  isLoading.value = false
 }
 
 const deleteMeal = (meal: Meal) => {
