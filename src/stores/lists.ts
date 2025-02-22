@@ -10,7 +10,8 @@ export const useListsStore = defineStore('lists', () => {
   const setGroceryList = (newList: ListItem[]) => {
     if (!newList) return
     groceryList.value = newList
-    localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
+    const userId = useConfigStore().userId
+    if (!userId) localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
   }
   const setMealPlan = (newPlan: Meal[]) => {
     if (!newPlan) return
@@ -25,67 +26,8 @@ export const useListsStore = defineStore('lists', () => {
     const item = clonedWithNewState[index]
     const userId = useConfigStore().userId
     if (!clonedWithNewState) return
-    localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
-    try {
-      const response = await fetch('/api/updateItem', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          entryId: userId,
-          groceryItemId: item.id,
-          name: item.name,
-          planned: item.planned,
-          quantity: item.quantity
-        })
-      })
-
-      const data = await response.json()
-      if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to update grocery item')
-      }
-    } catch (error) {
-      console.error('Error updating grocery item:', error)
-    }
-  }
-  const addNewItem = async (name: string) => {
-    const clonedList = [...groceryList.value]
-    const index = clonedList.findIndex((listItem) => listItem.name === name)
-    if (name === undefined || name.length === 0) return
-    if (index == -1) {
+    if (userId) {
       try {
-        const userId = useConfigStore().userId
-        const response = await fetch('/api/createItem', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            entryId: userId,
-            name: name
-          })
-        })
-
-        const data = await response.json()
-        if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Failed to update grocery item')
-        }
-      } catch (error) {
-        console.error('Error updating grocery item:', error)
-      }
-      clonedList.push({
-        name: name,
-        planned: true,
-        id: newGroceryItemId()
-      })
-    } else {
-      try {
-        const userId = useConfigStore().userId
         const response = await fetch('/api/updateItem', {
           method: 'PUT',
           headers: {
@@ -93,10 +35,10 @@ export const useListsStore = defineStore('lists', () => {
           },
           body: JSON.stringify({
             entryId: userId,
-            groceryItemId: clonedList[index].id,
-            name: name,
-            planned: true,
-            quantity: clonedList[index].quantity
+            groceryItemId: item.id,
+            name: item.name,
+            planned: item.planned,
+            quantity: item.quantity
           })
         })
 
@@ -109,78 +51,147 @@ export const useListsStore = defineStore('lists', () => {
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
+    } else localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
+  }
+  const addNewItem = async (name: string) => {
+    const clonedList = [...groceryList.value]
+    const index = clonedList.findIndex((listItem) => listItem.name === name)
+    if (name === undefined || name.length === 0) return
+    const userId = useConfigStore().userId
+    if (userId) {
+      if (index === -1) {
+        try {
+          const response = await fetch('/api/createItem', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              entryId: userId,
+              name: name
+            })
+          })
 
-      clonedList[index].planned = true
+          const data = await response.json()
+          if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
+
+          if (!response.ok) {
+            throw new Error(data.message || 'Failed to update grocery item')
+          }
+        } catch (error) {
+          console.error('Error updating grocery item:', error)
+        }
+      } else {
+        try {
+          const response = await fetch('/api/updateItem', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              entryId: userId,
+              groceryItemId: clonedList[index].id,
+              name: name,
+              planned: true,
+              quantity: clonedList[index].quantity
+            })
+          })
+
+          const data = await response.json()
+          if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
+
+          if (!response.ok) {
+            throw new Error(data.message || 'Failed to update grocery item')
+          }
+        } catch (error) {
+          console.error('Error updating grocery item:', error)
+        }
+      }
+    } else {
+      if (index === -1) {
+        clonedList.push({
+          name: name,
+          planned: true,
+          id: newGroceryItemId()
+        })
+      } else clonedList[index].planned = true
+      groceryList.value = clonedList
+      localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     }
-    groceryList.value = clonedList
-    localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
   }
   const deleteSingleItem = async (element: ListItem) => {
-    try {
-      const userId = useConfigStore().userId
-      const response = await fetch('/api/deleteItem', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ entryId: userId, groceryItemId: element.id })
-      })
+    const userId = useConfigStore().userId
+    if (userId) {
+      try {
+        const response = await fetch('/api/deleteItem', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ entryId: userId, groceryItemId: element.id })
+        })
 
-      if (!response.ok) {
-        throw new Error('Failed to delete grocery item')
+        if (!response.ok) {
+          throw new Error('Failed to delete grocery item')
+        }
+
+        const result = await response.json()
+        if (result.updatedList?.data?.groceryList)
+          setGroceryList(result.updatedList.data.groceryList)
+      } catch (error: any) {
+        console.error('Error deleting grocery item:', error.message)
       }
-
-      const result = await response.json()
-      if (result.updatedList?.data?.groceryList) setGroceryList(result.updatedList.data.groceryList)
-    } catch (error: any) {
-      console.error('Error deleting grocery item:', error.message)
+    } else {
+      const index = groceryList.value
+        .map(function (entry) {
+          return entry.name
+        })
+        .indexOf(element.name)
+      groceryList.value.splice(index, 1)
+      localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     }
-    const index = groceryList.value
-      .map(function (entry) {
-        return entry.name
-      })
-      .indexOf(element.name)
-    groceryList.value.splice(index, 1)
-    localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
   }
   const checkSingleItem = async (element: ListItem) => {
-    const indexGrocerylist = groceryList.value
-      .map(function (element: ListItem) {
-        return element.name
-      })
-      .indexOf(element.name)
-    if (groceryList.value[indexGrocerylist]) {
-      groceryList.value[indexGrocerylist].planned = false
-      groceryList.value[indexGrocerylist].quantity = ''
-    }
-    localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
-    const item = groceryList.value[indexGrocerylist]
     const userId = useConfigStore().userId
-    try {
-      const response = await fetch('/api/updateItem', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          entryId: userId,
-          groceryItemId: item.id,
-          name: item.name,
-          planned: item.planned,
-          quantity: item.quantity
+    if (userId) {
+      try {
+        const response = await fetch('/api/updateItem', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            entryId: userId,
+            groceryItemId: element.id,
+            name: element.name,
+            planned: !element.planned,
+            quantity: element.quantity
+          })
         })
-      })
 
-      const data = await response.json()
-      if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
+        const data = await response.json()
+        console.log('here', data.updatedList?.data?.groceryList)
+        if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to update grocery item')
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to update grocery item')
+        }
+
+        console.log('Grocery item updated:', data)
+      } catch (error) {
+        console.error('Error updating grocery item:', error)
       }
-
-      console.log('Grocery item updated:', data)
-    } catch (error) {
-      console.error('Error updating grocery item:', error)
+    } else {
+      const indexGrocerylist = groceryList.value
+        .map(function (element: ListItem) {
+          return element.name
+        })
+        .indexOf(element.name)
+      if (groceryList.value[indexGrocerylist]) {
+        groceryList.value[indexGrocerylist].planned = false
+        groceryList.value[indexGrocerylist].quantity = ''
+      }
+      localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     }
   }
   const addNewMeal = (payload: Meal) => {
