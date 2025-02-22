@@ -58,8 +58,8 @@ const isItemPlanned = (ingredient: string) => {
 
 const checkIngredients = (ingredient: string) => {
   if (isItemPlanned(ingredient)) {
-    const index = groceryList.value.findIndex((item: ListItem) => item.name === ingredient)
-    listStore.setItemPlanned(index)
+    const item = groceryList.value.find((entry: ListItem) => entry.name === ingredient)
+    listStore.setItemPlanned(item!)
   } else listStore.addNewItem(ingredient)
 }
 
