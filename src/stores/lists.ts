@@ -194,30 +194,99 @@ export const useListsStore = defineStore('lists', () => {
       localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     }
   }
-  const addNewMeal = (payload: Meal) => {
-    const clonedList = [...mealPlan.value]
+  const addNewMeal = async (payload: Meal) => {
     const index = mealPlan.value.findIndex((listItem) => listItem.name === payload.name)
-    if (index == -1) {
-      clonedList.push({
-        name: payload.name,
-        planned: true,
-        id: newMealId(),
-        ingredients: payload.ingredients,
-        recipe: payload.recipe
-      })
+    const { name, ingredients, recipe } = payload
+    const userId = useConfigStore().userId
+    if (userId) {
+      if (index === -1) {
+        try {
+          const response = await fetch('/api/updateMeal', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              entryId: userId,
+              name,
+              planned: true,
+              ingredients: ingredients,
+              recipe
+            })
+          })
+
+          const data = await response.json()
+          console.log('here', data.updatedList?.data?.mealPlan)
+          if (data.updatedList?.data?.mealPlan) setMealPlan(data.updatedList.data.mealPlan)
+
+          if (!response.ok) {
+            throw new Error(data.message || 'Failed to update meal')
+          }
+
+          console.log('Meal updated:', data)
+        } catch (error) {
+          console.error('Error updating meal:', error)
+        }
+      }
     } else {
-      clonedList[index].planned = true
+      const clonedList = [...mealPlan.value]
+      if (index === -1) {
+        clonedList.push({
+          name: payload.name,
+          planned: true,
+          id: newMealId(),
+          ingredients: payload.ingredients,
+          recipe: payload.recipe
+        })
+      } else clonedList[index].planned = true
+      mealPlan.value = clonedList
+      localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
     }
-    mealPlan.value = clonedList
-    localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
   }
-  const setMealPlanned = (index: number) => {
-    const clonedWithNewState = [...mealPlan.value]
-    const isPlanned = clonedWithNewState[index].planned
-    clonedWithNewState[index].planned = !isPlanned
-    mealPlan.value = clonedWithNewState
-    if (!clonedWithNewState) return
-    localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
+  const setMealPlanned = async (meal: Meal) => {
+    const userId = useConfigStore().userId
+    if (userId) {
+      try {
+        const { id, name, planned, ingredients, recipe } = meal
+        const response = await fetch('/api/updateMeal', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            entryId: userId,
+            id,
+            name,
+            planned: !planned,
+            ingredients: ingredients,
+            recipe
+          })
+        })
+
+        const data = await response.json()
+
+        if (data.updatedList?.data?.mealPlan) setMealPlan(data.updatedList.data.mealPlan)
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to update meal')
+        }
+
+        console.log('Meal updated:', data)
+      } catch (error) {
+        console.error('Error updating grocery item:', error)
+      }
+    } else {
+      const clonedWithNewState = [...mealPlan.value]
+      const indexInMealPlan = mealPlan.value
+        .map(function (element: Meal) {
+          return element.name
+        })
+        .indexOf(meal.name)
+
+      const isPlanned = clonedWithNewState[indexInMealPlan].planned
+      clonedWithNewState[indexInMealPlan].planned = !isPlanned
+      localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
+    }
   }
   const deleteSingleMeal = (element: Meal) => {
     const index = mealPlan.value
