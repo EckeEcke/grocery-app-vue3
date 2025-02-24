@@ -46,7 +46,7 @@ export const useConfigStore = defineStore('config', () => {
     setOverflow()
   }
 
-  const setUserId = (someString: string) => {
+  const setUserId = (someString: string | undefined) => {
     userId.value = someString
   }
 

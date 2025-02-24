@@ -52,10 +52,12 @@ const i18n = createI18n({
         copyPlan: 'Plan kopieren',
         copyList: 'Liste kopieren',
         cancel: 'Abbrechen',
-        submitAndClose: 'Bestätigen'
+        submitAndClose: 'Bestätigen',
+        logout: 'Abmelden'
       },
       toasts: {
         copiedListToClipboard: 'Liste in Zwischenablage kopiert',
+        copiedLinkToClipboard: 'Link in Zwischenablage kopiert',
         savedRandomRecipe: '{recipe} zum Kochbuch hinzugefügt',
         itemListDeleted: 'Artikelliste wurde gelöscht',
         cookbookDeleted: 'Kochbuch wurde gelöscht',
@@ -89,11 +91,13 @@ const i18n = createI18n({
       },
       userModal: {
         headline: 'Online Liste erstellen',
-        intro: 'Erstelle eine Online Liste, um mit anderen online gemeinsam eine Liste zu bearbeiten',
+        intro:
+          'Erstelle eine Online Liste, um mit anderen online gemeinsam eine Liste zu bearbeiten',
         generateNewId: 'Generiere neue ID',
         placeholder: 'Suche nach ID',
         success: 'Neue ID erfolgreich generiert',
-        or: 'oder'
+        or: 'oder',
+        shareLink: 'Link zur Liste teilen'
       }
     },
     en: {
@@ -122,10 +126,12 @@ const i18n = createI18n({
         copyPlan: 'Copy Plan',
         copyList: 'Copy List',
         cancel: 'Cancel',
-        submitAndClose: 'Submit'
+        submitAndClose: 'Submit',
+        logout: 'Logout'
       },
       toasts: {
         copiedListToClipboard: 'Copied list to clipboard',
+        copiedLinkToClipboard: 'Copied link to clipboard',
         savedRandomRecipe: '{recipe} added to Cookbook',
         itemListDeleted: 'Item list deleted',
         cookbookDeleted: 'Cookbook deleted',
@@ -163,7 +169,8 @@ const i18n = createI18n({
         generateNewId: 'Generate new ID',
         placeholder: 'Search by ID',
         success: 'Create new ID',
-        or: 'or'
+        or: 'or',
+        shareLink: 'Share link to your list'
       }
     }
   }

@@ -2,22 +2,33 @@
   <div>
     <div class="backdrop" @click="hideModal"></div>
     <div class="modal-detailpage card border-0">
-      <h4 class="card-header bg-warning border-0 text-white">{{ $t('userModal.headline') }}</h4>
+      <h4 class="card-header bg-warning border-0 text-white">{{ t('userModal.headline') }}</h4>
       <div class="card-body" style="text-align: left">
         <p>
-          {{ $t('userModal.intro') }}
+          {{ t('userModal.intro') }}
         </p>
         <div class="d-flex flex-column justify-content-center">
-          <button class="btn btn-primary new-id-button mx-auto" @click="createEntry">
-            {{ $t('userModal.generateNewId') }}
+          <button
+            v-if="userId"
+            class="btn btn-primary new-id-button mx-auto"
+            @click="copyLinkToClipboard"
+          >
+            {{ t('userModal.shareLink') }}
           </button>
-          <p class="text-center">{{ $t('userModal.or') }}</p>
+          <template v-else>
+            <LoadingSpinner v-if="isLoading" />
+            <button v-else class="btn btn-primary new-id-button mx-auto" @click="createEntry">
+              {{ t('userModal.generateNewId') }}
+            </button>
+          </template>
+
+          <p class="text-center">{{ t('userModal.or') }}</p>
           <form @submit.prevent="searchForId">
             <input
               v-model="inputValue"
-              class="form-control inline"
+              class="form-control inline mb-2"
               type="text"
-              :placeholder="$t('userModal.placeholder')"
+              :placeholder="t('userModal.placeholder')"
             />
             <button :disabled="inputValue.length !== 8" class="btn btn-primary" type="submit">
               <font-awesome-icon :icon="['fas', 'search']" />
@@ -27,7 +38,10 @@
       </div>
       <div class="card-footer">
         <button class="btn btn-outline-secondary" aria-label="close modal" @click="hideModal()">
-          {{ $t('buttons.cancel') }}
+          {{ t('buttons.cancel') }}
+        </button>
+        <button v-if="userId" class="btn btn-primary ms-3" @click="logout">
+          {{ t('buttons.logout') }}
         </button>
       </div>
     </div>
@@ -36,15 +50,22 @@
 
 <script setup lang="ts">
 import { useConfigStore } from '@/stores/config'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useListsStore } from '@/stores/lists'
+import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 const configStore = useConfigStore()
 const listsStore = useListsStore()
+const { t } = useI18n()
 
 const hideModal = () => configStore.setShowUserIdModal(false)
 
+const userId = computed(() => configStore.userId)
+
+const isLoading = ref(false)
 const inputValue = ref('')
 const router = useRouter()
 const route = useRoute()
@@ -65,6 +86,7 @@ const searchForId = async () => {
 }
 
 const createEntry = async () => {
+  isLoading.value = true
   const response = await fetch('/api/createEntry', {
     method: 'POST',
     headers: {
@@ -76,6 +98,8 @@ const createEntry = async () => {
     })
   })
 
+  isLoading.value = false
+
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -83,24 +107,29 @@ const createEntry = async () => {
   const data = await response.json()
 
   await router.push({ path: '/', query: { ...route.query, id: data.entry._id } })
-
-  return data
-}
-
-const getNewId = () => {
-  const newId = generateRandomId()
+  configStore.setUserId(data.entry._id)
   hideModal()
-  emit('idGenerated', newId)
+  emit('idGenerated', data.entry._id)
 }
 
-const generateRandomId = () => {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  let result = ''
-  const charactersLength = characters.length
-  for (let i = 0; i < 8; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
-  }
-  return result
+const copyLinkToClipboard = () => {
+  const currentUrl = window.location.href
+
+  navigator.clipboard
+    .writeText(currentUrl)
+    .then(() => {
+      console.log('URL copied to clipboard')
+      toast.success(t('toasts.copiedLinkToClipboard'), {
+        autoClose: 1000
+      })
+    })
+    .catch((err) => {
+      console.error('Failed to copy: ', err)
+    })
+}
+
+const logout = () => {
+  window.location.href = window.location.origin
 }
 </script>
 
