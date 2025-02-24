@@ -30,7 +30,7 @@
               type="text"
               :placeholder="t('userModal.placeholder')"
             />
-            <button :disabled="inputValue.length !== 8" class="btn btn-primary" type="submit">
+            <button :disabled="inputValue.length < 8" class="btn btn-primary" type="submit">
               <font-awesome-icon :icon="['fas', 'search']" />
             </button>
           </form>
