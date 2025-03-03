@@ -122,22 +122,30 @@ const requestFailed = ref(false)
 const listStore = useListsStore()
 
 const measures = computed(() => {
-  let list = []
+  const list = []
+  const meal = randomMeal.value.data.meals[0]
+
   for (let i = 1; i <= 20; i++) {
-    if (eval(`randomMeal.value.data.meals[0].strMeasure${i}`) !== '') {
-      list.push(eval(`randomMeal.value.data.meals[0].strMeasure${i}`))
+    const measure = meal[`strMeasure${i}`]
+    if (measure && measure.trim() !== '') {
+      list.push(measure)
     }
   }
+
   return list
 })
 
 const ingredients = computed(() => {
-  let list: string[] = []
+  const list = []
+  const meal = randomMeal.value.data.meals[0]
+
   for (let i = 1; i <= 20; i++) {
-    if (eval(`randomMeal.value.data.meals[0].strIngredient${i}`) !== '') {
-      list.push(eval(`randomMeal.value.data.meals[0].strIngredient${i}`))
+    const ingredient = meal[`strIngredient${i}`]
+    if (ingredient && ingredient.trim() !== '') {
+      list.push(ingredient)
     }
   }
+
   return list
 })
 

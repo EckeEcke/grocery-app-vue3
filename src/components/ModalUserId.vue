@@ -79,7 +79,7 @@ const searchForId = async () => {
   }
   const responseData = await response.json()
   const receivedGroceryList = responseData.entry.data.groceryList
-  router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
+  await router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
   configStore.setUserId(inputValue.value)
   listsStore.setGroceryList(receivedGroceryList)
   hideModal()
@@ -118,7 +118,6 @@ const copyLinkToClipboard = () => {
   navigator.clipboard
     .writeText(currentUrl)
     .then(() => {
-      console.log('URL copied to clipboard')
       toast.success(t('toasts.copiedLinkToClipboard'), {
         autoClose: 1000
       })
