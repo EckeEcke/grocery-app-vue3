@@ -118,7 +118,6 @@ const copyLinkToClipboard = () => {
   navigator.clipboard
     .writeText(currentUrl)
     .then(() => {
-      console.log('URL copied to clipboard')
       toast.success(t('toasts.copiedLinkToClipboard'), {
         autoClose: 1000
       })

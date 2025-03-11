@@ -90,7 +90,6 @@ const searchForId = async () => {
   const response = await fetch(`/api/getEntry?id=${id}`)
   const responseData = await response.json()
   if (!responseData.exists) {
-    console.log('failed here')
     router.push({ path: '/' })
     throw new Error('Id not found')
   }
