@@ -6,7 +6,7 @@ async function deleteOldEntries() {
 
   try {
     await client.connect()
-    const db = client.db('your-database-name') // Replace with your database name
+    const db = client.db('mealplanner')
     const collection = db.collection('listsById')
 
     const sixMonthsAgo = new Date()
