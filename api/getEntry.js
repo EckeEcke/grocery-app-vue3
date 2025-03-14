@@ -17,6 +17,8 @@ export default async (req, res) => {
     const entry = await collection.findOne({ _id: id })
 
     if (entry) {
+      const currentDate = new Date()
+      await collection.updateOne({ _id: id }, { $set: { lastUsage: currentDate } })
       return res.status(200).json({ exists: true, entry })
     } else {
       return res.status(200).json({ exists: false })
