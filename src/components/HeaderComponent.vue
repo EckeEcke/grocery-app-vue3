@@ -5,6 +5,11 @@
       <div class="d-flex align-items-center">
         <button class="user-icon" @click="showModal">
           <font-awesome-icon :icon="['fas', 'user']" size="xl" />
+          <font-awesome-icon
+            v-if="configStore.userId"
+            class="logged-in"
+            :icon="['fas', 'circle-check']"
+          />
         </button>
         <button
           v-if="!isShownNavMenu && !isStandAlone"
@@ -48,5 +53,11 @@ const showModal = () => configStore.setShowUserIdModal(true)
 
 .user-icon svg {
   margin: 0;
+}
+
+.logged-in {
+  color: limegreen;
+  background: white;
+  border-radius: 50%;
 }
 </style>
