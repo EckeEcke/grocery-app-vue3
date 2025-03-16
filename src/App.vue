@@ -96,6 +96,8 @@ const searchForId = async () => {
   configStore.setUserId(id)
   const receivedGroceryList = responseData.entry.data.groceryList
   const receivedMealPlan = responseData.entry.data.mealPlan
+  const userName = responseData.entry.userName
+  configStore.setUserName(userName)
   listsStore.setGroceryList(receivedGroceryList)
   listsStore.setMealPlan(receivedMealPlan)
 }

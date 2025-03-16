@@ -4,9 +4,11 @@
     <div class="modal-detailpage card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ t('userModal.headline') }}</h4>
       <div class="card-body" style="text-align: left">
-        <p>
-          {{ t('userModal.intro') }}
+        <p v-if="userName" class="text-center">
+          {{ t('userModal.signedInAs') }}
+          <span class="fw-bold"> {{ userName }}</span>
         </p>
+        <p v-if="!userId">{{ t('userModal.intro') }}</p>
         <div class="d-flex flex-column justify-content-center">
           <button
             v-if="userId"
@@ -17,12 +19,21 @@
           </button>
           <template v-else>
             <LoadingSpinner v-if="isLoading" />
-            <button v-else class="btn btn-primary new-id-button mx-auto" @click="createEntry">
-              {{ t('userModal.generateNewId') }}
-            </button>
+            <template v-else>
+              <input
+                type="text"
+                maxlength="20"
+                v-model="userNameInput"
+                class="form-control w-100 mb-2"
+                :placeholder="t('userModal.placeholderName')"
+              />
+              <button class="btn btn-primary new-id-button mx-auto" @click="createEntry">
+                {{ t('userModal.generateNewId') }}
+              </button>
+            </template>
           </template>
 
-          <p class="text-center">{{ t('userModal.or') }}</p>
+          <p class="text-center my-4">{{ t('userModal.or') }}</p>
           <form @submit.prevent="searchForId">
             <input
               v-model="inputValue"
@@ -81,9 +92,13 @@ const searchForId = async () => {
   const receivedGroceryList = responseData.entry.data.groceryList
   router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
   configStore.setUserId(inputValue.value)
+  configStore.setUserName(responseData.entry.userName)
   listsStore.setGroceryList(receivedGroceryList)
   hideModal()
 }
+
+const userNameInput = ref('')
+const userName = computed(() => configStore.userName)
 
 const createEntry = async () => {
   isLoading.value = true
@@ -93,8 +108,11 @@ const createEntry = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      groceryList: listsStore.groceryList,
-      mealPlan: listsStore.mealPlan
+      data: {
+        groceryList: listsStore.groceryList,
+        mealPlan: listsStore.mealPlan
+      },
+      userName: userNameInput.value
     })
   })
 
@@ -108,6 +126,7 @@ const createEntry = async () => {
 
   await router.push({ path: '/', query: { ...route.query, id: data.entry._id } })
   configStore.setUserId(data.entry._id)
+  configStore.setUserName(userNameInput.value)
   hideModal()
   emit('idGenerated', data.entry._id)
 }

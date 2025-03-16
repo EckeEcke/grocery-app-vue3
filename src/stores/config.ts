@@ -13,6 +13,7 @@ export const useConfigStore = defineStore('config', () => {
   const displayedTab = ref(Tab.groceries)
   const showUserIdModal = ref(false)
   const userId = ref<undefined | string>(undefined)
+  const userName = ref<undefined | string>(undefined)
 
   const setShowDetailpage = (bool: boolean) => {
     showDetailPage.value = bool
@@ -50,6 +51,10 @@ export const useConfigStore = defineStore('config', () => {
     userId.value = someString
   }
 
+  const setUserName = (someString: string | undefined) => {
+    userName.value = someString
+  }
+
   return {
     showDetailPage,
     mealToShow,
@@ -59,6 +64,7 @@ export const useConfigStore = defineStore('config', () => {
     displayedTab,
     showUserIdModal,
     userId,
+    userName,
     setShowDetailpage,
     setMealToShow,
     setShowQuantityInput,
@@ -66,6 +72,7 @@ export const useConfigStore = defineStore('config', () => {
     setShowNavMenu,
     setDisplayedTab,
     setShowUserIdModal,
-    setUserId
+    setUserId,
+    setUserName
   }
 })

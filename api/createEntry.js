@@ -19,7 +19,12 @@ const checkIdExists = async (db, id) => {
 const createEntry = async (db, id, reqBody) => {
   const collection = db.collection('listsById')
   const currentDate = new Date()
-  const newEntry = { _id: id, data: reqBody, lastUsage: currentDate }
+  const newEntry = {
+    _id: id,
+    data: reqBody.data,
+    lastUsage: currentDate,
+    userName: reqBody.userName.length > 0 ? reqBody.userName : '🤷‍♂️'
+  }
   await collection.insertOne(newEntry)
   return newEntry
 }

@@ -97,7 +97,9 @@ const i18n = createI18n({
         placeholder: 'Suche nach ID',
         success: 'Neue ID erfolgreich generiert',
         or: 'oder',
-        shareLink: 'Link zur Liste teilen'
+        shareLink: 'Link zur Liste teilen',
+        signedInAs: 'Angemeldet als: ',
+        placeholderName: 'Gib deinen Namen ein'
       }
     },
     en: {
@@ -170,7 +172,9 @@ const i18n = createI18n({
         placeholder: 'Search by ID',
         success: 'Create new ID',
         or: 'or',
-        shareLink: 'Share link to your list'
+        shareLink: 'Share link to your list',
+        signedInAs: 'Signed in as: ',
+        placeholderName: 'Enter your name'
       }
     }
   }
