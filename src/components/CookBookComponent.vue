@@ -3,11 +3,7 @@
     <div class="mb-5">
       <CookBookForm />
       <div v-if="plannedItems.length == 0">
-        <img
-          class="illustration mt-5 mb-3"
-          alt=""
-          src="../assets/meal-illustration.svg"
-        />
+        <img class="illustration mt-5 mb-3" alt="" src="../assets/meal-illustration.svg" />
         <p class="mb-5">{{ $t('noMeals') }}</p>
       </div>
 
@@ -69,11 +65,7 @@
         </div>
       </div>
     </div>
-    <img
-      class="illustration mb-5"
-      alt=""
-      src="../assets/cooking-illustration.svg"
-    />
+    <img class="illustration mb-5" alt="" src="../assets/cooking-illustration.svg" />
   </div>
 </template>
 
