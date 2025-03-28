@@ -85,3 +85,12 @@ const showDetails = () => {
   configStore.setShowDetailpage(true)
 }
 </script>
+
+<style scoped>
+.hover-zoom {
+  transition: all 0.3s;
+}
+.hover-zoom:hover {
+  transform: translate(0.5%, -1%);
+}
+</style>

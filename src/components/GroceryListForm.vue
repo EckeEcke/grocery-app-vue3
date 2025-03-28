@@ -101,3 +101,9 @@ const resizeTextArea = () => {
   element.style.height = element.scrollHeight + 'px'
 }
 </script>
+
+<style scoped>
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>
