@@ -48,15 +48,15 @@
               <div v-if="ingredients.length > 0 && newMeal.length > 0">
                 <h5 style="text-align: left" class="mt-3 text-white">Ingredients:</h5>
                 <ul style="text-align: left">
-                  <button
-                    class="btn btn-secondary mx-1 mb-1"
-                    v-for="ingredient in ingredients"
-                    :key="ingredient"
-                    aria-label="delete ingredient"
-                    @click="deleteIngredient(ingredient)"
-                  >
-                    {{ ingredient }} X
-                  </button>
+                  <li v-for="ingredient in ingredients" :key="ingredient">
+                    <button
+                      class="btn btn-secondary mx-1 mb-1"
+                      aria-label="delete ingredient"
+                      @click="deleteIngredient(ingredient)"
+                    >
+                      {{ ingredient }} X
+                    </button>
+                  </li>
                 </ul>
               </div>
             </transition>

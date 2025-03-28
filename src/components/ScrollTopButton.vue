@@ -14,15 +14,11 @@ import { ref, onUnmounted } from 'vue'
 
 const showScrollBtn = ref(false)
 
-const toggleScrollbutton = () => {
-  if (window.scrollY > window.innerHeight * 0.75) {
-    showScrollBtn.value = true
-  } else {
-    showScrollBtn.value = false
-  }
+const toggleScrollButton = () => {
+  showScrollBtn.value = window.scrollY > window.innerHeight * 0.75;
 }
-window.addEventListener('scroll', toggleScrollbutton)
+window.addEventListener('scroll', toggleScrollButton)
 const scrollToTop = () => window.scrollTo(0, 0)
 
-onUnmounted(() => window.removeEventListener('scroll', toggleScrollbutton))
+onUnmounted(() => window.removeEventListener('scroll', toggleScrollButton))
 </script>

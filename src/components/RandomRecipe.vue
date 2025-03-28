@@ -106,7 +106,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useListsStore } from '../stores/lists'
+import { useListsStore } from '@/stores/lists'
 import axios from 'axios'
 import { toast } from 'vue3-toastify'
 import { useI18n } from 'vue-i18n'

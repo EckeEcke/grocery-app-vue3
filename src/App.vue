@@ -90,7 +90,7 @@ const searchForId = async () => {
   const response = await fetch(`/api/getEntry?id=${id}`)
   const responseData = await response.json()
   if (!responseData.exists) {
-    router.push({ path: '/' })
+    await router.push({ path: '/' })
     throw new Error('Id not found')
   }
   configStore.setUserId(id)
@@ -103,7 +103,7 @@ const searchForId = async () => {
 }
 
 onMounted(async () => {
-  searchForId()
+  await searchForId()
   locale.value = (route.query.locale as string) || 'de'
   const hasFaultyLocalStorageEntryItemList =
     localStorage.getItem('grocerylist') === 'undefined' ||

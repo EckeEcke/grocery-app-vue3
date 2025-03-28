@@ -80,16 +80,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useListsStore } from '@/stores/lists'
-import type { Meal } from '../types/meal'
+import type { Meal } from '@/types/meal'
 import { toast } from 'vue3-toastify'
 import { useI18n } from 'vue-i18n'
 import CookBookItem from './CookBookItem.vue'
 import CookBookForm from './CookBookForm.vue'
-import { useConfigStore } from '@/stores/config'
 
 const { t } = useI18n()
 const listStore = useListsStore()
-const configStore = useConfigStore()
 
 const sortedItems = computed(() => {
   return listStore.mealPlan
@@ -126,13 +124,3 @@ const onlyMealEntries = (array: (Meal | string)[]): Meal[] => {
   })
 }
 </script>
-
-<style scoped>
-.hover-zoom {
-  transition: all 0.3s;
-}
-
-.hover-zoom:hover {
-  transform: translate(0.5%, -1%);
-}
-</style>

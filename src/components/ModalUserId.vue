@@ -90,7 +90,7 @@ const searchForId = async () => {
   }
   const responseData = await response.json()
   const receivedGroceryList = responseData.entry.data.groceryList
-  router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
+  await router.push({ path: '/', query: { ...route.query, id: inputValue.value } })
   configStore.setUserId(inputValue.value)
   configStore.setUserName(responseData.entry.userName)
   listsStore.setGroceryList(receivedGroceryList)

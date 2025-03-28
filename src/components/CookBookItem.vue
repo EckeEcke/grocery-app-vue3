@@ -51,7 +51,7 @@
 import { useListsStore } from '@/stores/lists'
 import { useConfigStore } from '@/stores/config'
 import LoadingSpinner from './LoadingSpinner.vue'
-import type { Meal } from '../types/meal'
+import type { Meal } from '@/types/meal'
 import { type PropType, ref } from 'vue'
 
 const props = defineProps({

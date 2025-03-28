@@ -34,7 +34,7 @@ import LoadingSpinner from './LoadingSpinner.vue'
 import type { ListItem } from '@/types/listitem'
 import { type PropType, ref } from 'vue'
 
-const props = defineProps({
+defineProps({
   item: {
     type: Object as PropType<ListItem>,
     required: true

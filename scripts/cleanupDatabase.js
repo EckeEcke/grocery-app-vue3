@@ -24,4 +24,4 @@ async function deleteOldEntries() {
   }
 }
 
-deleteOldEntries()
+deleteOldEntries().then(() => console.log('Task complete'))

@@ -35,10 +35,10 @@
 </template>
 
 <script setup lang="ts">
-import { useListsStore } from '../stores/lists'
+import { useListsStore } from '@/stores/lists'
 import { computed } from 'vue'
-import type { Meal } from '../types/meal'
-import type { ListItem } from '../types/listitem'
+import type { Meal } from '@/types/meal'
+import type { ListItem } from '@/types/listitem'
 import { useConfigStore } from '@/stores/config'
 
 const listStore = useListsStore()
