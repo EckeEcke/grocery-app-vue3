@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { useConfigStore } from '@/stores/config'
-import { Tab } from '../types/tabs'
+import { Tab } from '@/types/tabs'
 import { computed } from 'vue'
 
 const configStore = useConfigStore()

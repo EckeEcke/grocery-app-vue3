@@ -72,9 +72,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useListsStore } from '../stores/lists'
+import { useListsStore } from '@/stores/lists'
 import { toast } from 'vue3-toastify'
-import type { ListItem } from '../types/listitem'
+import type { ListItem } from '@/types/listitem'
 import QuantityInput from './QuantityInputComponent.vue'
 import GroceryListForm from './GroceryListForm.vue'
 import GroceryListItem from './GroceryListItem.vue'
@@ -131,24 +131,8 @@ const onlyListItems = (array: (ListItem | string)[]): ListItem[] => {
 </script>
 
 <style scoped>
-.hover-zoom {
-  transition: all 0.3s;
-}
-
-.hover-zoom:hover {
-  transform: translate(0.5%, -1%);
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
 textarea {
   resize: none;
   overflow: hidden;
-}
-
-.toggle-btn {
-  border-radius: 50rem;
 }
 </style>

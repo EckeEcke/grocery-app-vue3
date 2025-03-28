@@ -103,13 +103,6 @@ const closeMenu = () => configStore.setShowNavMenu(false)
   border-right: 2px solid white;
 }
 
-#toggle-nav-BTN {
-  position: absolute;
-  right: 2px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 #sidebar-btn-close {
   position: absolute;
   top: 12px;
@@ -124,7 +117,7 @@ const closeMenu = () => configStore.setShowNavMenu(false)
 ul {
   width: 100vw;
   max-width: 450px;
-  margin: 0px auto 50px;
+  margin: 0 auto 50px;
 }
 
 li {
@@ -156,8 +149,8 @@ a:hover {
   animation: slide-in 0.3s linear;
   animation-fill-mode: forwards;
   box-shadow:
-    rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    rgba(0, 0, 0, 0.16) 0 10px 36px 0,
+    rgba(0, 0, 0, 0.06) 0 0 0 1px;
 }
 
 @media (min-width: 576px) {
