@@ -135,10 +135,6 @@ export const useListsStore = defineStore('lists', () => {
           body: JSON.stringify({ entryId: userId, groceryItemId: element.id })
         })
 
-        if (!response.ok) {
-          throw new Error('Failed to delete grocery item')
-        }
-
         const result = await response.json()
         if (result.updatedList?.data?.groceryList)
           setGroceryList(result.updatedList.data.groceryList)

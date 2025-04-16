@@ -107,7 +107,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useListsStore } from '@/stores/lists'
-import axios from 'axios'
 import { toast } from 'vue3-toastify'
 import { useI18n } from 'vue-i18n'
 
@@ -149,17 +148,26 @@ const loadRecipe = () => {
   isLoading.value = true
   requestFailed.value = false
   const controller = new AbortController()
-  axios
-    .get('https://www.themealdb.com/api/json/v1/1/random.php', {
-      signal: controller.signal
+
+  fetch('https://www.themealdb.com/api/json/v1/1/random.php', {
+    signal: controller.signal
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+      }
+      return response.json()
     })
-    .catch((error) => {
+    .then(data => {
+      randomMeal.value = { data }
+      isLoading.value = false
+    })
+    .catch(error => {
       console.log(error)
       isLoading.value = false
       requestFailed.value = true
     })
-    .then((response) => (randomMeal.value = response))
-    .then(() => (isLoading.value = false))
+
   setTimeout(() => {
     controller.abort()
   }, 3000)
