@@ -46,8 +46,8 @@
 
             <transition name="fade">
               <div v-if="ingredients.length > 0 && newMeal.length > 0">
-                <h5 style="text-align: left" class="mt-3 text-white">Ingredients:</h5>
-                <ul style="text-align: left">
+                <h5 class="mt-3 text-white text-start">Ingredients:</h5>
+                <ul class="text-start">
                   <li v-for="ingredient in ingredients" :key="ingredient">
                     <button
                       class="btn btn-secondary mx-1 mb-1"

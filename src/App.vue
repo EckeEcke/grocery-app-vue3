@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <DetailPage v-if="showDetailpage" />
+    <DetailPage v-if="showDetailPage" />
     <NavbarComponent v-if="showNavMenu" class="container" />
     <transition name="fade">
       <ScrollTopButton />
@@ -138,7 +138,7 @@ onMounted(async () => {
   if (urlParams.get('view') === Tab.cookbook) configStore.setDisplayedTab(Tab.cookbook)
 })
 
-const showDetailpage = computed(() => configStore.showDetailPage)
+const showDetailPage = computed(() => configStore.showDetailPage)
 
 const handleTouchStart = (event: TouchEvent) => {
   touchstartX.value = event.changedTouches[0].screenX

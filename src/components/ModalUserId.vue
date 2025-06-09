@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="backdrop" @click="hideModal"></div>
-    <div class="modal-detailpage card border-0">
+    <div class="modal-detail-page card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ t('userModal.headline') }}</h4>
-      <div class="card-body" style="text-align: left">
+      <div class="card-body text-start">
         <p v-if="userName" class="text-center">
           {{ t('userModal.signedInAs') }}
           <span class="fw-bold"> {{ userName }}</span>

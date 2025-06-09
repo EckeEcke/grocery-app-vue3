@@ -23,7 +23,7 @@
             />
           </div>
 
-          <div class="col-8" style="text-align: left">
+          <div class="col-8 text-start">
             <h4>
               {{ randomMeal.data.meals[0].strMeal }}
             </h4>
@@ -87,7 +87,7 @@
         </transition>
         <hr />
       </div>
-      <div class="card-footer no-br-mobile border-0 bg-white" style="text-align: right">
+      <div class="card-footer no-br-mobile border-0 bg-white text-end">
         <button
           v-if="!requestFailed"
           class="btn btn-primary my-2"

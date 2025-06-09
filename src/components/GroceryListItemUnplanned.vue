@@ -5,12 +5,11 @@
   <div v-else class="row px-3 hover-zoom">
     <div class="col-11 text-nowrap overflow-hidden px-0 mx-0">
       <button
-        class="btn w-100 mx-0 list-btn"
+        class="btn w-100 mx-0 list-btn text-start"
         :class="item.planned ? 'btn-success' : 'btn-outline-secondary'"
         :key="item.name"
-        style="text-align: left"
         aria-label="push new item from list"
-        @click="pushNewItemfromList(item)"
+        @click="pushNewItemFromList(item)"
       >
         {{ item.name }}
       </button>
@@ -48,7 +47,7 @@ const deleteSingleItem = (element: ListItem) => {
   listStore.deleteSingleItem(element)
 }
 
-const pushNewItemfromList = async (item: ListItem) => {
+const pushNewItemFromList = async (item: ListItem) => {
   isLoading.value = true
   await listStore.setItemPlanned(item)
   isLoading.value = false

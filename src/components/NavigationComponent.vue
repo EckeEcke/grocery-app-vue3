@@ -2,22 +2,7 @@
   <div>
     <div class="backdrop" @click="closeMenu()"></div>
     <nav class="sidebar bg-white">
-      <div class="bg-warning py-5" />
-      <div>
-        <h2 class="pt-5 pb-2 m-0">Vue Meal Planner</h2>
-        <ul>
-          <li class="py-2"><a href="https://eckeecke.github.io/">Home</a></li>
-          <li class="py-2">
-            <a href="https://nifty-hopper-c1da01.netlify.app/">React Travel Blog</a>
-          </li>
-          <li class="py-2"><a href="https://eckeecke.github.io/shooter">JS Space Shooter</a></li>
-          <li class="py-2"><a href="https://eckeecke.itch.io/school-fight">School Fight</a></li>
-          <li class="py-2"><a href="https://eckeecke.github.io/pong">JS Pong</a></li>
-          <li class="py-2">
-            <a href="https://adoring-galileo-71fde2.netlify.app/">React Todo App</a>
-          </li>
-          <li class="py-2"><a href="https://eckeecke.github.io/templelooter">Temple Looter</a></li>
-        </ul>
+      <div class="bg-warning p-2 heading">
         <div id="language-switch">
           <button
             class="language-selector"
@@ -41,13 +26,25 @@
         </div>
         <button
           id="sidebar-btn-close"
-          class="btn text-white"
-          style="font-size: 2.5em"
+          class="btn text-white fs-2"
           aria-label="close navigation menu"
           @click="closeMenu()"
         >
           <font-awesome-icon :icon="['fas', 'times']" />
         </button>
+      </div>
+      <div>
+        <h2 class="pt-5 pb-2 m-0">Vue Meal Planner</h2>
+        <ul>
+          <li class="py-2"><a href="https://eckeecke.github.io/">Homepage</a></li>
+          <li class="py-2">
+            <a href="https://www.triggerscore.de">Triggerscore</a>
+          </li>
+          <li class="py-2"><a href="https://eckeecke.itch.io/school-fight">School Fight</a></li>
+          <li class="py-2"><a href="https://eckeecke.github.io/shooter">JS Space Shooter</a></li>
+          <li class="py-2"><a href="https://eckeecke.github.io/pong">JS Pong</a></li>
+          <li class="py-2"><a href="https://eckeecke.github.io/templelooter">Temple Looter</a></li>
+        </ul>
       </div>
     </nav>
   </div>
@@ -79,12 +76,6 @@ const closeMenu = () => configStore.setShowNavMenu(false)
 </script>
 
 <style scoped>
-#language-switch {
-  position: absolute;
-  top: 28px;
-  left: 8px;
-}
-
 .language-selector {
   background: transparent;
   border: none;
@@ -101,12 +92,6 @@ const closeMenu = () => configStore.setShowNavMenu(false)
 
 .language-selector:first-of-type {
   border-right: 2px solid white;
-}
-
-#sidebar-btn-close {
-  position: absolute;
-  top: 12px;
-  right: 2px;
 }
 
 #sidebar-btn-close svg {
@@ -151,6 +136,12 @@ a:hover {
   box-shadow:
     rgba(0, 0, 0, 0.16) 0 10px 36px 0,
     rgba(0, 0, 0, 0.06) 0 0 0 1px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media (min-width: 576px) {

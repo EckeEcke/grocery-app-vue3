@@ -4,20 +4,20 @@
   >
     <div class="btn-group w-100" role="group">
       <button
-        class="btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder"
+        class="fs-3 btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder text-white"
         :class="{ inactive: displayedTab === Tab.cookbook }"
-        aria-label="show grocerylist"
+        aria-label="show grocery list"
         @click="setDisplayedTab(Tab.groceries)"
       >
-        <h3 class="text-white mb-0 px-0">{{ $t('groceryList') }}</h3>
+        {{ $t('groceryList') }}
       </button>
       <button
-        class="btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder"
+        class="fs-3 btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder text-white"
         :class="{ inactive: displayedTab === Tab.groceries }"
         aria-label="show cookbook"
         @click="setDisplayedTab(Tab.cookbook)"
       >
-        <h3 class="text-white mb-0 px-0">{{ $t('mealPlan') }}</h3>
+        {{ $t('mealPlan') }}
       </button>
     </div>
   </div>

@@ -14,8 +14,7 @@
         <button
           v-if="!isShownNavMenu && !isStandAlone"
           id="toggle-nav-BTN"
-          class="btn"
-          style="font-size: 2em"
+          class="btn fs-2"
           aria-label="show navigation menu"
           @click="showMenu"
         >

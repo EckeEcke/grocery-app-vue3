@@ -6,9 +6,8 @@
     <div class="col-10 px-0 mx-0 text-nowrap overflow-hidden">
       <button
         v-if="meal"
-        class="btn btn-outline-secondary w-100 mx-0"
+        class="btn btn-outline-secondary w-100 mx-0 text-start"
         :class="meal.planned && !isPlanned ? 'btn-success text-white' : 'btn-outline-secondary'"
-        style="text-align: left"
         aria-label="set meal planned"
         :key="meal.id + meal.name"
         @click="setMealPlanned(meal)"
@@ -82,7 +81,7 @@ const deleteMeal = (meal: Meal) => {
 
 const showDetails = () => {
   configStore.setMealToShow(props.meal)
-  configStore.setShowDetailpage(true)
+  configStore.setShowDetailPage(true)
 }
 </script>
 

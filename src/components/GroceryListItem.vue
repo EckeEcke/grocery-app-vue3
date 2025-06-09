@@ -6,10 +6,9 @@
     <div class="col-10 px-0 mx-0 text-nowrap overflow-hidden hover-zoom">
       <button
         v-if="item"
-        class="btn btn-outline-secondary w-100 mx-0"
+        class="btn btn-outline-secondary w-100 mx-0 text-start"
         :key="item.name"
         aria-label="check single item"
-        style="text-align: left"
         @click="checkItem(item)"
       >
         {{ item.name }}

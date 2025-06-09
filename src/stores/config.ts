@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { Meal } from '../types/meal'
-import { Tab } from '../types/tabs'
+import type { Meal } from '@/types/meal'
+import { Tab } from '@/types/tabs'
 import type { ListItem } from '@/types/listitem'
 
 export const useConfigStore = defineStore('config', () => {
@@ -15,7 +15,7 @@ export const useConfigStore = defineStore('config', () => {
   const userId = ref<undefined | string>(undefined)
   const userName = ref<undefined | string>(undefined)
 
-  const setShowDetailpage = (bool: boolean) => {
+  const setShowDetailPage = (bool: boolean) => {
     showDetailPage.value = bool
     setOverflow()
   }
@@ -65,7 +65,7 @@ export const useConfigStore = defineStore('config', () => {
     showUserIdModal,
     userId,
     userName,
-    setShowDetailpage,
+    setShowDetailPage,
     setMealToShow,
     setShowQuantityInput,
     setItemToShow,

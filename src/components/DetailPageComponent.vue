@@ -1,9 +1,9 @@
 <template>
   <div v-if="meal">
     <div class="backdrop" @click="hide()"></div>
-    <div class="modal-detailpage card border-0">
+    <div class="modal-detail-page card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ meal.name }}</h4>
-      <div class="card-body" style="text-align: left">
+      <div class="card-body text-start">
         <button
           class="btn mx-1 mb-1"
           :class="isItemPlanned(ingredient) ? 'btn-success' : 'btn-secondary'"
@@ -68,5 +68,5 @@ const deleteItem = () => {
   hide()
 }
 
-const hide = () => useConfigStore().setShowDetailpage(false)
+const hide = () => useConfigStore().setShowDetailPage(false)
 </script>

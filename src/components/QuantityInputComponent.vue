@@ -1,9 +1,9 @@
 <template>
   <div v-if="item">
     <div class="backdrop" @click="hide()"></div>
-    <div class="modal-detailpage card border-0">
+    <div class="modal-detail-page card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ item.name }}</h4>
-      <div class="card-body" style="text-align: left">
+      <div class="card-body text-start">
         <p>{{ $t('quantity', { item: item.name }) }}</p>
         <input
           ref="input"
@@ -52,9 +52,9 @@ onMounted(() => {
 })
 
 const submit = (element: string) => {
-  const indexGrocerylist = groceryList.value.findIndex((listitem) => listitem.name === element)
+  const indexGroceryList = groceryList.value.findIndex(listItem => listItem.name === element)
   let clonedGroceryList = [...groceryList.value]
-  clonedGroceryList[indexGrocerylist].quantity = quantity.value
+  clonedGroceryList[indexGroceryList].quantity = quantity.value
   localStorage.setItem('grocerylist', JSON.stringify(clonedGroceryList))
   hide()
 }

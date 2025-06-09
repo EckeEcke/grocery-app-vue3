@@ -41,10 +41,6 @@ export const useListsStore = defineStore('lists', () => {
 
         const data = await response.json()
         if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Failed to update grocery item')
-        }
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
@@ -55,7 +51,7 @@ export const useListsStore = defineStore('lists', () => {
       groceryList.value = clonedWithNewState
       localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     }
-    Promise.resolve()
+    await Promise.resolve()
   }
   const addNewItem = async (name: string) => {
     const clonedList = [...groceryList.value]
@@ -79,9 +75,6 @@ export const useListsStore = defineStore('lists', () => {
           const data = await response.json()
           if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
-          if (!response.ok) {
-            throw new Error(data.message || 'Failed to update grocery item')
-          }
         } catch (error) {
           console.error('Error updating grocery item:', error)
         }
@@ -104,9 +97,6 @@ export const useListsStore = defineStore('lists', () => {
           const data = await response.json()
           if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
-          if (!response.ok) {
-            throw new Error(data.message || 'Failed to update grocery item')
-          }
         } catch (error) {
           console.error('Error updating grocery item:', error)
         }
@@ -172,23 +162,18 @@ export const useListsStore = defineStore('lists', () => {
         const data = await response.json()
         if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
-        if (!response.ok) {
-          throw new Error(data.message || 'Failed to update grocery item')
-        }
-
-        console.log('Grocery item updated:', data)
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
     } else {
-      const indexGrocerylist = groceryList.value
+      const indexGroceryList = groceryList.value
         .map(function (element: ListItem) {
           return element.name
         })
         .indexOf(element.name)
-      if (groceryList.value[indexGrocerylist]) {
-        groceryList.value[indexGrocerylist].planned = false
-        groceryList.value[indexGrocerylist].quantity = ''
+      if (groceryList.value[indexGroceryList]) {
+        groceryList.value[indexGroceryList].planned = false
+        groceryList.value[indexGroceryList].quantity = ''
       }
       localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     }
@@ -218,11 +203,6 @@ export const useListsStore = defineStore('lists', () => {
           const data = await response.json()
           if (data.updatedList?.data?.mealPlan) setMealPlan(data.updatedList.data.mealPlan)
 
-          if (!response.ok) {
-            throw new Error(data.message || 'Failed to update meal')
-          }
-
-          console.log('Meal updated:', data)
         } catch (error) {
           console.error('Error updating meal:', error)
         }
@@ -246,9 +226,6 @@ export const useListsStore = defineStore('lists', () => {
           const data = await response.json()
           if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
 
-          if (!response.ok) {
-            throw new Error(data.message || 'Failed to update grocery item')
-          }
         } catch (error) {
           console.error('Error updating grocery item:', error)
         }
@@ -291,11 +268,6 @@ export const useListsStore = defineStore('lists', () => {
 
         if (data.updatedList?.data?.mealPlan) setMealPlan(data.updatedList.data.mealPlan)
 
-        if (!response.ok) {
-          throw new Error(data.message || 'Failed to update meal')
-        }
-
-        console.log('Meal updated:', data)
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
@@ -312,7 +284,7 @@ export const useListsStore = defineStore('lists', () => {
       localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
     }
   }
-  Promise.resolve()
+
   const deleteSingleMeal = (element: Meal) => {
     const index = mealPlan.value
       .map(function (entry) {

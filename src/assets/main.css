@@ -8,21 +8,21 @@ header {
   background-image: url('./header.webp');
   background-size: cover;
   box-shadow:
-    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    rgba(50, 50, 93, 0.25) 0 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0 8px 16px -8px;
 }
 
 h1 {
-  font-family: niceFont;
+  font-family: niceFont, serif;
   font-weight: bolder;
   padding: 2rem 0.5rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
   text-shadow: 1px 1px 1px black;
   margin: 0;
 }
 
 h2 {
-  font-family: niceFont;
+  font-family: niceFont, serif;
   font-weight: bolder;
   font-size: 36px;
 }
@@ -40,19 +40,14 @@ h3 {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   height: 100%;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, #fec47f, #ffc837);
   background: #f7f4ef;
-}
-
-#toggle-nav-BTN {
 }
 
 .toggle-btn {
@@ -61,7 +56,7 @@ h3 {
 }
 
 .toggle-btn.inactive {
-  opacity: 0.4;
+  opacity: 0.9;
 }
 
 .toggle-btn.big:focus {
@@ -87,7 +82,7 @@ h3 {
 }
 @media (min-width: 1200px) {
   .box-shadow {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
   }
 }
 
@@ -248,7 +243,7 @@ svg {
   backdrop-filter: blur(4px);
 }
 
-.modal-detailpage {
+.modal-detail-page {
   position: fixed;
   width: 500px;
   max-width: 95vw;
@@ -273,7 +268,7 @@ svg {
   height: 50px;
   border-radius: 50%;
   background: conic-gradient(#0000 10%, #25b09b);
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
   animation: s3 1s infinite linear;
 }
 @keyframes s3 {
