@@ -14,16 +14,16 @@
         </p>
       </div>
       <div v-if="!isLoading && !requestFailed && randomMeal" class="py-3 container">
-        <div class="row bg-light p-1">
-          <div class="col-4 rounded">
+        <div class="row bg-light p-4 gap-2 rounded shadow-sm">
+          <div class="col-4 px-0 rounded">
             <img
-              class="dish-image"
+              class="dish-image rounded shadow-sm"
               alt=""
               :src="randomMeal.data.meals[0].strMealThumb"
             />
           </div>
 
-          <div class="col-8 text-start">
+          <div class="col-6 text-start">
             <h4>
               {{ randomMeal.data.meals[0].strMeal }}
             </h4>
@@ -80,7 +80,7 @@
             <br />
             <p v-for="(ingredient, index) in ingredients" :key="ingredient + index">
               {{ ingredient }}
-              <span v-if="ingredient.length >= 1 && measures[index].length >= 1">|</span>
+              <span v-if="ingredient && ingredient.length >= 1 && measures[index].length >= 1">|</span>
               {{ measures[index] }}
             </p>
           </div>
