@@ -1,11 +1,13 @@
 <template>
-  <div class="border-0 mx-auto my-5">
+  <div class="container p-0 border-0 mx-auto my-5">
     <div class="card bg-white border-0">
       <div class="card-header bg-warning rounded-0 py-1 px-4 mb-4">
         <h3 class="text-white m-2 p-2">{{ $t('randomRecipe') }}</h3>
       </div>
       <div v-if="isLoading" class="card-body container">
-        <div class="spinner-3 mx-auto my-5"></div>
+        <div class="spinner-wrapper my-5">
+          <LoadingSpinner />
+        </div>
       </div>
       <div v-if="requestFailed" class="card-body container">
         <p>
@@ -109,6 +111,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useListsStore } from '@/stores/lists'
 import { toast } from 'vue3-toastify'
 import { useI18n } from 'vue-i18n'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 
 const { t } = useI18n()
 
@@ -189,4 +192,10 @@ const addRecipe = () => {
 .card-footer:last-child {
   margin-left: 1rem;
 }
+
+.spinner-wrapper {
+  width: 100%;
+  height: 60px;
+}
+
 </style>

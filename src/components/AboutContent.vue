@@ -47,6 +47,10 @@ const { t } = useI18n()
   top: 2rem;
 }
 
+.list-about {
+  list-style-position: inside;
+}
+
 .list-about,
 p {
   text-align: left;
