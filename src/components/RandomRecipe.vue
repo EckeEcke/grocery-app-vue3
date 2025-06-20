@@ -1,7 +1,7 @@
 <template>
   <div class="container p-0 border-0 mx-auto my-5">
     <div class="card bg-white border-0">
-      <div class="card-header bg-warning rounded-0 py-1 px-4 mb-4">
+      <div class="bg-warning rounded-0 py-1 px-4 mb-4">
         <h3 class="text-white m-2 p-2">{{ $t('randomRecipe') }}</h3>
       </div>
       <div v-if="isLoading" class="card-body container">
@@ -16,7 +16,7 @@
         </p>
       </div>
       <div v-if="!isLoading && !requestFailed && randomMeal" class="py-3 container">
-        <div class="row bg-light p-4 gap-2 rounded shadow-sm">
+        <div class="row bg-light p-4 mx-1 gap-2 rounded shadow-sm">
           <div class="col-4 px-0 rounded">
             <img
               class="dish-image rounded shadow-sm"
@@ -195,7 +195,7 @@ const addRecipe = () => {
 
 .spinner-wrapper {
   width: 100%;
-  height: 60px;
+  height: 280px;
 }
 
 </style>

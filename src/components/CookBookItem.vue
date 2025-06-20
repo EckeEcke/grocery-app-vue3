@@ -17,6 +17,7 @@
     </div>
     <div class="col-1 px-0">
       <button
+        :disabled="meal.ingredients.length <= 0"
         class="btn btn-outline-secondary delete-item-btn px-0 mx-0 w-100"
         aria-label="show meal details"
         @click="showDetails()"

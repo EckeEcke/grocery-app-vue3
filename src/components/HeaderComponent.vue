@@ -50,8 +50,10 @@ const showModal = () => configStore.setShowUserIdModal(true)
   margin-right: 1rem;
 }
 
-.user-icon svg {
+.user-icon svg,
+#toggle-nav-BTN svg {
   margin: 0;
+  filter: drop-shadow(0 0 8px #000);
 }
 
 .logged-in {

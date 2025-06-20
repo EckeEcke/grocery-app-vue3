@@ -7,7 +7,7 @@
         <button
           class="btn mx-1 mb-1"
           :class="isItemPlanned(ingredient) ? 'btn-success' : 'btn-secondary'"
-          v-for="ingredient in meal.ingredients"
+          v-for="ingredient in validateIngredients(meal.ingredients)"
           :key="ingredient"
           aria-label="toggle planned status of ingredient"
           @click="checkIngredients(ingredient)"
@@ -19,13 +19,6 @@
         $t('buttons.openRecipe')
       }}</a>
       <div class="card-footer">
-        <button
-          class="btn btn-outline-secondary mx-3"
-          aria-label="delete item"
-          @click="deleteItem()"
-        >
-          {{ $t('buttons.delete') }}
-        </button>
         <button class="btn btn-primary" aria-label="close modal" @click="hide()">
           {{ $t('buttons.close') }}
         </button>
@@ -37,7 +30,6 @@
 <script setup lang="ts">
 import { useListsStore } from '@/stores/lists'
 import { computed } from 'vue'
-import type { Meal } from '@/types/meal'
 import type { ListItem } from '@/types/listitem'
 import { useConfigStore } from '@/stores/config'
 
@@ -63,10 +55,7 @@ const checkIngredients = (ingredient: string) => {
   } else listStore.addNewItem(ingredient)
 }
 
-const deleteItem = () => {
-  listStore.deleteSingleMeal(meal.value as Meal)
-  hide()
-}
+const validateIngredients = (ingredients: string[]) => ingredients.filter(ingredient => ingredient && ingredient.length > 0)
 
 const hide = () => useConfigStore().setShowDetailPage(false)
 </script>

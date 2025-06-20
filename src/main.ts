@@ -93,13 +93,13 @@ const i18n = createI18n({
         headline: 'Online Liste erstellen',
         intro:
           'Erstelle eine Online Liste, um mit anderen online gemeinsam eine Liste zu bearbeiten',
-        generateNewId: 'Generiere neue ID',
-        placeholder: 'Suche nach ID',
+        generateNewId: 'Erstelle neue ID',
+        placeholder: 'Suche nach einer ID',
         success: 'Neue ID erfolgreich generiert',
         or: 'oder',
         shareLink: 'Link zur Liste teilen',
         signedInAs: 'Angemeldet als: ',
-        placeholderName: 'Gib deinen Namen ein'
+        placeholderName: 'Wie soll dein User heißen?'
       }
     },
     en: {
@@ -168,13 +168,13 @@ const i18n = createI18n({
       userModal: {
         headline: 'Create online list',
         intro: 'Create an online list and collaborate with other users',
-        generateNewId: 'Generate new ID',
-        placeholder: 'Search by ID',
+        generateNewId: 'Create new ID',
+        placeholder: 'Search for an ID',
         success: 'Create new ID',
         or: 'or',
         shareLink: 'Share link to your list',
         signedInAs: 'Signed in as: ',
-        placeholderName: 'Enter your name'
+        placeholderName: 'What should your username be?'
       }
     }
   }

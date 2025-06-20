@@ -27,7 +27,7 @@
                 class="form-control w-100 mb-2"
                 :placeholder="t('userModal.placeholderName')"
               />
-              <button class="btn btn-primary new-id-button mx-auto" @click="createEntry">
+              <button class="btn btn-primary new-id-button mx-auto" @click="createEntry" :disabled="userNameInput.length <= 0">
                 {{ t('userModal.generateNewId') }}
               </button>
             </template>
