@@ -95,7 +95,7 @@ const filteredItemsByFirstLetter = computed(() => {
 
 const copyList = () => {
   navigator.clipboard.writeText(plannedItems.value.map((item) => item.name).join('\n'))
-  toast.success(t('toasts.copiedListToClipboad'), {
+  toast.success(t('toasts.copiedListToClipboard'), {
     autoClose: 1000
   })
 }
