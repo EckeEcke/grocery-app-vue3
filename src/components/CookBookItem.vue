@@ -53,6 +53,8 @@ import { useConfigStore } from '@/stores/config'
 import LoadingSpinner from './LoadingSpinner.vue'
 import type { Meal } from '@/types/meal'
 import { type PropType, ref } from 'vue'
+import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
   meal: {
@@ -64,6 +66,8 @@ const props = defineProps({
     required: true
   }
 })
+
+const { t } = useI18n()
 
 const listStore = useListsStore()
 const configStore = useConfigStore()
@@ -77,7 +81,13 @@ const setMealPlanned = async (meal: Meal) => {
 }
 
 const deleteMeal = (meal: Meal) => {
-  listStore.deleteSingleMeal(meal)
+  const confirmed = confirm(t('confirmDeleteMeal', { meal: meal.name }))
+  if (confirmed) {
+    toast.success(t('toasts.entryDeleted', { entry: meal.name }), {
+      autoClose: 1000
+    })
+    listStore.deleteSingleMeal(meal)
+  }
 }
 
 const showDetails = () => {

@@ -32,6 +32,8 @@ import { useListsStore } from '@/stores/lists'
 import LoadingSpinner from './LoadingSpinner.vue'
 import type { ListItem } from '@/types/listitem'
 import { type PropType, ref } from 'vue'
+import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
 
 defineProps({
   item: {
@@ -40,11 +42,19 @@ defineProps({
   }
 })
 
+const { t } = useI18n()
+
 const listStore = useListsStore()
 const isLoading = ref(false)
 
 const deleteSingleItem = (element: ListItem) => {
-  listStore.deleteSingleItem(element)
+  const confirmed = confirm(t('confirmDeleteItem', { item: element.name }))
+  if (confirmed) {
+    toast.success(t('toasts.entryDeleted', { entry: element.name }), {
+      autoClose: 1000
+    })
+    listStore.deleteSingleItem(element)
+  }
 }
 
 const pushNewItemFromList = async (item: ListItem) => {

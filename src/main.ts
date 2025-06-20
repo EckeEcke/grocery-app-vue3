@@ -62,7 +62,8 @@ const i18n = createI18n({
         itemListDeleted: 'Artikelliste wurde gelöscht',
         cookbookDeleted: 'Kochbuch wurde gelöscht',
         confirmDeleteList: 'Soll die Artikelliste wirklich gelöscht werden?',
-        confirmDeleteCookbook: 'Soll das Kochbuch wirklich gelöscht werden?'
+        confirmDeleteCookbook: 'Soll das Kochbuch wirklich gelöscht werden?',
+        entryDeleted: '{entry} wurde gelöscht',
       },
       placeholders: {
         addArticle: 'Artikel hinzufügen - trennbar durch Komma oder Zeilenumbruch',
@@ -100,7 +101,9 @@ const i18n = createI18n({
         shareLink: 'Link zur Liste teilen',
         signedInAs: 'Angemeldet als: ',
         placeholderName: 'Wie soll dein User heißen?'
-      }
+      },
+      confirmDeleteMeal: 'Soll {meal} aus dem Kochbuch gelöscht werden?',
+      confirmDeleteItem: 'Soll {item} von der Artikelliste gelöscht werden?',
     },
     en: {
       mealPlan: 'Meal Plan',
@@ -138,7 +141,8 @@ const i18n = createI18n({
         itemListDeleted: 'Item list deleted',
         cookbookDeleted: 'Cookbook deleted',
         confirmDeleteList: 'Are you sure you want to delete the item list?',
-        confirmDeleteCookbook: 'Are you sure you want to delete the cookbook?'
+        confirmDeleteCookbook: 'Are you sure you want to delete the cookbook?',
+        entryDeleted: '{entry} was deleted',
       },
       placeholders: {
         addArticle: 'Add article - separable by comma or line break',
@@ -175,7 +179,9 @@ const i18n = createI18n({
         shareLink: 'Share link to your list',
         signedInAs: 'Signed in as: ',
         placeholderName: 'What should your username be?'
-      }
+      },
+      confirmDeleteMeal: 'Do you want to delete {meal} from your cookbook?',
+      confirmDeleteItem: 'Do you want to delete {item} from your item list?',
     }
   }
 })
