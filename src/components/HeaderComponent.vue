@@ -3,6 +3,17 @@
     <div class="container d-flex justify-content-between">
       <h1 class="text-white">Meal Planner</h1>
       <div class="d-flex align-items-center">
+        <div class="custom-dropdown">
+          <div class="selected-option" @click="toggleDropdown" v-html="getFlagForValue(locale)">
+          </div>
+          <div class="dropdown-options" id="dropdownOptions">
+            <router-link :to="{ params: { locale: 'de' }, query: route.query }" class="option"><span class="fi fi-de"></span></router-link>
+            <router-link :to="{ params: { locale: 'gb' }, query: route.query }" class="option"><span class="fi fi-gb"></span></router-link>
+            <router-link :to="{ params: { locale: 'es' }, query: route.query }" class="option"><span class="fi fi-es"></span></router-link>
+            <router-link :to="{ params: { locale: 'fr' }, query: route.query }" class="option"><span class="fi fi-fr"></span></router-link>
+            <router-link :to="{ params: { locale: 'it' }, query: route.query }" class="option"><span class="fi fi-it"></span></router-link>
+          </div>
+        </div>
         <button class="user-icon" @click="showModal">
           <font-awesome-icon :icon="['fas', 'user']" size="xl" />
           <font-awesome-icon
@@ -11,15 +22,6 @@
             :icon="['fas', 'circle-check']"
           />
         </button>
-        <button
-          v-if="!isShownNavMenu && !isStandAlone"
-          id="toggle-nav-BTN"
-          class="btn fs-2"
-          aria-label="show navigation menu"
-          @click="showMenu"
-        >
-          <font-awesome-icon :icon="['fas', 'bars']" />
-        </button>
       </div>
     </div>
   </header>
@@ -27,17 +29,32 @@
 
 <script setup lang="ts">
 import { useConfigStore } from '@/stores/config'
-import { computed } from 'vue'
+import '/node_modules/flag-icons/css/flag-icons.min.css'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+
+const { locale } = useI18n()
 
 const configStore = useConfigStore()
 
-const isShownNavMenu = computed(() => configStore.showNavMenu)
-
-const isStandAlone = computed(() => window.matchMedia('(display-mode: standalone)').matches)
-
-const showMenu = () => configStore.setShowNavMenu(true)
-
 const showModal = () => configStore.setShowUserIdModal(true)
+
+function toggleDropdown() {
+  const options = document.getElementById('dropdownOptions');
+  options!.style.display = options!.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function getFlagForValue(value: string) {
+  return `<span class="fi fi-${value}"></span>`
+}
+
+const route = useRoute()
+
+window.onclick = function(event) {
+  if (!event.target?.matches('.selected-option')) {
+    document.getElementById('dropdownOptions')!.style.display = 'none'
+  }
+}
 </script>
 
 <style>
@@ -51,7 +68,7 @@ const showModal = () => configStore.setShowUserIdModal(true)
 }
 
 .user-icon svg,
-#toggle-nav-BTN svg {
+.selected-option .fi {
   margin: 0;
   filter: drop-shadow(0 0 8px #000);
 }
@@ -60,5 +77,46 @@ const showModal = () => configStore.setShowUserIdModal(true)
   color: limegreen;
   background: white;
   border-radius: 50%;
+}
+
+.custom-dropdown {
+  position: relative;
+  width: 70px;
+}
+
+.selected-option {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-options {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  position: absolute;
+  width: 100%;
+  border-top: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+  padding: 16px;
+  background: lightgray;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.option {
+  transition: 0.3s;
+}
+
+.option:hover {
+  transform: scale(1.1);
+}
+
+.fi {
+  pointer-events: none;
+  height: 22px;
+  width: 36px;
 }
 </style>

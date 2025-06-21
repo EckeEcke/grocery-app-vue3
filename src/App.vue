@@ -22,7 +22,6 @@
       </div>
     </div>
     <DetailPage v-if="showDetailPage" />
-    <NavbarComponent v-if="showNavMenu" class="container" />
     <transition name="fade">
       <ScrollTopButton />
     </transition>
@@ -34,7 +33,6 @@ import Header from './components/HeaderComponent.vue'
 import ToggleTabs from './components/ToggleTabs.vue'
 import RandomRecipe from './components/RandomRecipe.vue'
 import AboutContent from './components/AboutContent.vue'
-import NavbarComponent from './components/NavigationComponent.vue'
 import CookBook from './components/CookBookComponent.vue'
 import GroceryList from './components/GroceryList.vue'
 import DetailPage from './components/DetailPageComponent.vue'
@@ -63,8 +61,6 @@ const app = ref<HTMLElement | null>(null)
 
 const listStore = useListsStore()
 const configStore = useConfigStore()
-
-const showNavMenu = computed(() => configStore.showNavMenu)
 
 const displayedTab = computed(() => configStore.displayedTab)
 
@@ -102,9 +98,16 @@ const searchForId = async () => {
   listsStore.setMealPlan(receivedMealPlan)
 }
 
+router.beforeEach((to, from, next) => {
+  locale.value = to.params.locale as string || 'de'
+  next()
+})
+
 onMounted(async () => {
   await searchForId()
   locale.value = (route.query.locale as string) || 'de'
+  console.log(route.query)
+  console.log(locale.value)
   const hasFaultyLocalStorageEntryItemList =
     localStorage.getItem('grocerylist') === 'undefined' ||
     localStorage.getItem('grocerylist') === undefined ||

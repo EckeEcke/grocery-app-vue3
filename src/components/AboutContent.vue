@@ -28,6 +28,10 @@
               {{ t('about.githubLink') }}
               <a href="https://github.com/EckeEcke/grocery-app-vue3" target="_blank">Github</a>
             </li>
+            <li>
+              Website
+              <a href="https://eckeecke.github.io" target="_blank">eckeecke.github.io</a>
+            </li>
           </ul>
         </div>
       </div>
