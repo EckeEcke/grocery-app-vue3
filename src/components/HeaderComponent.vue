@@ -51,7 +51,7 @@ function getFlagForValue(value: string) {
 const route = useRoute()
 
 window.onclick = function(event) {
-  if (!event.target?.matches('.selected-option')) {
+  if (!(event.target as Element)?.matches('.selected-option')) {
     document.getElementById('dropdownOptions')!.style.display = 'none'
   }
 }
