@@ -9,9 +9,9 @@
 
       <div class="row container px-0">
         <p v-if="plannedItems.length >= 1" class="px-2 my-4 font-small">
-          <transition name="fade" mode="out-in"
-            ><span :key="plannedItems.length">{{ plannedItems.length }}</span></transition
-          >
+          <transition name="fade" mode="out-in">
+            <span :key="plannedItems.length">{{ plannedItems.length }}</span>
+          </transition>
           {{ t('mealsPlanned') }}
         </p>
       </div>

@@ -43,7 +43,7 @@
         <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
       </button>
     </div>
-    <hr />
+    <hr>
   </div>
 </template>
 
