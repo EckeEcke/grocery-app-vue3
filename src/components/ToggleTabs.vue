@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="btn-toolbar no-br-top-mobile justify-content-center rounded-top no-br-mobile overflow-hidden sticky-mobile bg-white"
-  >
+  <div class="btn-toolbar no-br-top-mobile justify-content-center rounded-top no-br-mobile overflow-hidden sticky-mobile bg-white">
     <div class="btn-group w-100" role="group">
       <button
         class="fs-3 btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder text-white"
@@ -9,7 +7,7 @@
         aria-label="show grocery list"
         @click="setDisplayedTab(Tab.groceries)"
       >
-        {{ $t('groceryList') }}
+        {{ t('groceryList') }}
       </button>
       <button
         class="fs-3 btn btn-warning toggle-btn big py-2 rounded-0 rounded-top no-br-mobile fw-bolder text-white"
@@ -17,7 +15,7 @@
         aria-label="show cookbook"
         @click="setDisplayedTab(Tab.cookbook)"
       >
-        {{ $t('mealPlan') }}
+        {{ t('mealPlan') }}
       </button>
     </div>
   </div>
@@ -27,8 +25,11 @@
 import { useConfigStore } from '@/stores/config'
 import { Tab } from '@/types/tabs'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const configStore = useConfigStore()
+
+const { t } = useI18n()
 
 const displayedTab = computed(() => configStore.displayedTab)
 

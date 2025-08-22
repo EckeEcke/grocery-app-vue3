@@ -34,14 +34,14 @@
           </template>
 
           <p class="text-center my-4">{{ t('userModal.or') }}</p>
-          <form @submit.prevent="searchForId">
+          <form @submit.prevent="searchForId" class="d-flex">
             <input
               v-model="inputValue"
-              class="form-control inline mb-2"
-              type="text"
+              class="form-control inline"
+              type="search"
               :placeholder="t('userModal.placeholder')"
             />
-            <button :disabled="inputValue.length < 8" class="btn btn-primary" type="submit">
+            <button :disabled="inputValue.length < 8" class="btn btn-primary mt-0" type="submit">
               <font-awesome-icon :icon="['fas', 'search']" />
             </button>
           </form>

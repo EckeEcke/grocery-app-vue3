@@ -2,7 +2,7 @@
   <div class="container p-0 border-0 mx-auto my-5">
     <div class="card bg-white border-0">
       <div class="bg-warning rounded-0 py-1 px-4 mb-4">
-        <h3 class="text-white m-2 p-2">{{ $t('randomRecipe') }}</h3>
+        <h3 class="text-white m-2 p-2">{{ t('randomRecipe') }}</h3>
       </div>
       <div v-if="isLoading" class="card-body container">
         <div class="spinner-wrapper my-5">
@@ -22,13 +22,13 @@
             <h4>
               {{ randomMeal.data.meals[0].strMeal }}
             </h4>
-            <span class="recipe-description"> {{ $t('category') }}: {{ randomMeal.data.meals[0].strCategory }} </span>
+            <span class="recipe-description"> {{ t('category') }}: {{ randomMeal.data.meals[0].strCategory }} </span>
             <br />
-            <span class="recipe-description"> {{ $t('area') }}: {{ randomMeal.data.meals[0].strArea }} </span>
+            <span class="recipe-description"> {{ t('area') }}: {{ randomMeal.data.meals[0].strArea }} </span>
             <br />
             <span class="recipe-description">
               <a class="link-info" :href="randomMeal.data.meals[0].strSource" target="_blank">
-                {{ $t('buttons.openRecipe') }}
+                {{ t('buttons.openRecipe') }}
               </a>
             </span>
           </div>
@@ -37,7 +37,7 @@
         <div class="row mt-5">
           <div class="col-1 mb-2"></div>
           <h5 class="col-10" @click="() => (showInstructions = !showInstructions)">
-            {{ $t('buttons.instructions') }}
+            {{ t('buttons.instructions') }}
           </h5>
           <h5 class="col-1 px-0" @click="showInstructions = !showInstructions">
             <font-awesome-icon
@@ -56,7 +56,7 @@
         <div class="row">
           <div class="col-1 mb-2"></div>
           <h5 class="col-10" @click="() => (showIngredients = !showIngredients)">
-            {{ $t('buttons.ingredients') }}
+            {{ t('buttons.ingredients') }}
           </h5>
           <h5 class="col-1 px-0" @click="showIngredients = !showIngredients">
             <font-awesome-icon
@@ -80,10 +80,10 @@
       </div>
       <div class="card-footer no-br-mobile border-0 bg-white text-end">
         <button v-if="!requestFailed" class="btn btn-primary my-2" aria-label="add recipe" @click="addRecipe">
-          <font-awesome-icon :icon="['fas', 'plus']" />{{ $t('buttons.addToCookbook') }}
+          <font-awesome-icon :icon="['fas', 'plus']" />{{ t('buttons.addToCookbook') }}
         </button>
         <button class="btn btn-outline-secondary" aria-label="load recipe idea" @click="loadRecipe">
-          {{ $t('buttons.loadNewRecipe') }}
+          {{ t('buttons.loadNewRecipe') }}
         </button>
       </div>
     </div>

@@ -4,7 +4,7 @@
     <div class="modal-detail-page card border-0">
       <h4 class="card-header bg-warning border-0 text-white">{{ item.name }}</h4>
       <div class="card-body text-start">
-        <p>{{ $t('quantity', { item: item.name }) }}</p>
+        <p>{{ t('quantity', { item: item.name }) }}</p>
         <input
           ref="input"
           type="text"
@@ -15,10 +15,10 @@
       </div>
       <div class="card-footer">
         <button class="btn btn-outline-secondary mx-3" aria-label="close modal" @click="hide()">
-          {{ $t('buttons.cancel') }}
+          {{ t('buttons.cancel') }}
         </button>
         <button class="btn btn-primary" aria-label="add selection and close modal" @click="submit(item.name)">
-          {{ $t('buttons.submitAndClose') }}
+          {{ t('buttons.submitAndClose') }}
         </button>
       </div>
     </div>

@@ -15,10 +15,10 @@
           {{ ingredient }}
         </button>
       </div>
-      <a v-if="meal.recipe" :href="meal.recipe" target="_blank" class="mx-3 mb-3">{{ $t('buttons.openRecipe') }}</a>
+      <a v-if="meal.recipe" :href="meal.recipe" target="_blank" class="mx-3 mb-3">{{ t('buttons.openRecipe') }}</a>
       <div class="card-footer">
         <button class="btn btn-primary" aria-label="close modal" @click="hide()">
-          {{ $t('buttons.close') }}
+          {{ t('buttons.close') }}
         </button>
       </div>
     </div>
@@ -30,8 +30,11 @@ import { useListsStore } from '@/stores/lists'
 import { computed } from 'vue'
 import type { ListItem } from '@/types/listitem'
 import { useConfigStore } from '@/stores/config'
+import { useI18n } from 'vue-i18n'
 
 const listStore = useListsStore()
+
+const { t } = useI18n()
 
 const meal = computed(() => useConfigStore().mealToShow)
 

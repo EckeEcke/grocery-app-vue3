@@ -4,7 +4,7 @@
       <CookBookForm />
       <div v-if="plannedItems.length == 0">
         <img class="illustration mt-5 mb-3" alt="" src="../assets/meal-illustration.svg" />
-        <p class="mb-5">{{ $t('noMeals') }}</p>
+        <p class="mb-5">{{ t('noMeals') }}</p>
       </div>
 
       <div class="row container px-0">
@@ -12,7 +12,7 @@
           <transition name="fade" mode="out-in"
             ><span :key="plannedItems.length">{{ plannedItems.length }}</span></transition
           >
-          {{ $t('mealsPlanned') }}
+          {{ t('mealsPlanned') }}
         </p>
       </div>
       <div v-if="plannedItems.length >= 1" class="pb-1 container">
@@ -24,14 +24,14 @@
         <div class="d-flex justify-content-end">
           <button class="btn btn-outline-secondary my-4" aria-label="copy mealplan" @click="copyList">
             <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
-            {{ $t('buttons.copyPlan') }}
+            {{ t('buttons.copyPlan') }}
           </button>
         </div>
       </div>
 
       <div class="mb-4">
         <div class="container mb-4 p-1 bg-warning">
-          <h3 class="text-white m-2">{{ $t('cookbook') }}</h3>
+          <h3 class="text-white m-2">{{ t('cookbook') }}</h3>
         </div>
       </div>
       <div class="container">
@@ -51,7 +51,7 @@
             @click="deleteCookbook"
           >
             <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
-            {{ $t('buttons.deleteAll') }}
+            {{ t('buttons.deleteAll') }}
           </button>
         </div>
       </div>

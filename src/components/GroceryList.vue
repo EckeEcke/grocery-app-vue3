@@ -4,7 +4,7 @@
       <GroceryListForm />
       <div v-if="plannedItems && plannedItems.length == 0">
         <img class="illustration mt-5 mb-3" alt="" src="../assets/grocery-illustration.svg" />
-        <p class="mb-4 p-3">{{ $t('noItems') }}</p>
+        <p class="mb-4 p-3">{{ t('noItems') }}</p>
       </div>
 
       <div class="row container px-0">
@@ -14,7 +14,7 @@
               {{ plannedItems.length }}
             </span>
           </transition>
-          {{ $t('itemsLeft') }}
+          {{ t('itemsLeft') }}
         </p>
       </div>
       <div v-if="plannedItems && plannedItems.length >= 1" class="pb-1 container">
@@ -24,12 +24,12 @@
         <div class="d-flex justify-content-end">
           <button class="btn btn-outline-secondary my-4" aria-label="copy list" @click="copyList">
             <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
-            {{ $t('buttons.copyList') }}
+            {{ t('buttons.copyList') }}
           </button>
         </div>
       </div>
       <div class="container mb-4 p-1 bg-warning">
-        <h3 class="text-white m-2">{{ $t('itemList') }}</h3>
+        <h3 class="text-white m-2">{{ t('itemList') }}</h3>
       </div>
       <div class="container" v-if="filteredItemsByFirstLetter">
         <div v-for="(entry, index) in filteredItemsByFirstLetter" :key="index">
@@ -48,7 +48,7 @@
             @click="deleteGrocerylist"
           >
             <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
-            {{ $t('buttons.deleteAll') }}
+            {{ t('buttons.deleteAll') }}
           </button>
         </div>
       </div>
