@@ -4,23 +4,28 @@
       <h1 class="text-white">Meal Planner</h1>
       <div class="d-flex align-items-center">
         <div class="custom-dropdown">
-          <div class="selected-option" @click="toggleDropdown" v-html="getFlagForValue(locale)">
-          </div>
+          <div class="selected-option" @click="toggleDropdown" v-html="getFlagForValue(locale)"></div>
           <div class="dropdown-options" id="dropdownOptions">
-            <router-link :to="{ params: { locale: 'de' }, query: route.query }" class="option"><span class="fi fi-de"></span></router-link>
-            <router-link :to="{ params: { locale: 'gb' }, query: route.query }" class="option"><span class="fi fi-gb"></span></router-link>
-            <router-link :to="{ params: { locale: 'es' }, query: route.query }" class="option"><span class="fi fi-es"></span></router-link>
-            <router-link :to="{ params: { locale: 'fr' }, query: route.query }" class="option"><span class="fi fi-fr"></span></router-link>
-            <router-link :to="{ params: { locale: 'it' }, query: route.query }" class="option"><span class="fi fi-it"></span></router-link>
+            <router-link :to="{ params: { locale: 'de' }, query: route.query }" class="option">
+              <span class="fi fi-de"></span>
+            </router-link>
+            <router-link :to="{ params: { locale: 'gb' }, query: route.query }" class="option">
+              <span class="fi fi-gb"></span>
+            </router-link>
+            <router-link :to="{ params: { locale: 'es' }, query: route.query }" class="option">
+              <span class="fi fi-es"></span>
+            </router-link>
+            <router-link :to="{ params: { locale: 'fr' }, query: route.query }" class="option">
+              <span class="fi fi-fr"></span>
+            </router-link>
+            <router-link :to="{ params: { locale: 'it' }, query: route.query }" class="option">
+              <span class="fi fi-it"></span>
+            </router-link>
           </div>
         </div>
         <button class="user-icon" @click="showModal">
           <font-awesome-icon :icon="['fas', 'user']" size="xl" />
-          <font-awesome-icon
-            v-if="configStore.userId"
-            class="logged-in"
-            :icon="['fas', 'circle-check']"
-          />
+          <font-awesome-icon v-if="configStore.userId" class="logged-in" :icon="['fas', 'circle-check']" />
         </button>
       </div>
     </div>
@@ -40,8 +45,8 @@ const configStore = useConfigStore()
 const showModal = () => configStore.setShowUserIdModal(true)
 
 function toggleDropdown() {
-  const options = document.getElementById('dropdownOptions');
-  options!.style.display = options!.style.display === 'flex' ? 'none' : 'flex';
+  const options = document.getElementById('dropdownOptions')
+  options!.style.display = options!.style.display === 'flex' ? 'none' : 'flex'
 }
 
 function getFlagForValue(value: string) {
@@ -50,7 +55,7 @@ function getFlagForValue(value: string) {
 
 const route = useRoute()
 
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (!(event.target as Element)?.matches('.selected-option')) {
     document.getElementById('dropdownOptions')!.style.display = 'none'
   }
@@ -98,7 +103,7 @@ window.onclick = function(event) {
   position: absolute;
   width: 100%;
   border-top: none;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 10;
   padding: 16px;
   background: lightgray;

@@ -1,608 +1,608 @@
 [
-    {
-        "name":"Salz",
-        "planned":false,
-        "id":0,
-        "quantity": ""
-    },
-    {
-        "name":"Klopapier",
-        "planned":false,
-        "id":1,
-        "quantity": ""
-    },
-    {
-        "name":"Pfeffer",
-        "planned":false,
-        "id":2,
-        "quantity": ""
-    },
-    {
-        "name":"Backpapier",
-        "planned":false,
-        "id":3,
-        "quantity": ""
-    },
-    {
-        "name":"Milch",
-        "planned":false,
-        "id":4,
-        "quantity": ""
-    },
-    {
-        "name":"Käse",
-        "planned":false,
-        "id":5,
-        "quantity": ""
-    },
-    {
-        "name":"Wurst",
-        "planned":false,
-        "id":6,
-        "quantity": ""
-    },
-    {
-        "name":"Brot",
-        "planned":false,
-        "id":7,
-        "quantity": ""
-    },
-    {
-        "name":"Butter",
-        "planned":false,
-        "id":8,
-        "quantity": ""
-    },
-    {
-        "name":"Paprika",
-        "planned":false,
-        "id":9,
-        "quantity": ""
-    },
-    {
-        "name":"Tomaten",
-        "planned":false,
-        "id":10,
-        "quantity": ""
-    },
-    {
-        "name":"Gurke",
-        "planned":false,
-        "id":11,
-        "quantity": ""
-    },
-    {
-        "name":"Kartoffeln",
-        "planned":false,
-        "id":12,
-        "quantity": ""
-    },
-    {
-        "name":"Zucchini",
-        "planned":false,
-        "id":13,
-        "quantity": ""
-    },
-    {
-        "name":"Möhren",
-        "planned":false,
-        "id":14,
-        "quantity": ""
-    },
-    {
-        "name":"Salat",
-        "planned":false,
-        "id":15,
-        "quantity": ""
-    },
-    {
-        "name":"Äpfel",
-        "planned":false,
-        "id":16,
-        "quantity": ""
-    },
-    {
-        "name":"Bananen",
-        "planned":false,
-        "id":17,
-        "quantity": ""
-    },
-    {
-        "name":"Nudeln",
-        "planned":false,
-        "id":18,
-        "quantity": ""
-    },
-    {
-        "name":"Spüli",
-        "planned":false,
-        "id":19,
-        "quantity": ""
-    },
-    {
-        "name":"Geschirrtabs",
-        "planned":false,
-        "id":20,
-        "quantity": ""
-    },
-    {
-        "name":"Olivenöl",
-        "planned":false,
-        "id":21,
-        "quantity": ""
-    },
-    {
-        "name":"Ketchup",
-        "planned":false,
-        "id":22,
-        "quantity": ""
-    },
-    {
-        "name":"Joghurt",
-        "planned":false,
-        "id":23,
-        "quantity": ""
-    },
-    {
-        "name":"Blaubeeren",
-        "planned":false,
-        "id":24,
-        "quantity": ""
-    },
-    {
-        "name":"Toastbrötchen",
-        "planned":false,
-        "id":25,
-        "quantity": ""
-    },
-    {
-        "name":"Heidelbeeren",
-        "planned":false,
-        "id":26,
-        "quantity": ""
-    },
-    {
-        "name":"Himbeeren",
-        "planned":false,
-        "id":27,
-        "quantity": ""
-    },
-    {
-        "name":"Fleisch",
-        "planned":false,
-        "id":28,
-        "quantity": ""
-    },
-    {
-        "name":"Eier",
-        "planned":false,
-        "id":29,
-        "quantity": ""
-    },
-    {
-        "name":"Schokolade",
-        "planned":false,
-        "id":30,
-        "quantity": ""
-    },
-    {
-        "name":"Mozzarella",
-        "planned":false,
-        "id":31,
-        "quantity": ""
-    },
-    {
-        "name":"Hirtenkäse",
-        "planned":false,
-        "id":32,
-        "quantity": ""
-    },
-    {
-        "name":"Cornflakes",
-        "planned":false,
-        "id":33,
-        "quantity": ""
-    },
-    {
-        "name":"Hefe",
-        "planned":false,
-        "id":34,
-        "quantity": ""
-    },
-    {
-        "name":"Frischkäse",
-        "planned":false,
-        "id":35,
-        "quantity": ""
-    },
-    {
-        "name":"Kaffee",
-        "planned":false,
-        "id":36,
-        "quantity": ""
-    },
-    {
-        "name":"Sandwichkäse",
-        "planned":false,
-        "id":37,
-        "quantity": ""
-    },
-    {
-        "name":"Passierte Tomaten",
-        "planned":false,
-        "id":38,
-        "quantity": ""
-    },
-    {
-        "name":"Käse (gerieben)",
-        "planned":false,
-        "id":39,
-        "quantity": ""
-    },
-    {
-        "name":"Melone",
-        "planned":false,
-        "id":40,
-        "quantity": ""
-    },
-    {
-        "name":"Zitrone",
-        "planned":false,
-        "id":41,
-        "quantity": ""
-    },
-    {
-        "name":"Mehl",
-        "planned":false,
-        "id":42,
-        "quantity": ""
-    },
-    {
-        "name":"Limo",
-        "planned":false,
-        "id":43,
-        "quantity": ""
-    },
-    {
-        "name":"Nachos",
-        "planned":false,
-        "id":44,
-        "quantity": ""
-    },
-    {
-        "name":"Pommes",
-        "planned":false,
-        "id":45,
-        "quantity": ""
-    },
-    {
-        "name":"Mayonnaise",
-        "planned":false,
-        "id":46,
-        "quantity": ""
-    },
-    {
-        "name":"Birnen",
-        "planned":false,
-        "id":47,
-        "quantity": ""
-    },
-    {
-        "name":"Müsli",
-        "planned":false,
-        "id":48,
-        "quantity": ""
-    },
-    {
-        "name":"Aufschnitt",
-        "planned":false,
-        "id":49,
-        "quantity": ""
-    },
-    {
-        "name":"Feta",
-        "planned":false,
-        "id":50,
-        "quantity": ""
-    },
-    {
-        "name":"Knoblauch",
-        "planned":false,
-        "id":51,
-        "quantity": ""
-    },
-    {
-        "name":"Zwiebeln",
-        "planned":false,
-        "id":52,
-        "quantity": ""
-    },
-    {
-        "name":"Petersilie",
-        "planned":false,
-        "id":53,
-        "quantity": ""
-    },
-    {
-        "name":"Kräuter",
-        "planned":false,
-        "id":54,
-        "quantity": ""
-    },
-    {
-        "name":"Öl",
-        "planned":false,
-        "id":55,
-        "quantity": ""
-    },
-    {
-        "name":"Haferflocken",
-        "planned":false,
-        "id":56,
-        "quantity": ""
-    },
-    {
-        "name":"Wasser",
-        "planned":false,
-        "id":57,
-        "quantity": ""
-    },
-    {
-        "name":"Tomaten passiert",
-        "planned":false,
-        "id":58,
-        "quantity": ""
-    },
-    {
-        "name":"Tomatenmark",
-        "planned":false,
-        "id":59,
-        "quantity": ""
-    },
-    {
-        "name":"Trauben",
-        "planned":false,
-        "id":60,
-        "quantity": ""
-    },
-    {
-        "name":"Waschmittel",
-        "planned":false,
-        "id":61,
-        "quantity": ""
-    },
-    {
-        "name":"Spinat",
-        "planned":false,
-        "id":62,
-        "quantity": ""
-    },
-    {
-        "name":"Blattspinat",
-        "planned":false,
-        "id":63,
-        "quantity": ""
-    },
-    {
-        "name":"Limette",
-        "planned":false,
-        "id":64,
-        "quantity": ""
-    },
-    {
-        "name":"Avocado",
-        "planned":false,
-        "id":65,
-        "quantity": ""
-    },
-    {
-        "name":"Chili",
-        "planned":false,
-        "id":66,
-        "quantity": ""
-    },
-    {
-        "name":"Kokosmilch",
-        "planned":false,
-        "id":67,
-        "quantity": ""
-    },
-    {
-        "name":"Koriander",
-        "planned":false,
-        "id":68,
-        "quantity": ""
-    },
-    {
-        "name":"Ingwer",
-        "planned":false,
-        "id":69,
-        "quantity": ""
-    },
-    {
-        "name":"Rote Linsen",
-        "planned":false,
-        "id":70,
-        "quantity": ""
-    },
-    {
-        "name":"Ananas",
-        "planned":false,
-        "id":71,
-        "quantity": ""
-    },
-    {
-        "name":"Toast",
-        "planned":false,
-        "id":72,
-        "quantity": ""
-    },
-    {
-        "name":"Lachs",
-        "planned":false,
-        "id":73,
-        "quantity": ""
-    },
-    {
-        "name":"Brokkoli",
-        "planned":false,
-        "id": 74,
-        "quantity": ""
-    },
-    {
-        "name":"Blumenkohl",
-        "planned":false,
-        "id": 75,
-        "quantity": ""
-    },
-    {
-        "name":"Parmesan",
-        "planned":false,
-        "id": 76,
-        "quantity": ""
-    },
-    {
-        "name":"Müllbeutel",
-        "planned":false,
-        "id": 77,
-        "quantity": ""
-    },
-    {
-        "name":"Duschgel",
-        "planned":false,
-        "id": 78,
-        "quantity": ""
-    },
-    {
-        "name":"Shampoo",
-        "planned":false,
-        "id": 79,
-        "quantity": ""
-    },
-    {
-        "name":"Schinken",
-        "planned":false,
-        "id": 80,
-        "quantity": ""
-    },
-    {
-        "name":"Baguette",
-        "planned":false,
-        "id": 81,
-        "quantity": ""
-    },
-    {
-        "name":"Süßkartoffel",
-        "planned":false,
-        "id": 82,
-        "quantity": ""
-    },
-    {
-        "name":"Erbsen",
-        "planned":false,
-        "id": 83,
-        "quantity": ""
-    },
-    {
-        "name":"Sahne",
-        "planned":false,
-        "id": 84,
-        "quantity": ""
-    },
-    {
-        "name":"Creme fraiche",
-        "planned":false,
-        "id": 85,
-        "quantity": ""
-    },
-    {
-        "name":"Kichererbsen",
-        "planned":false,
-        "id": 86,
-        "quantity": ""
-    },
-    {
-        "name":"Senf",
-        "planned":false,
-        "id": 87,
-        "quantity": ""
-    },
-    {
-        "name":"Weichkäse",
-        "planned":false,
-        "id": 88,
-        "quantity": ""
-    },
-    {
-        "name":"Fisch",
-        "planned":false,
-        "id": 89,
-        "quantity": ""
-    },
-    {
-        "name":"Oliven",
-        "planned":false,
-        "id": 90,
-        "quantity": ""
-    },
-    {
-        "name":"Essig",
-        "planned":false,
-        "id": 91,
-        "quantity": ""
-    },
-    {
-        "name":"Spülmaschinentabs",
-        "planned":false,
-        "id": 92,
-        "quantity": ""
-    },
-    {
-        "name":"Küchenrolle",
-        "planned":false,
-        "id": 93,
-        "quantity": ""
-    },
-    {
-        "name":"Mais",
-        "planned":false,
-        "id": 94,
-        "quantity": ""
-    },
-    {
-        "name":"Spaghetti",
-        "planned":false,
-        "id": 95,
-        "quantity": ""
-    },
-    {
-        "name":"Rosenkohl",
-        "planned":false,
-        "id": 96,
-        "quantity": ""
-    },
-    {
-        "name":"Kaffeefilter",
-        "planned":false,
-        "id": 97,
-        "quantity": ""
-    },
-    {
-        "name":"Reis",
-        "planned":false,
-        "id": 98,
-        "quantity": ""
-    },
-    {
-        "name":"Fenchel",
-        "planned":false,
-        "id": 99,
-        "quantity": ""
-    },
-    {
-        "name":"Nüsse",
-        "planned":false,
-        "id": 100,
-        "quantity": ""
-    }
+  {
+    "name": "Salz",
+    "planned": false,
+    "id": 0,
+    "quantity": ""
+  },
+  {
+    "name": "Klopapier",
+    "planned": false,
+    "id": 1,
+    "quantity": ""
+  },
+  {
+    "name": "Pfeffer",
+    "planned": false,
+    "id": 2,
+    "quantity": ""
+  },
+  {
+    "name": "Backpapier",
+    "planned": false,
+    "id": 3,
+    "quantity": ""
+  },
+  {
+    "name": "Milch",
+    "planned": false,
+    "id": 4,
+    "quantity": ""
+  },
+  {
+    "name": "Käse",
+    "planned": false,
+    "id": 5,
+    "quantity": ""
+  },
+  {
+    "name": "Wurst",
+    "planned": false,
+    "id": 6,
+    "quantity": ""
+  },
+  {
+    "name": "Brot",
+    "planned": false,
+    "id": 7,
+    "quantity": ""
+  },
+  {
+    "name": "Butter",
+    "planned": false,
+    "id": 8,
+    "quantity": ""
+  },
+  {
+    "name": "Paprika",
+    "planned": false,
+    "id": 9,
+    "quantity": ""
+  },
+  {
+    "name": "Tomaten",
+    "planned": false,
+    "id": 10,
+    "quantity": ""
+  },
+  {
+    "name": "Gurke",
+    "planned": false,
+    "id": 11,
+    "quantity": ""
+  },
+  {
+    "name": "Kartoffeln",
+    "planned": false,
+    "id": 12,
+    "quantity": ""
+  },
+  {
+    "name": "Zucchini",
+    "planned": false,
+    "id": 13,
+    "quantity": ""
+  },
+  {
+    "name": "Möhren",
+    "planned": false,
+    "id": 14,
+    "quantity": ""
+  },
+  {
+    "name": "Salat",
+    "planned": false,
+    "id": 15,
+    "quantity": ""
+  },
+  {
+    "name": "Äpfel",
+    "planned": false,
+    "id": 16,
+    "quantity": ""
+  },
+  {
+    "name": "Bananen",
+    "planned": false,
+    "id": 17,
+    "quantity": ""
+  },
+  {
+    "name": "Nudeln",
+    "planned": false,
+    "id": 18,
+    "quantity": ""
+  },
+  {
+    "name": "Spüli",
+    "planned": false,
+    "id": 19,
+    "quantity": ""
+  },
+  {
+    "name": "Geschirrtabs",
+    "planned": false,
+    "id": 20,
+    "quantity": ""
+  },
+  {
+    "name": "Olivenöl",
+    "planned": false,
+    "id": 21,
+    "quantity": ""
+  },
+  {
+    "name": "Ketchup",
+    "planned": false,
+    "id": 22,
+    "quantity": ""
+  },
+  {
+    "name": "Joghurt",
+    "planned": false,
+    "id": 23,
+    "quantity": ""
+  },
+  {
+    "name": "Blaubeeren",
+    "planned": false,
+    "id": 24,
+    "quantity": ""
+  },
+  {
+    "name": "Toastbrötchen",
+    "planned": false,
+    "id": 25,
+    "quantity": ""
+  },
+  {
+    "name": "Heidelbeeren",
+    "planned": false,
+    "id": 26,
+    "quantity": ""
+  },
+  {
+    "name": "Himbeeren",
+    "planned": false,
+    "id": 27,
+    "quantity": ""
+  },
+  {
+    "name": "Fleisch",
+    "planned": false,
+    "id": 28,
+    "quantity": ""
+  },
+  {
+    "name": "Eier",
+    "planned": false,
+    "id": 29,
+    "quantity": ""
+  },
+  {
+    "name": "Schokolade",
+    "planned": false,
+    "id": 30,
+    "quantity": ""
+  },
+  {
+    "name": "Mozzarella",
+    "planned": false,
+    "id": 31,
+    "quantity": ""
+  },
+  {
+    "name": "Hirtenkäse",
+    "planned": false,
+    "id": 32,
+    "quantity": ""
+  },
+  {
+    "name": "Cornflakes",
+    "planned": false,
+    "id": 33,
+    "quantity": ""
+  },
+  {
+    "name": "Hefe",
+    "planned": false,
+    "id": 34,
+    "quantity": ""
+  },
+  {
+    "name": "Frischkäse",
+    "planned": false,
+    "id": 35,
+    "quantity": ""
+  },
+  {
+    "name": "Kaffee",
+    "planned": false,
+    "id": 36,
+    "quantity": ""
+  },
+  {
+    "name": "Sandwichkäse",
+    "planned": false,
+    "id": 37,
+    "quantity": ""
+  },
+  {
+    "name": "Passierte Tomaten",
+    "planned": false,
+    "id": 38,
+    "quantity": ""
+  },
+  {
+    "name": "Käse (gerieben)",
+    "planned": false,
+    "id": 39,
+    "quantity": ""
+  },
+  {
+    "name": "Melone",
+    "planned": false,
+    "id": 40,
+    "quantity": ""
+  },
+  {
+    "name": "Zitrone",
+    "planned": false,
+    "id": 41,
+    "quantity": ""
+  },
+  {
+    "name": "Mehl",
+    "planned": false,
+    "id": 42,
+    "quantity": ""
+  },
+  {
+    "name": "Limo",
+    "planned": false,
+    "id": 43,
+    "quantity": ""
+  },
+  {
+    "name": "Nachos",
+    "planned": false,
+    "id": 44,
+    "quantity": ""
+  },
+  {
+    "name": "Pommes",
+    "planned": false,
+    "id": 45,
+    "quantity": ""
+  },
+  {
+    "name": "Mayonnaise",
+    "planned": false,
+    "id": 46,
+    "quantity": ""
+  },
+  {
+    "name": "Birnen",
+    "planned": false,
+    "id": 47,
+    "quantity": ""
+  },
+  {
+    "name": "Müsli",
+    "planned": false,
+    "id": 48,
+    "quantity": ""
+  },
+  {
+    "name": "Aufschnitt",
+    "planned": false,
+    "id": 49,
+    "quantity": ""
+  },
+  {
+    "name": "Feta",
+    "planned": false,
+    "id": 50,
+    "quantity": ""
+  },
+  {
+    "name": "Knoblauch",
+    "planned": false,
+    "id": 51,
+    "quantity": ""
+  },
+  {
+    "name": "Zwiebeln",
+    "planned": false,
+    "id": 52,
+    "quantity": ""
+  },
+  {
+    "name": "Petersilie",
+    "planned": false,
+    "id": 53,
+    "quantity": ""
+  },
+  {
+    "name": "Kräuter",
+    "planned": false,
+    "id": 54,
+    "quantity": ""
+  },
+  {
+    "name": "Öl",
+    "planned": false,
+    "id": 55,
+    "quantity": ""
+  },
+  {
+    "name": "Haferflocken",
+    "planned": false,
+    "id": 56,
+    "quantity": ""
+  },
+  {
+    "name": "Wasser",
+    "planned": false,
+    "id": 57,
+    "quantity": ""
+  },
+  {
+    "name": "Tomaten passiert",
+    "planned": false,
+    "id": 58,
+    "quantity": ""
+  },
+  {
+    "name": "Tomatenmark",
+    "planned": false,
+    "id": 59,
+    "quantity": ""
+  },
+  {
+    "name": "Trauben",
+    "planned": false,
+    "id": 60,
+    "quantity": ""
+  },
+  {
+    "name": "Waschmittel",
+    "planned": false,
+    "id": 61,
+    "quantity": ""
+  },
+  {
+    "name": "Spinat",
+    "planned": false,
+    "id": 62,
+    "quantity": ""
+  },
+  {
+    "name": "Blattspinat",
+    "planned": false,
+    "id": 63,
+    "quantity": ""
+  },
+  {
+    "name": "Limette",
+    "planned": false,
+    "id": 64,
+    "quantity": ""
+  },
+  {
+    "name": "Avocado",
+    "planned": false,
+    "id": 65,
+    "quantity": ""
+  },
+  {
+    "name": "Chili",
+    "planned": false,
+    "id": 66,
+    "quantity": ""
+  },
+  {
+    "name": "Kokosmilch",
+    "planned": false,
+    "id": 67,
+    "quantity": ""
+  },
+  {
+    "name": "Koriander",
+    "planned": false,
+    "id": 68,
+    "quantity": ""
+  },
+  {
+    "name": "Ingwer",
+    "planned": false,
+    "id": 69,
+    "quantity": ""
+  },
+  {
+    "name": "Rote Linsen",
+    "planned": false,
+    "id": 70,
+    "quantity": ""
+  },
+  {
+    "name": "Ananas",
+    "planned": false,
+    "id": 71,
+    "quantity": ""
+  },
+  {
+    "name": "Toast",
+    "planned": false,
+    "id": 72,
+    "quantity": ""
+  },
+  {
+    "name": "Lachs",
+    "planned": false,
+    "id": 73,
+    "quantity": ""
+  },
+  {
+    "name": "Brokkoli",
+    "planned": false,
+    "id": 74,
+    "quantity": ""
+  },
+  {
+    "name": "Blumenkohl",
+    "planned": false,
+    "id": 75,
+    "quantity": ""
+  },
+  {
+    "name": "Parmesan",
+    "planned": false,
+    "id": 76,
+    "quantity": ""
+  },
+  {
+    "name": "Müllbeutel",
+    "planned": false,
+    "id": 77,
+    "quantity": ""
+  },
+  {
+    "name": "Duschgel",
+    "planned": false,
+    "id": 78,
+    "quantity": ""
+  },
+  {
+    "name": "Shampoo",
+    "planned": false,
+    "id": 79,
+    "quantity": ""
+  },
+  {
+    "name": "Schinken",
+    "planned": false,
+    "id": 80,
+    "quantity": ""
+  },
+  {
+    "name": "Baguette",
+    "planned": false,
+    "id": 81,
+    "quantity": ""
+  },
+  {
+    "name": "Süßkartoffel",
+    "planned": false,
+    "id": 82,
+    "quantity": ""
+  },
+  {
+    "name": "Erbsen",
+    "planned": false,
+    "id": 83,
+    "quantity": ""
+  },
+  {
+    "name": "Sahne",
+    "planned": false,
+    "id": 84,
+    "quantity": ""
+  },
+  {
+    "name": "Creme fraiche",
+    "planned": false,
+    "id": 85,
+    "quantity": ""
+  },
+  {
+    "name": "Kichererbsen",
+    "planned": false,
+    "id": 86,
+    "quantity": ""
+  },
+  {
+    "name": "Senf",
+    "planned": false,
+    "id": 87,
+    "quantity": ""
+  },
+  {
+    "name": "Weichkäse",
+    "planned": false,
+    "id": 88,
+    "quantity": ""
+  },
+  {
+    "name": "Fisch",
+    "planned": false,
+    "id": 89,
+    "quantity": ""
+  },
+  {
+    "name": "Oliven",
+    "planned": false,
+    "id": 90,
+    "quantity": ""
+  },
+  {
+    "name": "Essig",
+    "planned": false,
+    "id": 91,
+    "quantity": ""
+  },
+  {
+    "name": "Spülmaschinentabs",
+    "planned": false,
+    "id": 92,
+    "quantity": ""
+  },
+  {
+    "name": "Küchenrolle",
+    "planned": false,
+    "id": 93,
+    "quantity": ""
+  },
+  {
+    "name": "Mais",
+    "planned": false,
+    "id": 94,
+    "quantity": ""
+  },
+  {
+    "name": "Spaghetti",
+    "planned": false,
+    "id": 95,
+    "quantity": ""
+  },
+  {
+    "name": "Rosenkohl",
+    "planned": false,
+    "id": 96,
+    "quantity": ""
+  },
+  {
+    "name": "Kaffeefilter",
+    "planned": false,
+    "id": 97,
+    "quantity": ""
+  },
+  {
+    "name": "Reis",
+    "planned": false,
+    "id": 98,
+    "quantity": ""
+  },
+  {
+    "name": "Fenchel",
+    "planned": false,
+    "id": 99,
+    "quantity": ""
+  },
+  {
+    "name": "Nüsse",
+    "planned": false,
+    "id": 100,
+    "quantity": ""
+  }
 ]

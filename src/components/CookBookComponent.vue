@@ -22,11 +22,7 @@
           </template>
         </transition-group>
         <div class="d-flex justify-content-end">
-          <button
-            class="btn btn-outline-secondary my-4"
-            aria-label="copy mealplan"
-            @click="copyList"
-          >
+          <button class="btn btn-outline-secondary my-4" aria-label="copy mealplan" @click="copyList">
             <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
             {{ $t('buttons.copyPlan') }}
           </button>
@@ -44,12 +40,7 @@
             <strong>{{ entry[0] }}</strong>
           </div>
           <transition-group name="slide-fade">
-            <CookBookItem
-              v-for="meal in onlyMealEntries(entry)"
-              :meal="meal"
-              :isPlanned="false"
-              :key="meal.id"
-            />
+            <CookBookItem v-for="meal in onlyMealEntries(entry)" :meal="meal" :isPlanned="false" :key="meal.id" />
           </transition-group>
         </div>
         <div class="d-flex justify-content-end my-4">

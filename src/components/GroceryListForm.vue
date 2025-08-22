@@ -87,9 +87,7 @@ const setInput = (newValue: string) => {
 }
 
 const emitManualList = () => {
-  const convertedToArray = manualList.value
-    .split(/,\s+|,|\n/)
-    .map((entry) => entry.replace(/, |,/g, ''))
+  const convertedToArray = manualList.value.split(/,\s+|,|\n/).map((entry) => entry.replace(/, |,/g, ''))
   addNewItems(convertedToArray)
   manualList.value = ''
 }

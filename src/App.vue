@@ -99,7 +99,7 @@ const searchForId = async () => {
 }
 
 router.beforeEach((to, from, next) => {
-  locale.value = to.params.locale as string || 'de'
+  locale.value = (to.params.locale as string) || 'de'
   next()
 })
 

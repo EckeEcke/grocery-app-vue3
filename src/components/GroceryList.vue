@@ -3,11 +3,7 @@
     <div class="mb-5">
       <GroceryListForm />
       <div v-if="plannedItems && plannedItems.length == 0">
-        <img
-          class="illustration mt-5 mb-3"
-          alt=""
-          src="../assets/grocery-illustration.svg"
-        />
+        <img class="illustration mt-5 mb-3" alt="" src="../assets/grocery-illustration.svg" />
         <p class="mb-4 p-3">{{ $t('noItems') }}</p>
       </div>
 
@@ -41,11 +37,7 @@
             <strong>{{ entry[0] }}</strong>
           </div>
           <transition-group name="slide-fade">
-            <GroceryListItemUnplanned
-              v-for="(item, index) in onlyListItems(entry)"
-              :item="item"
-              :key="index"
-            />
+            <GroceryListItemUnplanned v-for="(item, index) in onlyListItems(entry)" :item="item" :key="index" />
           </transition-group>
         </div>
         <div class="d-flex justify-content-end my-4">
@@ -61,11 +53,7 @@
         </div>
       </div>
     </div>
-    <img
-      class="illustration mb-5"
-      alt=""
-      src="../assets/supplylist-illustration.svg"
-    />
+    <img class="illustration mb-5" alt="" src="../assets/supplylist-illustration.svg" />
     <QuantityInput v-if="showQuantityInput" />
   </div>
 </template>
@@ -87,9 +75,7 @@ const { t } = useI18n()
 const listStore = useListsStore()
 const configStore = useConfigStore()
 
-const showQuantityInput = computed(
-  () => configStore.showQuantityInput && configStore.itemToShow !== undefined
-)
+const showQuantityInput = computed(() => configStore.showQuantityInput && configStore.itemToShow !== undefined)
 
 const groceryList = computed(() => {
   return listStore.groceryList

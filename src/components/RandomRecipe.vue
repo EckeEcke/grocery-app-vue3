@@ -10,37 +10,26 @@
         </div>
       </div>
       <div v-if="requestFailed" class="card-body container">
-        <p>
-          Unfortunately your request failed. Please check your internet connection or try again
-          later.
-        </p>
+        <p> Unfortunately your request failed. Please check your internet connection or try again later. </p>
       </div>
       <div v-if="!isLoading && !requestFailed && randomMeal" class="py-3 container">
         <div class="row bg-light p-4 mx-1 gap-2 rounded shadow-sm">
           <div class="col-4 px-0 rounded">
-            <img
-              class="dish-image rounded shadow-sm"
-              alt=""
-              :src="randomMeal.data.meals[0].strMealThumb"
-            />
+            <img class="dish-image rounded shadow-sm" alt="" :src="randomMeal.data.meals[0].strMealThumb" />
           </div>
 
           <div class="col-6 text-start">
             <h4>
               {{ randomMeal.data.meals[0].strMeal }}
             </h4>
-            <span class="recipe-description">
-              {{ $t('category') }}: {{ randomMeal.data.meals[0].strCategory }}
-            </span>
+            <span class="recipe-description"> {{ $t('category') }}: {{ randomMeal.data.meals[0].strCategory }} </span>
+            <br />
+            <span class="recipe-description"> {{ $t('area') }}: {{ randomMeal.data.meals[0].strArea }} </span>
             <br />
             <span class="recipe-description">
-              {{ $t('area') }}: {{ randomMeal.data.meals[0].strArea }}
-            </span>
-            <br />
-            <span class="recipe-description">
-              <a class="link-info" :href="randomMeal.data.meals[0].strSource" target="_blank">{{
-                $t('buttons.openRecipe')
-              }}</a>
+              <a class="link-info" :href="randomMeal.data.meals[0].strSource" target="_blank">
+                {{ $t('buttons.openRecipe') }}
+              </a>
             </span>
           </div>
         </div>
@@ -90,12 +79,7 @@
         <hr />
       </div>
       <div class="card-footer no-br-mobile border-0 bg-white text-end">
-        <button
-          v-if="!requestFailed"
-          class="btn btn-primary my-2"
-          aria-label="add recipe"
-          @click="addRecipe"
-        >
+        <button v-if="!requestFailed" class="btn btn-primary my-2" aria-label="add recipe" @click="addRecipe">
           <font-awesome-icon :icon="['fas', 'plus']" />{{ $t('buttons.addToCookbook') }}
         </button>
         <button class="btn btn-outline-secondary" aria-label="load recipe idea" @click="loadRecipe">
@@ -155,17 +139,17 @@ const loadRecipe = () => {
   fetch('https://www.themealdb.com/api/json/v1/1/random.php', {
     signal: controller.signal
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
       }
       return response.json()
     })
-    .then(data => {
+    .then((data) => {
       randomMeal.value = { data }
       isLoading.value = false
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error)
       isLoading.value = false
       requestFailed.value = true
@@ -197,5 +181,4 @@ const addRecipe = () => {
   width: 100%;
   height: 280px;
 }
-
 </style>

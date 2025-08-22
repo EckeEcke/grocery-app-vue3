@@ -63,7 +63,7 @@ const i18n = createI18n({
         cookbookDeleted: 'Kochbuch wurde gelöscht',
         confirmDeleteList: 'Soll die Artikelliste wirklich gelöscht werden?',
         confirmDeleteCookbook: 'Soll das Kochbuch wirklich gelöscht werden?',
-        entryDeleted: '{entry} wurde gelöscht',
+        entryDeleted: '{entry} wurde gelöscht'
       },
       placeholders: {
         addArticle: 'Artikel hinzufügen - trennbar durch Komma oder Zeilenumbruch',
@@ -84,16 +84,14 @@ const i18n = createI18n({
         feature4: 'Hinzufügen neuer Artikel zur Artikelliste',
         feature5: 'Artikelquantität angeben',
         feature6: 'Hinzufügen von Zutaten zur Einkaufsliste direkt aus der geplanten Speise',
-        feature7:
-          'Anzeigen zufälliger Rezepte (gefetched von API), die direkt dem Kochbuch hinzugefügt werden können',
+        feature7: 'Anzeigen zufälliger Rezepte (gefetched von API), die direkt dem Kochbuch hinzugefügt werden können',
         feature8: 'Installierbar als Progressive Web App',
         feature9: 'Konami Code 😉',
         githubLink: ' Vue Mealplanner auf '
       },
       userModal: {
         headline: 'Online Liste erstellen',
-        intro:
-          'Erstelle eine Online Liste, um mit anderen online gemeinsam eine Liste zu bearbeiten',
+        intro: 'Erstelle eine Online Liste, um mit anderen online gemeinsam eine Liste zu bearbeiten',
         generateNewId: 'Erstelle neue ID',
         placeholder: 'Suche nach einer ID',
         success: 'Neue ID erfolgreich generiert',
@@ -103,7 +101,7 @@ const i18n = createI18n({
         placeholderName: 'Wie soll dein User heißen?'
       },
       confirmDeleteMeal: 'Soll {meal} aus dem Kochbuch gelöscht werden?',
-      confirmDeleteItem: 'Soll {item} von der Artikelliste gelöscht werden?',
+      confirmDeleteItem: 'Soll {item} von der Artikelliste gelöscht werden?'
     },
     gb: {
       mealPlan: 'Meal Plan',
@@ -142,7 +140,7 @@ const i18n = createI18n({
         cookbookDeleted: 'Cookbook deleted',
         confirmDeleteList: 'Are you sure you want to delete the item list?',
         confirmDeleteCookbook: 'Are you sure you want to delete the cookbook?',
-        entryDeleted: '{entry} was deleted',
+        entryDeleted: '{entry} was deleted'
       },
       placeholders: {
         addArticle: 'Add article - separable by comma or line break',
@@ -156,15 +154,13 @@ const i18n = createI18n({
         intro:
           'The Vue Meal Planner is a single page application I created in Vue JS. The application combines a grocery list and a meal plan.',
         featuresIncluded: 'Included features:',
-        feature1:
-          'Add/Remove dishes from your own cookbook (saved in local storage) to the meal plan',
+        feature1: 'Add/Remove dishes from your own cookbook (saved in local storage) to the meal plan',
         feature2: 'Add ingredients to a dish',
         feature3: 'Create grocery list',
         feature4: 'Add new items to item list',
         feature5: 'Specify item quantity',
         feature6: 'Add ingredients to the grocery list directly from the planned meal',
-        feature7:
-          'Display random recipes (fetched from API) that can be directly added to the cookbook',
+        feature7: 'Display random recipes (fetched from API) that can be directly added to the cookbook',
         feature8: 'Installable as a Progressive Web App',
         feature9: 'Konami Code',
         githubLink: ' Vue Mealplanner on '
@@ -181,7 +177,7 @@ const i18n = createI18n({
         placeholderName: 'What should your username be?'
       },
       confirmDeleteMeal: 'Do you want to delete {meal} from your cookbook?',
-      confirmDeleteItem: 'Do you want to delete {item} from your item list?',
+      confirmDeleteItem: 'Do you want to delete {item} from your item list?'
     },
     es: {
       mealPlan: 'Plan de Comidas',
@@ -220,7 +216,7 @@ const i18n = createI18n({
         cookbookDeleted: 'Recetario eliminado',
         confirmDeleteList: '¿Estás seguro de que quieres eliminar la lista de artículos?',
         confirmDeleteCookbook: '¿Estás seguro de que quieres eliminar el recetario?',
-        entryDeleted: '{entry} fue eliminado',
+        entryDeleted: '{entry} fue eliminado'
       },
       placeholders: {
         addArticle: 'Añadir artículo - separable por coma o salto de línea',
@@ -231,7 +227,8 @@ const i18n = createI18n({
       },
       about: {
         title: 'About',
-        intro: 'Meal Planner es una aplicación de página única que creé en Vue JS. La aplicación combina una lista de compras y un plan de comidas.',
+        intro:
+          'Meal Planner es una aplicación de página única que creé en Vue JS. La aplicación combina una lista de compras y un plan de comidas.',
         featuresIncluded: 'Características incluidas:',
         feature1: 'Añadir/Eliminar platos de tu propio recetario (guardado en almacenamiento local) al plan de comidas',
         feature2: 'Añadir ingredientes a un plato',
@@ -256,16 +253,16 @@ const i18n = createI18n({
         placeholderName: '¿Cuál debería ser tu nombre de usuario?'
       },
       confirmDeleteMeal: '¿Quieres eliminar {meal} de tu recetario?',
-      confirmDeleteItem: '¿Quieres eliminar {item} de tu lista de artículos?',
+      confirmDeleteItem: '¿Quieres eliminar {item} de tu lista de artículos?'
     },
     fr: {
       mealPlan: 'Plan de Repas',
       groceryList: 'Liste de Courses',
       cookbook: 'Livre de Recettes',
-      itemList: 'Liste d\'Articles',
+      itemList: "Liste d'Articles",
       randomRecipe: 'Recette Aléatoire',
       noMeals: 'Ajoutez de nouveaux repas ou choisissez dans votre livre de recettes',
-      noItems: 'Ajoutez de nouveaux articles ou choisissez dans votre liste d\'articles',
+      noItems: "Ajoutez de nouveaux articles ou choisissez dans votre liste d'articles",
       mealsPlanned: 'Repas planifié(s)',
       itemsLeft: 'Articles restants',
       category: 'Catégorie',
@@ -291,11 +288,11 @@ const i18n = createI18n({
         copiedListToClipboard: 'Liste copiée dans le presse-papiers',
         copiedLinkToClipboard: 'Lien copié dans le presse-papiers',
         savedRandomRecipe: '{recipe} ajoutée au Livre de Recettes',
-        itemListDeleted: 'Liste d\'articles supprimée',
+        itemListDeleted: "Liste d'articles supprimée",
         cookbookDeleted: 'Livre de recettes supprimé',
-        confirmDeleteList: 'Êtes-vous sûr de vouloir supprimer la liste d\'articles ?',
+        confirmDeleteList: "Êtes-vous sûr de vouloir supprimer la liste d'articles ?",
         confirmDeleteCookbook: 'Êtes-vous sûr de vouloir supprimer le livre de recettes ?',
-        entryDeleted: '{entry} a été supprimé',
+        entryDeleted: '{entry} a été supprimé'
       },
       placeholders: {
         addArticle: 'Ajouter un article - séparable par virgule ou saut de ligne',
@@ -306,32 +303,35 @@ const i18n = createI18n({
       },
       about: {
         title: 'À Propos',
-        intro: 'Meal Planner est une application à page unique que j\'ai créée en Vue JS. L\'application combine une liste de courses et un plan de repas.',
+        intro:
+          "Meal Planner est une application à page unique que j'ai créée en Vue JS. L'application combine une liste de courses et un plan de repas.",
         featuresIncluded: 'Fonctionnalités incluses :',
-        feature1: 'Ajouter/Supprimer des plats de votre propre livre de recettes (sauvegardé en stockage local) au plan de repas',
+        feature1:
+          'Ajouter/Supprimer des plats de votre propre livre de recettes (sauvegardé en stockage local) au plan de repas',
         feature2: 'Ajouter des ingrédients à un plat',
         feature3: 'Créer une liste de courses',
-        feature4: 'Ajouter de nouveaux articles à la liste d\'articles',
-        feature5: 'Spécifier la quantité d\'articles',
+        feature4: "Ajouter de nouveaux articles à la liste d'articles",
+        feature5: "Spécifier la quantité d'articles",
         feature6: 'Ajouter des ingrédients à la liste de courses directement depuis le repas planifié',
-        feature7: 'Afficher des recettes aléatoires (obtenues via API) qui peuvent être directement ajoutées au livre de recettes',
+        feature7:
+          'Afficher des recettes aléatoires (obtenues via API) qui peuvent être directement ajoutées au livre de recettes',
         feature8: 'Installable comme une Application Web Progressive',
         feature9: 'Code Konami',
         githubLink: ' Meal Planner sur '
       },
       userModal: {
         headline: 'Créer une liste en ligne',
-        intro: 'Créez une liste en ligne et collaborez avec d\'autres utilisateurs',
+        intro: "Créez une liste en ligne et collaborez avec d'autres utilisateurs",
         generateNewId: 'Créer un nouvel ID',
         placeholder: 'Rechercher un ID',
         success: 'Créer un nouvel ID',
         or: 'ou',
         shareLink: 'Partager le lien vers votre liste',
         signedInAs: 'Connecté en tant que : ',
-        placeholderName: 'Quel devrait être votre nom d\'utilisateur ?'
+        placeholderName: "Quel devrait être votre nom d'utilisateur ?"
       },
       confirmDeleteMeal: 'Voulez-vous supprimer {meal} de votre livre de recettes ?',
-      confirmDeleteItem: 'Voulez-vous supprimer {item} de votre liste d\'articles ?',
+      confirmDeleteItem: "Voulez-vous supprimer {item} de votre liste d'articles ?"
     },
     it: {
       mealPlan: 'Piano Pasti',
@@ -368,9 +368,9 @@ const i18n = createI18n({
         savedRandomRecipe: '{recipe} aggiunta al Ricettario',
         itemListDeleted: 'Elenco articoli eliminato',
         cookbookDeleted: 'Ricettario eliminato',
-        confirmDeleteList: 'Sei sicuro di voler eliminare l\'elenco articoli?',
+        confirmDeleteList: "Sei sicuro di voler eliminare l'elenco articoli?",
         confirmDeleteCookbook: 'Sei sicuro di voler eliminare il ricettario?',
-        entryDeleted: '{entry} è stato eliminato',
+        entryDeleted: '{entry} è stato eliminato'
       },
       placeholders: {
         addArticle: 'Aggiungi articolo - separabile con virgola o a capo',
@@ -381,15 +381,17 @@ const i18n = createI18n({
       },
       about: {
         title: 'Informazioni',
-        intro: 'Meal Planner è un\'applicazione a pagina singola che ho creato in Vue JS. L\'applicazione combina una lista della spesa e un piano pasti.',
+        intro:
+          "Meal Planner è un'applicazione a pagina singola che ho creato in Vue JS. L'applicazione combina una lista della spesa e un piano pasti.",
         featuresIncluded: 'Funzionalità incluse:',
         feature1: 'Aggiungere/Rimuovere piatti dal tuo ricettario personale (salvato in memoria locale) al piano pasti',
         feature2: 'Aggiungere ingredienti a un piatto',
         feature3: 'Creare lista della spesa',
-        feature4: 'Aggiungere nuovi articoli all\'elenco articoli',
+        feature4: "Aggiungere nuovi articoli all'elenco articoli",
         feature5: 'Specificare la quantità degli articoli',
         feature6: 'Aggiungere ingredienti alla lista della spesa direttamente dal pasto pianificato',
-        feature7: 'Visualizzare ricette casuali (recuperate tramite API) che possono essere aggiunte direttamente al ricettario',
+        feature7:
+          'Visualizzare ricette casuali (recuperate tramite API) che possono essere aggiunte direttamente al ricettario',
         feature8: 'Installabile come App Web Progressiva',
         feature9: 'Codice Konami',
         githubLink: ' Meal Planner su '
@@ -406,7 +408,7 @@ const i18n = createI18n({
         placeholderName: 'Quale dovrebbe essere il tuo nome utente?'
       },
       confirmDeleteMeal: 'Vuoi eliminare {meal} dal tuo ricettario?',
-      confirmDeleteItem: 'Vuoi eliminare {item} dal tuo elenco articoli?',
+      confirmDeleteItem: 'Vuoi eliminare {item} dal tuo elenco articoli?'
     }
   }
 })

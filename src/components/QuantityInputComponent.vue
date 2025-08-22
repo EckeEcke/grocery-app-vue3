@@ -17,11 +17,7 @@
         <button class="btn btn-outline-secondary mx-3" aria-label="close modal" @click="hide()">
           {{ $t('buttons.cancel') }}
         </button>
-        <button
-          class="btn btn-primary"
-          aria-label="add selection and close modal"
-          @click="submit(item.name)"
-        >
+        <button class="btn btn-primary" aria-label="add selection and close modal" @click="submit(item.name)">
           {{ $t('buttons.submitAndClose') }}
         </button>
       </div>
@@ -52,7 +48,7 @@ onMounted(() => {
 })
 
 const submit = (element: string) => {
-  const indexGroceryList = groceryList.value.findIndex(listItem => listItem.name === element)
+  const indexGroceryList = groceryList.value.findIndex((listItem) => listItem.name === element)
   let clonedGroceryList = [...groceryList.value]
   clonedGroceryList[indexGroceryList].quantity = quantity.value
   localStorage.setItem('grocerylist', JSON.stringify(clonedGroceryList))

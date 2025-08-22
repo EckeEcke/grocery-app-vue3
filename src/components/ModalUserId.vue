@@ -10,11 +10,7 @@
         </p>
         <p v-if="!userId">{{ t('userModal.intro') }}</p>
         <div class="d-flex flex-column justify-content-center">
-          <button
-            v-if="userId"
-            class="btn btn-primary new-id-button mx-auto"
-            @click="copyLinkToClipboard"
-          >
+          <button v-if="userId" class="btn btn-primary new-id-button mx-auto" @click="copyLinkToClipboard">
             {{ t('userModal.shareLink') }}
           </button>
           <template v-else>
@@ -27,7 +23,11 @@
                 class="form-control w-100 mb-2"
                 :placeholder="t('userModal.placeholderName')"
               />
-              <button class="btn btn-primary new-id-button mx-auto" @click="createEntry" :disabled="userNameInput.length <= 0">
+              <button
+                class="btn btn-primary new-id-button mx-auto"
+                @click="createEntry"
+                :disabled="userNameInput.length <= 0"
+              >
                 {{ t('userModal.generateNewId') }}
               </button>
             </template>

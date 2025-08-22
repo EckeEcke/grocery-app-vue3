@@ -74,7 +74,6 @@ export const useListsStore = defineStore('lists', () => {
 
           const data = await response.json()
           if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
-
         } catch (error) {
           console.error('Error updating grocery item:', error)
         }
@@ -96,7 +95,6 @@ export const useListsStore = defineStore('lists', () => {
 
           const data = await response.json()
           if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
-
         } catch (error) {
           console.error('Error updating grocery item:', error)
         }
@@ -126,8 +124,7 @@ export const useListsStore = defineStore('lists', () => {
         })
 
         const result = await response.json()
-        if (result.updatedList?.data?.groceryList)
-          setGroceryList(result.updatedList.data.groceryList)
+        if (result.updatedList?.data?.groceryList) setGroceryList(result.updatedList.data.groceryList)
       } catch (error: any) {
         console.error('Error deleting grocery item:', error.message)
       }
@@ -161,7 +158,6 @@ export const useListsStore = defineStore('lists', () => {
 
         const data = await response.json()
         if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
-
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }
@@ -202,7 +198,6 @@ export const useListsStore = defineStore('lists', () => {
 
           const data = await response.json()
           if (data.updatedList?.data?.mealPlan) setMealPlan(data.updatedList.data.mealPlan)
-
         } catch (error) {
           console.error('Error updating meal:', error)
         }
@@ -225,7 +220,6 @@ export const useListsStore = defineStore('lists', () => {
 
           const data = await response.json()
           if (data.updatedList?.data?.groceryList) setGroceryList(data.updatedList.data.groceryList)
-
         } catch (error) {
           console.error('Error updating grocery item:', error)
         }
@@ -267,7 +261,6 @@ export const useListsStore = defineStore('lists', () => {
         const data = await response.json()
 
         if (data.updatedList?.data?.mealPlan) setMealPlan(data.updatedList.data.mealPlan)
-
       } catch (error) {
         console.error('Error updating grocery item:', error)
       }

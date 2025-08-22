@@ -15,9 +15,7 @@
           {{ ingredient }}
         </button>
       </div>
-      <a v-if="meal.recipe" :href="meal.recipe" target="_blank" class="mx-3 mb-3">{{
-        $t('buttons.openRecipe')
-      }}</a>
+      <a v-if="meal.recipe" :href="meal.recipe" target="_blank" class="mx-3 mb-3">{{ $t('buttons.openRecipe') }}</a>
       <div class="card-footer">
         <button class="btn btn-primary" aria-label="close modal" @click="hide()">
           {{ $t('buttons.close') }}
@@ -55,7 +53,8 @@ const checkIngredients = (ingredient: string) => {
   } else listStore.addNewItem(ingredient)
 }
 
-const validateIngredients = (ingredients: string[]) => ingredients.filter(ingredient => ingredient && ingredient.length > 0)
+const validateIngredients = (ingredients: string[]) =>
+  ingredients.filter((ingredient) => ingredient && ingredient.length > 0)
 
 const hide = () => useConfigStore().setShowDetailPage(false)
 </script>

@@ -31,11 +31,7 @@
                       maxlength="30"
                     />
                     <div class="input-group-append">
-                      <button
-                        class="btn btn-primary col-12"
-                        aria-label="add ingredient"
-                        @click="pushIngredient"
-                      >
+                      <button class="btn btn-primary col-12" aria-label="add ingredient" @click="pushIngredient">
                         <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
                       </button>
                     </div>
