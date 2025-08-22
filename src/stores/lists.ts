@@ -19,7 +19,7 @@ export const useListsStore = defineStore('lists', () => {
     localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
   }
   const setItemPlanned = async (item: ListItem) => {
-    const clonedWithNewState = [...groceryList.value]
+    const clonedWithNewState: ListItem[] = [...groceryList.value]
     const userId = useConfigStore().userId
 
     if (!clonedWithNewState) return
@@ -46,8 +46,8 @@ export const useListsStore = defineStore('lists', () => {
       }
     } else {
       const isPlanned = item.planned
-      const index = clonedWithNewState.findIndex((entry) => entry.name === item.name)
-      clonedWithNewState[index].planned = !isPlanned
+      const index = clonedWithNewState.findIndex((entry) => entry.name === item.name) ?? 0
+      if (clonedWithNewState[index]) clonedWithNewState[index].planned = !isPlanned
       groceryList.value = clonedWithNewState
       localStorage.setItem('grocerylist', JSON.stringify(groceryList.value))
     }
@@ -56,7 +56,7 @@ export const useListsStore = defineStore('lists', () => {
   const addNewItem = async (name: string) => {
     const clonedList = [...groceryList.value]
     const index = clonedList.findIndex((listItem) => listItem.name === name)
-    if (name === undefined || name.length === 0) return
+    if (name === undefined || name.length === 0 || !clonedList[index]) return
     const userId = useConfigStore().userId
     if (userId) {
       if (index === -1) {
@@ -177,6 +177,9 @@ export const useListsStore = defineStore('lists', () => {
   const addNewMeal = async (payload: Meal) => {
     const index = mealPlan.value.findIndex((listItem) => listItem.name === payload.name)
     const clonedList = [...mealPlan.value]
+
+    if (!clonedList[index]) return
+
     const { name, ingredients, recipe } = payload
     const userId = useConfigStore().userId
     if (userId) {
@@ -272,6 +275,8 @@ export const useListsStore = defineStore('lists', () => {
         })
         .indexOf(meal.name)
 
+      if (!clonedWithNewState[indexInMealPlan]) return
+
       const isPlanned = clonedWithNewState[indexInMealPlan].planned
       clonedWithNewState[indexInMealPlan].planned = !isPlanned
       localStorage.setItem('mealPlan', JSON.stringify(mealPlan.value))
@@ -310,7 +315,7 @@ export const useListsStore = defineStore('lists', () => {
       if (index === -1) {
         entriesByFirstLetter.push([firstLetter, item])
       } else {
-        entriesByFirstLetter[index].push(item)
+        entriesByFirstLetter[index]!.push(item)
       }
     })
 
@@ -333,7 +338,7 @@ export const useListsStore = defineStore('lists', () => {
       if (index === -1) {
         entriesByFirstLetter.push([firstLetter, item])
       } else {
-        entriesByFirstLetter[index].push(item)
+        entriesByFirstLetter[index]!.push(item)
       }
     })
 

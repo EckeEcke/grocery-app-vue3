@@ -45,7 +45,7 @@ const groceryList = computed(() => {
 const isItemPlanned = (ingredient: string) => {
   const index = groceryList.value.findIndex((item: ListItem) => item.name === ingredient)
   if (index >= 0) {
-    return groceryList.value[index].planned
+    return groceryList.value[index]?.planned
   } else return false
 }
 

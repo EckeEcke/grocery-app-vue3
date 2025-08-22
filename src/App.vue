@@ -41,7 +41,7 @@ import supplyListData from './static/supplyListData.json'
 import cookBookData from './static/cookBookData.json'
 import runMario from 'running-mario'
 import Konami from 'konami'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, type Ref, ref, watch } from 'vue'
 import { useListsStore } from './stores/lists'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -55,8 +55,8 @@ const route = useRoute()
 const router = useRouter()
 const listsStore = useListsStore()
 
-const touchstartX = ref(0)
-const touchstartY = ref(0)
+const touchstartX: Ref<number | undefined> = ref(0)
+const touchstartY: Ref<number | undefined> = ref(0)
 const app = ref<HTMLElement | null>(null)
 
 const listStore = useListsStore()
@@ -142,12 +142,13 @@ onMounted(async () => {
 const showDetailPage = computed(() => configStore.showDetailPage)
 
 const handleTouchStart = (event: TouchEvent) => {
-  touchstartX.value = event.changedTouches[0].screenX
-  touchstartY.value = event.changedTouches[0].screenY
+  touchstartX.value = event.changedTouches[0]?.screenX
+  touchstartY.value = event.changedTouches[0]?.screenY
 }
 const handleTouchEnd = (event: TouchEvent) => {
-  const touchendX = event.changedTouches[0].screenX
-  const touchendY = event.changedTouches[0].screenY
+  const touchendX = event.changedTouches[0]?.screenX
+  const touchendY = event.changedTouches[0]?.screenY
+  if (!touchendX || !touchendY || !touchstartX.value || !touchstartY.value) return
   if (!(touchendY <= touchstartY.value + 40 && touchendY >= touchstartY.value - 40)) return
   if (touchendX + 60 < touchstartX.value) {
     configStore.setDisplayedTab(Tab.cookbook)

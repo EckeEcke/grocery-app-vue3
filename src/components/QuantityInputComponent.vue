@@ -48,8 +48,11 @@ onMounted(() => {
 })
 
 const submit = (element: string) => {
+  const clonedGroceryList = [...groceryList.value]
   const indexGroceryList = groceryList.value.findIndex((listItem) => listItem.name === element)
-  let clonedGroceryList = [...groceryList.value]
+
+  if (!clonedGroceryList[indexGroceryList]) return
+
   clonedGroceryList[indexGroceryList].quantity = quantity.value
   localStorage.setItem('grocerylist', JSON.stringify(clonedGroceryList))
   hide()
