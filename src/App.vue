@@ -106,8 +106,6 @@ router.beforeEach((to, from, next) => {
 onMounted(async () => {
   await searchForId()
   locale.value = (route.query.locale as string) || 'de'
-  console.log(route.query)
-  console.log(locale.value)
   const hasFaultyLocalStorageEntryItemList =
     localStorage.getItem('grocerylist') === 'undefined' ||
     localStorage.getItem('grocerylist') === undefined ||
