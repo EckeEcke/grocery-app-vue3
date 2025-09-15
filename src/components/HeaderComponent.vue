@@ -78,6 +78,10 @@ window.onclick = function (event) {
   filter: drop-shadow(0 0 8px #000);
 }
 
+.user-icon svg {
+  width: 1em;
+}
+
 .logged-in {
   color: limegreen;
   background: white;
