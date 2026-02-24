@@ -22,21 +22,8 @@ class handler(BaseHTTPRequestHandler):
             for m in genai.list_models():
                 if 'generateContent' in m.supported_generation_methods:
                     models.append(m.name)
-
-            model = genai.GenerativeModel(model_name='gemini-1.5-flash')
-            # 3. KI-Anfrage
-            prompt = f"Erstelle ein Rezept: {data.get('diet', 'egal')}, Zeit: {data.get('time', '15 min')}. Sprache: {data.get('language', 'de')}. Antworte NUR als valides JSON-Objekt mit title (string), ingredients (list), instructions (string)."
             
-            response = model.generate_content(prompt)
-            
-            # Säubern von Markdown-Blöcken
-            answer_text = response.text
-            if "```json" in answer_text:
-                answer_text = answer_text.split("```json")[1].split("```")[0]
-            elif "```" in answer_text:
-                answer_text = answer_text.split("```")[1].split("```")[0]
-
-            # 4. Erfolg senden
+            # Schick die Liste SOFORT zurück, bevor irgendwas anderes schiefgehen kann
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
