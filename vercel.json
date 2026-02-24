@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/suggest",
+      "destination": "/api/suggest.py"
+    }
+  ]
+}
