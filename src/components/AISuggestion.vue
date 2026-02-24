@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import { useListsStore } from '@/stores/lists'
-import { ref, reactive } from 'vue'
+import { computed, ref, reactive } from 'vue'
 import { toast } from 'vue3-toastify'
 import type { Meal } from '@/types/meal'
 import { useI18n } from 'vue-i18n'
@@ -64,7 +64,7 @@ import { useI18n } from 'vue-i18n'
 const listStore = useListsStore()
 const { t } = useI18n()
 
-const savedDishes = ref(['Linsencurry', 'Pasta Arrabbiata'])
+const savedDishes = computed(() => listStore.mealPlan)
 
 const formData = reactive({
   diet: 'egal',
