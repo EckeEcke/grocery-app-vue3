@@ -26,7 +26,12 @@ class handler(BaseHTTPRequestHandler):
                 f"Erstelle ein neues Rezept: {data.get('diet', 'egal')}, "
                 f"Zeit: {data.get('time', '15 min')}.{inspiration_text} "
                 f"Sprache: {data.get('language', 'de')}. "
-                f"Antworte NUR als valides JSON-Objekt mit name, ingredients, instructions."
+                f"Antworte AUSSCHLIESSLICH mit einem validen JSON-Objekt in folgendem Format: "
+                f"{{"
+                f"  \"name\": \"Name des Gerichts\","
+                f"  \"ingredients\": [\"Menge + Zutat 1\", \"Menge + Zutat 2\"],"
+                f"  \"instructions\": \"Ein zusammenhängender Text oder mit \\n getrennte Schritte\""
+                f"}}"
             )
             
             response = model.generate_content(prompt)
