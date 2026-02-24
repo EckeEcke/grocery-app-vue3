@@ -13,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
             api_key = os.environ.get("GEMINI_API_KEY")
             genai.configure(api_key=api_key)
             
-            model = genai.GenerativeModel('models/gemini-2.0-flash')
+            model = genai.GenerativeModel('models/gemini-flash-lite-latest')
 
             prompt = (
                 f"Erstelle ein Rezept: {data.get('diet', 'egal')}, "
