@@ -18,10 +18,10 @@
           <div class="field">
             <label>{{ t('ai.dietLabel') }}</label>
             <select v-model="formData.diet" class="form-select">
-              <option :value="t('ai.diets.none')" selected>{{ t('ai.diets.none') }}</option>
-              <option :value="t('ai.diets.vegetarian')">{{ t('ai.diets.vegetarian') }}</option>
-              <option :value="t('ai.diets.vegan')">{{ t('ai.diets.vegan') }}</option>
-              <option :value="t('ai.diets.lowCarb')">{{ t('ai.diets.lowCarb') }}</option>
+              <option value="none" selected>{{ t('ai.diets.none') }}</option>
+              <option value="vegetarian">{{ t('ai.diets.vegetarian') }}</option>
+              <option value="vegan">{{ t('ai.diets.vegan') }}</option>
+              <option value="lowCarb">{{ t('ai.diets.lowCarb') }}</option>
             </select>
           </div>
 
