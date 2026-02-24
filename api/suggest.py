@@ -13,18 +13,19 @@ class handler(BaseHTTPRequestHandler):
             api_key = os.environ.get("GEMINI_API_KEY")
             genai.configure(api_key=api_key)
 
-            # Wir nehmen das Basis-Modell ohne Suffix, das ist am wenigsten fehleranfällig
-            model = genai.GenerativeModel('gemini-1.5-flash')
+            # Wir nutzen Flash Lite für maximale Quota-Verfügbarkeit
+            model = genai.GenerativeModel('models/gemini-flash-lite-latest')
 
-            prompt = f"Generiere ein Rezept für: {data.get('diet', 'alles')}. Zeit: {data.get('time', 'kurz')}. Antworte NUR als JSON."
+            prompt = (
+                f"Erstelle ein Rezept: {data.get('diet', 'egal')}, "
+                f"Zeit: {data.get('time', '15 min')}. "
+                f"Sprache: {data.get('language', 'de')}. "
+                f"Antworte NUR als valides JSON-Objekt mit title, ingredients, instructions."
+            )
             
             response = model.generate_content(prompt)
-            
-            # Sicherheits-Check: Hat die KI überhaupt Text geliefert?
-            if not response.text:
-                raise ValueError("KI hat keine Antwort geliefert")
-
             answer_text = response.text
+            
             if "```json" in answer_text:
                 answer_text = answer_text.split("```json")[1].split("```")[0]
             elif "```" in answer_text:
@@ -36,11 +37,9 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(answer_text.strip().encode('utf-8'))
 
         except Exception as e:
-            # Wir senden IMMER JSON, damit dein JavaScript nicht crasht
-            self.send_response(200) # Wir senden 200, damit das JSON ankommt
+            self.send_response(200) 
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             error_msg = str(e)
-            if "429" in error_msg:
-                error_msg = "Google Limit erreicht. Bitte 60 Sek. warten."
+            # Falls das 429-Limit noch aktiv ist, kommt es hier als sauberes JSON zurück
             self.wfile.write(json.dumps({"error": error_msg}).encode('utf-8'))
