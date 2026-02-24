@@ -18,7 +18,7 @@
           <div class="field">
             <label>{{ t('ai.dietLabel') }}</label>
             <select v-model="formData.diet" class="form-select">
-              <option :value="t('ai.diets.none')">{{ t('ai.diets.none') }}</option>
+              <option :value="t('ai.diets.none')" selected>{{ t('ai.diets.none') }}</option>
               <option :value="t('ai.diets.vegetarian')">{{ t('ai.diets.vegetarian') }}</option>
               <option :value="t('ai.diets.vegan')">{{ t('ai.diets.vegan') }}</option>
               <option :value="t('ai.diets.lowCarb')">{{ t('ai.diets.lowCarb') }}</option>
@@ -28,7 +28,7 @@
           <div class="field">
             <label>{{ t('ai.timeLabel') }}</label>
             <select v-model="formData.time" class="form-select">
-              <option value="15 min">{{ t('ai.times.m15') }}</option>
+              <option value="15 min" selected>{{ t('ai.times.m15') }}</option>
               <option value="30 min">{{ t('ai.times.m30') }}</option>
               <option value="60 min">{{ t('ai.times.m60') }}</option>
             </select>
@@ -66,7 +66,7 @@ const { t } = useI18n()
 const savedDishes = computed(() => listStore.mealPlan)
 
 const formData = reactive({
-  diet: 'egal',
+  diet: 'none',
   time: '15 min'
 })
 

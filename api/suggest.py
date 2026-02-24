@@ -23,7 +23,7 @@ class handler(BaseHTTPRequestHandler):
                 inspiration_text = f" Der Nutzer mag bereits folgende Gerichte: {', '.join(titles)}. Nutze diese als Inspiration für den Stil oder die Zutaten."
 
             prompt = (
-                f"Erstelle ein neues Rezept: {data.get('diet', 'egal')}, "
+                f"Erstelle ein neues Rezept: {data.get('diet', 'none')}, "
                 f"Zeit: {data.get('time', '15 min')}.{inspiration_text} "
                 f"Sprache: {data.get('language', 'de')}. "
                 f"Antworte AUSSCHLIESSLICH mit einem validen JSON-Objekt. "
