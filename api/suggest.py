@@ -13,12 +13,18 @@ class handler(BaseHTTPRequestHandler):
             api_key = os.environ.get("GEMINI_API_KEY")
             genai.configure(api_key=api_key)
 
-            # Wir nutzen Flash Lite für maximale Quota-Verfügbarkeit
             model = genai.GenerativeModel('models/gemini-flash-lite-latest')
 
+            # Inspiration verarbeiten
+            inspiration_list = data.get('inspiration', [])
+            inspiration_text = ""
+            if inspiration_list:
+                titles = [i.get('title') for i in inspiration_list if i.get('title')]
+                inspiration_text = f" Der Nutzer mag bereits folgende Gerichte: {', '.join(titles)}. Nutze diese als Inspiration für den Stil oder die Zutaten."
+
             prompt = (
-                f"Erstelle ein Rezept: {data.get('diet', 'egal')}, "
-                f"Zeit: {data.get('time', '15 min')}. "
+                f"Erstelle ein neues Rezept: {data.get('diet', 'egal')}, "
+                f"Zeit: {data.get('time', '15 min')}.{inspiration_text} "
                 f"Sprache: {data.get('language', 'de')}. "
                 f"Antworte NUR als valides JSON-Objekt mit title, ingredients, instructions."
             )
@@ -37,9 +43,7 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(answer_text.strip().encode('utf-8'))
 
         except Exception as e:
-            self.send_response(200) 
+            self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            error_msg = str(e)
-            # Falls das 429-Limit noch aktiv ist, kommt es hier als sauberes JSON zurück
-            self.wfile.write(json.dumps({"error": error_msg}).encode('utf-8'))
+            self.wfile.write(json.dumps({"error": str(e)}).encode('utf-8'))
