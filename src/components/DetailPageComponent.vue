@@ -14,9 +14,9 @@
         >
           {{ ingredient }}
         </button>
-        <div v-if="meal.instructions" class="my-2">
-        {{ meal.instructions}}
-      </div>
+        <div v-if="meal.instructions" class="instructions my-2">
+          {{ meal.instructions}}
+        </div>
       </div>
       <a v-if="meal.recipe" :href="meal.recipe" target="_blank" class="mx-3 mb-3">{{ t('buttons.openRecipe') }}</a>
       <div class="card-footer">
@@ -64,3 +64,10 @@ const validateIngredients = (ingredients: string[]) =>
 
 const hide = () => useConfigStore().setShowDetailPage(false)
 </script>
+
+<style scoped>
+.instructions {
+  max-height: 100px;
+  overflow: auto;
+}
+</style>
