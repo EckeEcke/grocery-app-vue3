@@ -69,11 +69,13 @@
         <transition name="slide-fade">
           <div v-if="showIngredients">
             <br />
-            <p v-for="(ingredient, index) in ingredients" :key="ingredient + index">
-              {{ ingredient }}
-              <span v-if="ingredient && ingredient.length >= 1 && measures[index].length >= 1">|</span>
-              {{ measures[index] }}
-            </p>
+            <ul>
+              <li v-for="(ingredient, index) in ingredients" :key="ingredient + index">
+                {{ ingredient }}
+                <span v-if="ingredient && ingredient.length >= 1 && measures[index].length >= 1">|</span>
+                {{ measures[index] }}
+              </li>
+            </ul>
           </div>
         </transition>
         <hr />
