@@ -7,25 +7,29 @@ import json
 app = FastAPI()
 
 class RecipeRequest(BaseModel):
-    time: str = "unset"
-    diet: str = "unset"
-    difficulty: str = "unset"
+    time: str = "egal"
+    diet: str = "egal"
+    difficulty: str = "egal"
     language: str = "de"
 
 @app.post("/api/suggest")
 def get_suggestion(data: RecipeRequest):
-    genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
-    model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
-    
-    prompt = f"""
-    Suggest a recipe:
-    Time: {data.time}, Diet: {data.diet}, Difficulty: {data.difficulty}.
-    Language: {data.language}.
-    Return ONLY JSON: {{"title": "", "ingredients": [], "instructions": ""}}
-    """
-    
-    response = model.generate_content(prompt)
-    
-    # cleanup json
-    clean_text = response.text.replace('```json', '').replace('```', '').strip()
-    return json.loads(clean_text)
+    try:
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            return {"error": "API Key nicht gefunden"}
+
+        genai.configure(api_key=api_key)
+
+        model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
+        
+        prompt = f"Erstelle ein Rezept: Zeit {data.time}, Diät {data.diet}, Sprache {data.language}. Antworte NUR als JSON."
+        response = model.generate_content(prompt)
+        
+        # cleanup markdown
+        clean_json = response.text.replace("```json", "").replace("```", "").strip()
+        return json.loads(clean_json)
+    except Exception as e:
+        return {"error": str(e)}
+
+handler = app
