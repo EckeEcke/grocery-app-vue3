@@ -4,4 +4,5 @@ export interface Meal {
   id?: number
   ingredients: string[]
   recipe?: string
+  instructions?: string
 }

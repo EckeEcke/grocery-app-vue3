@@ -19,14 +19,14 @@ class handler(BaseHTTPRequestHandler):
             inspiration_list = data.get('inspiration', [])
             inspiration_text = ""
             if inspiration_list:
-                titles = [i.get('title') for i in inspiration_list if i.get('title')]
+                titles = [i.get('name') for i in inspiration_list if i.get('name')]
                 inspiration_text = f" Der Nutzer mag bereits folgende Gerichte: {', '.join(titles)}. Nutze diese als Inspiration für den Stil oder die Zutaten."
 
             prompt = (
                 f"Erstelle ein neues Rezept: {data.get('diet', 'egal')}, "
                 f"Zeit: {data.get('time', '15 min')}.{inspiration_text} "
                 f"Sprache: {data.get('language', 'de')}. "
-                f"Antworte NUR als valides JSON-Objekt mit title, ingredients, instructions."
+                f"Antworte NUR als valides JSON-Objekt mit name, ingredients, instructions."
             )
             
             response = model.generate_content(prompt)

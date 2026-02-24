@@ -15,6 +15,7 @@
           {{ t('mealsPlanned') }}
         </p>
       </div>
+
       <div v-if="plannedItems.length >= 1" class="pb-1 container">
         <transition-group name="slide-fade">
           <template v-for="meal in plannedItems" :key="meal.name">
@@ -28,6 +29,10 @@
           </button>
         </div>
       </div>
+
+      <AISuggestion />
+
+
 
       <div class="mb-4">
         <div class="container mb-4 p-1 bg-warning">
@@ -68,6 +73,7 @@ import { toast } from 'vue3-toastify'
 import { useI18n } from 'vue-i18n'
 import CookBookItem from './CookBookItem.vue'
 import CookBookForm from './CookBookForm.vue'
+import AISuggestion from './AISuggestion.vue'
 
 const { t } = useI18n()
 const listStore = useListsStore()

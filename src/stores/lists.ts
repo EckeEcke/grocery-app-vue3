@@ -180,7 +180,7 @@ export const useListsStore = defineStore('lists', () => {
 
     if (!payload) return
 
-    const { name, ingredients, recipe } = payload
+    const { name, ingredients, recipe, instructions } = payload
     const userId = useConfigStore().userId
     if (userId) {
       if (index === -1) {
@@ -195,6 +195,7 @@ export const useListsStore = defineStore('lists', () => {
               name,
               planned: true,
               ingredients: ingredients,
+              instructions: instructions,
               recipe
             })
           })
@@ -234,6 +235,7 @@ export const useListsStore = defineStore('lists', () => {
           planned: true,
           id: newMealId(),
           ingredients: payload.ingredients,
+          instructions: payload.instructions,
           recipe: payload.recipe
         })
       } else clonedList[index]!.planned = true

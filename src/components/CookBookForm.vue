@@ -22,6 +22,12 @@
                     v-model="recipe"
                     :placeholder="t('placeholders.addRecipeLink')"
                   />
+                  <input
+                    class="form-control my-3"
+                    type="text"
+                    v-model="instructions"
+                    placeholder="Instructions"
+                  />
                   <div class="input-group my-3">
                     <input
                       class="form-control"
@@ -84,6 +90,7 @@ const newMeal = ref('')
 const recipe = ref<string | undefined>(undefined)
 const newIngredient = ref('')
 const ingredients = ref<string[]>([])
+const instructions = ref<string | undefined>(undefined)
 
 const formSubmit = (event: Event) => {
   event.preventDefault()
@@ -91,11 +98,13 @@ const formSubmit = (event: Event) => {
     listStore.addNewMeal({
       name: newMeal.value,
       ingredients: ingredients.value,
-      recipe: recipe.value
+      recipe: recipe.value,
+      instructions: instructions.value
     })
     newMeal.value = ''
     ingredients.value = []
     recipe.value = undefined
+    instructions.value = undefined
   }
 }
 

@@ -63,7 +63,8 @@ const i18n = createI18n({
         cookbookDeleted: 'Kochbuch wurde gelöscht',
         confirmDeleteList: 'Soll die Artikelliste wirklich gelöscht werden?',
         confirmDeleteCookbook: 'Soll das Kochbuch wirklich gelöscht werden?',
-        entryDeleted: '{entry} wurde gelöscht'
+        entryDeleted: '{entry} wurde gelöscht',
+        ai: 'Rezept zum Kochbuch hinzugefügt'
       },
       placeholders: {
         addArticle: 'Artikel hinzufügen - trennbar durch Komma oder Zeilenumbruch',
@@ -99,6 +100,31 @@ const i18n = createI18n({
         shareLink: 'Link zur Liste teilen',
         signedInAs: 'Angemeldet als: ',
         placeholderName: 'Wie soll dein User heißen?'
+      },
+      ai: {
+        title: 'KI Rezeptempfehlung',
+        introTitle: 'Keine Idee, was du kochen sollst?',
+        introText:
+          'Lass dir Rezepte von der KI vorschlagen, basierend auf deinen gespeicherten Gerichten, deinem Ernährungstyp und deinem gewünschten Zeitaufwand.',
+        dietLabel: 'Ernährung',
+        timeLabel: 'Maximale Zeit',
+        diets: {
+          none: 'Allesesser',
+          vegetarian: 'Vegetarisch',
+          vegan: 'Vegan',
+          lowcarb: 'Low Carb'
+        },
+        times: {
+          m15: '15 Min.',
+          m30: '30 Min.',
+          m60: '1 Std.'
+        },
+        buttons: {
+          submit: 'KI Rezeptidee bekommen',
+          loading: 'KI generiert...',
+          add: 'Zum Kochbuch hinzufügen',
+          another: 'Anderes Rezept'
+        }
       },
       confirmDeleteMeal: 'Soll {meal} aus dem Kochbuch gelöscht werden?',
       confirmDeleteItem: 'Soll {item} von der Artikelliste gelöscht werden?'
@@ -140,7 +166,8 @@ const i18n = createI18n({
         cookbookDeleted: 'Cookbook deleted',
         confirmDeleteList: 'Are you sure you want to delete the item list?',
         confirmDeleteCookbook: 'Are you sure you want to delete the cookbook?',
-        entryDeleted: '{entry} was deleted'
+        entryDeleted: '{entry} was deleted',
+        ai: 'Recipe added to cookbook'
       },
       placeholders: {
         addArticle: 'Add article - separable by comma or line break',
@@ -175,6 +202,30 @@ const i18n = createI18n({
         shareLink: 'Share link to your list',
         signedInAs: 'Signed in as: ',
         placeholderName: 'What should your username be?'
+      },
+      ai: {
+        title: 'AI Recipe Recommendation',
+        introTitle: 'No idea what to cook?',
+        introText: 'Let the AI suggest recipes based on your saved dishes, diet type, and preferred time.',
+        dietLabel: 'Diet',
+        timeLabel: 'Maximum time',
+        diets: {
+          none: 'Omnivore',
+          vegetarian: 'Vegetarian',
+          vegan: 'Vegan',
+          lowcarb: 'Low Carb'
+        },
+        times: {
+          m15: '15 min',
+          m30: '30 min',
+          m60: '1 hr'
+        },
+        buttons: {
+          submit: 'Get AI recipe idea',
+          loading: 'AI is generating...',
+          add: 'Add to cookbook',
+          another: 'Get another recipe'
+        }
       },
       confirmDeleteMeal: 'Do you want to delete {meal} from your cookbook?',
       confirmDeleteItem: 'Do you want to delete {item} from your item list?'
@@ -216,7 +267,8 @@ const i18n = createI18n({
         cookbookDeleted: 'Recetario eliminado',
         confirmDeleteList: '¿Estás seguro de que quieres eliminar la lista de artículos?',
         confirmDeleteCookbook: '¿Estás seguro de que quieres eliminar el recetario?',
-        entryDeleted: '{entry} fue eliminado'
+        entryDeleted: '{entry} fue eliminado',
+        ai: 'Receta añadida al libro de cocina'
       },
       placeholders: {
         addArticle: 'Añadir artículo - separable por coma o salto de línea',
@@ -251,6 +303,31 @@ const i18n = createI18n({
         shareLink: 'Compartir enlace a tu lista',
         signedInAs: 'Conectado como: ',
         placeholderName: '¿Cuál debería ser tu nombre de usuario?'
+      },
+      ai: {
+        title: 'Recomendación de recetas por IA',
+        introTitle: '¿No sabes qué cocinar?',
+        introText:
+          'Deja que la IA te sugiera recetas basadas en tus platos guardados, tu tipo de dieta y el tiempo deseado.',
+        dietLabel: 'Dieta',
+        timeLabel: 'Tiempo máximo',
+        diets: {
+          none: 'Omnívoro',
+          vegetarian: 'Vegetariano',
+          vegan: 'Vegano',
+          lowcarb: 'Bajo en carbohidratos'
+        },
+        times: {
+          m15: '15 min',
+          m30: '30 min',
+          m60: '1 h'
+        },
+        buttons: {
+          submit: 'Obtener idea de receta por IA',
+          loading: 'IA generando...',
+          add: 'Añadir al libro de cocina',
+          another: 'Otra receta'
+        }
       },
       confirmDeleteMeal: '¿Quieres eliminar {meal} de tu recetario?',
       confirmDeleteItem: '¿Quieres eliminar {item} de tu lista de artículos?'
@@ -292,7 +369,8 @@ const i18n = createI18n({
         cookbookDeleted: 'Livre de recettes supprimé',
         confirmDeleteList: "Êtes-vous sûr de vouloir supprimer la liste d'articles ?",
         confirmDeleteCookbook: 'Êtes-vous sûr de vouloir supprimer le livre de recettes ?',
-        entryDeleted: '{entry} a été supprimé'
+        entryDeleted: '{entry} a été supprimé',
+        ai: 'Receta añadida al libro de cocina'
       },
       placeholders: {
         addArticle: 'Ajouter un article - séparable par virgule ou saut de ligne',
@@ -329,6 +407,31 @@ const i18n = createI18n({
         shareLink: 'Partager le lien vers votre liste',
         signedInAs: 'Connecté en tant que : ',
         placeholderName: "Quel devrait être votre nom d'utilisateur ?"
+      },
+      ai: {
+        title: 'Recommandation de recettes par IA',
+        introTitle: 'Aucune idée de quoi cuisiner ?',
+        introText:
+          "Laissez l'IA vous suggérer des recettes basées sur vos plats enregistrés, votre régime alimentaire et le temps souhaité.",
+        dietLabel: 'Régime alimentaire',
+        timeLabel: 'Temps maximum',
+        diets: {
+          none: 'Omnivore',
+          vegetarian: 'Végétarien',
+          vegan: 'Végan',
+          lowcarb: 'Faible en glucides'
+        },
+        times: {
+          m15: '15 min',
+          m30: '30 min',
+          m60: '1 h'
+        },
+        buttons: {
+          submit: 'Obtenir une idée de recette par IA',
+          loading: "L'IA génère...",
+          add: 'Ajouter au livre de cuisine',
+          another: 'Autre recette'
+        }
       },
       confirmDeleteMeal: 'Voulez-vous supprimer {meal} de votre livre de recettes ?',
       confirmDeleteItem: "Voulez-vous supprimer {item} de votre liste d'articles ?"
@@ -370,7 +473,8 @@ const i18n = createI18n({
         cookbookDeleted: 'Ricettario eliminato',
         confirmDeleteList: "Sei sicuro di voler eliminare l'elenco articoli?",
         confirmDeleteCookbook: 'Sei sicuro di voler eliminare il ricettario?',
-        entryDeleted: '{entry} è stato eliminato'
+        entryDeleted: '{entry} è stato eliminato',
+        ai: 'Recette ajoutée au livre de cuisine'
       },
       placeholders: {
         addArticle: 'Aggiungi articolo - separabile con virgola o a capo',
@@ -406,6 +510,31 @@ const i18n = createI18n({
         shareLink: 'Condividi link alla tua lista',
         signedInAs: 'Accesso effettuato come: ',
         placeholderName: 'Quale dovrebbe essere il tuo nome utente?'
+      },
+      ai: {
+        title: 'Suggerimento ricette IA',
+        introTitle: 'Non sai cosa cucinare?',
+        introText:
+          "Lascia che l'IA ti suggerisca ricette in base ai tuoi piatti salvati, al tuo tipo di dieta e al tempo desiderato.",
+        dietLabel: 'Dieta',
+        timeLabel: 'Tempo massimo',
+        diets: {
+          none: 'Onnivoro',
+          vegetarian: 'Vegetariano',
+          vegan: 'Vegano',
+          lowcarb: 'Low Carb'
+        },
+        times: {
+          m15: '15 min',
+          m30: '30 min',
+          m60: '1 ora'
+        },
+        buttons: {
+          submit: 'Ottieni idea ricetta IA',
+          loading: 'IA in generazione...',
+          add: 'Aggiungi al ricettario',
+          another: "Un'altra ricetta"
+        }
       },
       confirmDeleteMeal: 'Vuoi eliminare {meal} dal tuo ricettario?',
       confirmDeleteItem: 'Vuoi eliminare {item} dal tuo elenco articoli?'
