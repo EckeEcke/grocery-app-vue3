@@ -17,8 +17,7 @@ class handler(BaseHTTPRequestHandler):
                 raise ValueError("API Key fehlt")
 
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-1.5-flash')
-
+            model = genai.GenerativeModel(model_name='gemini-1.5-flash')
             # 3. KI-Anfrage
             prompt = f"Erstelle ein Rezept: {data.get('diet', 'egal')}, Zeit: {data.get('time', '15 min')}. Sprache: {data.get('language', 'de')}. Antworte NUR als valides JSON-Objekt mit title (string), ingredients (list), instructions (string)."
             
