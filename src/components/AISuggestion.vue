@@ -21,7 +21,7 @@
               <option value="none" selected>{{ t('ai.diets.none') }}</option>
               <option value="vegetarian">{{ t('ai.diets.vegetarian') }}</option>
               <option value="vegan">{{ t('ai.diets.vegan') }}</option>
-              <option value="lowCarb">{{ t('ai.diets.lowCarb') }}</option>
+              <option value="lowCarb">{{ t('ai.diets.lowcarb') }}</option>
             </select>
           </div>
 
