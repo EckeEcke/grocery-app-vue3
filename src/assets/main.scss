@@ -4,8 +4,11 @@
   src: url('./niceFont.ttf');
 }
 
-$primary: #134e4a;
+$primary: #0d9488;
+$warning: #334155;
 $success: #198754;
+$body-bg: #f8fafc;
+$body-color: #0f172a;
 
 $border-radius: 0.5rem;
 
@@ -47,7 +50,7 @@ h3 {
   color: #2c3e50;
   height: 100%;
   min-height: 100vh;
-  background: #f7f4ef;
+  background: $body-bg;
 }
 
 .toggle-btn {
@@ -56,16 +59,16 @@ h3 {
 }
 
 .toggle-btn.inactive {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .toggle-btn.big:focus {
-  background: #ffc107;
-  border-color: #ffc107;
+  background: $warning;
+  border-color: $warning;
 }
 
 .toggle-btn.inactive.big {
-  background: rgba(255, 193, 7, 0.5);
+  background: $warning;
   border: none;
 }
 
@@ -154,6 +157,10 @@ hr {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(20px) translateY(5px) scale(0.5);
   opacity: 0;
+}
+
+.btn.btn-primary {
+  color: white !important;
 }
 
 .btn-outline-secondary,

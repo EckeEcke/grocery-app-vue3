@@ -1,8 +1,10 @@
 <template>
   <div class="container p-0 border-0 mx-auto my-5">
     <div class="card bg-white border-0">
-      <div class="bg-warning rounded-0 py-1 px-4 mb-4">
-        <h3 class="text-white m-2 p-2">{{ t('randomRecipe') }}</h3>
+      <div class="container px-3 mb-4">
+        <div class="bg-warning p-1 rounded">
+          <h3 class="text-white m-2 p-1">{{ t('randomRecipe') }}</h3>
+        </div>
       </div>
       <div v-if="isLoading" class="card-body container">
         <div class="spinner-wrapper my-5">

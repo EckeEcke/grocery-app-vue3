@@ -6,6 +6,7 @@ import type { ListItem } from '@/types/listitem'
 
 export const useConfigStore = defineStore('config', () => {
   const showDetailPage = ref(false)
+  const showNewMealModal = ref(false)
   const mealToShow = ref<undefined | Meal>(undefined)
   const showQuantityInput = ref(false)
   const itemToShow = ref<undefined | ListItem>(undefined)
@@ -17,6 +18,10 @@ export const useConfigStore = defineStore('config', () => {
 
   const setShowDetailPage = (bool: boolean) => {
     showDetailPage.value = bool
+    setOverflow()
+  }
+  const setShowNewMealModal = (bool: boolean) => {
+    showNewMealModal.value = bool
     setOverflow()
   }
   const setMealToShow = (meal: Meal) => {
@@ -39,7 +44,7 @@ export const useConfigStore = defineStore('config', () => {
 
   const setOverflow = () => {
     document.documentElement.style.overflow =
-      showDetailPage.value || showQuantityInput.value || showUserIdModal.value ? 'hidden' : 'auto'
+      showDetailPage.value || showQuantityInput.value || showUserIdModal.value || showNewMealModal.value ? 'hidden' : 'auto'
   }
 
   const setShowUserIdModal = (bool: boolean) => {
@@ -57,6 +62,7 @@ export const useConfigStore = defineStore('config', () => {
 
   return {
     showDetailPage,
+    showNewMealModal,
     mealToShow,
     showQuantityInput,
     itemToShow,
@@ -66,6 +72,7 @@ export const useConfigStore = defineStore('config', () => {
     userId,
     userName,
     setShowDetailPage,
+    setShowNewMealModal,
     setMealToShow,
     setShowQuantityInput,
     setItemToShow,

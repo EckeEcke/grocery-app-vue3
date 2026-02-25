@@ -28,9 +28,13 @@
           </button>
         </div>
       </div>
-      <div class="container mb-4 p-1 bg-warning">
-        <h3 class="text-white m-2">{{ t('itemList') }}</h3>
+
+      <div class="container px-3 mb-4">
+        <div class="bg-warning p-1 rounded">
+          <h3 class="text-white m-2 p-1">{{ t('itemList') }}</h3>
+        </div>
       </div>
+
       <div class="container" v-if="filteredItemsByFirstLetter">
         <div v-for="(entry, index) in filteredItemsByFirstLetter" :key="index">
           <div class="mt-5 mb-3">

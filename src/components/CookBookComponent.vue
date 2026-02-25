@@ -1,14 +1,20 @@
 <template>
   <div>
     <div class="mb-5">
-      <CookBookForm />
-      <div v-if="plannedItems.length == 0">
+      <NewMealModal />
+      <div class="px-3 py-4 bg-warning">
+        <button class="btn col-12 btn-primary search-btn" aria-label="add new meal" @click="addNewMeal">
+          <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+          {{ t('buttons.addMeal') }}
+        </button>
+      </div>
+      <div v-if="!plannedItems || plannedItems.length == 0">
         <img class="illustration mt-5 mb-3" alt="" src="../assets/meal-illustration.svg" />
         <p class="mb-5">{{ t('noMeals') }}</p>
       </div>
 
       <div class="row container px-0">
-        <p v-if="plannedItems.length >= 1" class="px-2 my-4 font-small">
+        <p v-if="!plannedItems || plannedItems.length >= 1" class="px-2 my-4 font-small">
           <transition name="fade" mode="out-in">
             <span :key="plannedItems.length">{{ plannedItems.length }}</span>
           </transition>
@@ -16,7 +22,7 @@
         </p>
       </div>
 
-      <div v-if="plannedItems.length >= 1" class="pb-1 container">
+      <div v-if="plannedItems && plannedItems.length >= 1" class="pb-1 container">
         <transition-group name="slide-fade">
           <template v-for="meal in plannedItems" :key="meal.name">
             <CookBookItem :isPlanned="true" :meal="meal" />
@@ -32,11 +38,9 @@
 
       <AISuggestion />
 
-
-
-      <div class="mb-4">
-        <div class="container mb-4 p-1 bg-warning">
-          <h3 class="text-white m-2">{{ t('cookbook') }}</h3>
+      <div class="container px-3 mb-4">
+        <div class="bg-warning p-1 rounded">
+          <h3 class="text-white m-2 p-1">{{ t('cookbook') }}</h3>
         </div>
       </div>
       <div class="container">
@@ -68,15 +72,17 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useListsStore } from '@/stores/lists'
+import { useConfigStore } from '@/stores/config'
 import type { Meal } from '@/types/meal'
 import { toast } from 'vue3-toastify'
 import { useI18n } from 'vue-i18n'
 import CookBookItem from './CookBookItem.vue'
-import CookBookForm from './CookBookForm.vue'
 import AISuggestion from './AISuggestion.vue'
+import NewMealModal from './NewMealModal.vue'
 
 const { t } = useI18n()
 const listStore = useListsStore()
+const configStore = useConfigStore()
 
 const sortedItems = computed(() => {
   return listStore.mealPlan
@@ -106,6 +112,8 @@ const deleteCookbook = () => {
     })
   }
 }
+
+const addNewMeal = () => configStore.setShowNewMealModal(true)
 
 const onlyMealEntries = (array: (Meal | string)[]): Meal[] => {
   return array.filter((entry): entry is Meal => {

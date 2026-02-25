@@ -1,7 +1,9 @@
 <template>
   <div class="mb-4">
-    <div class="container mb-4 p-1 bg-warning">
-      <h3 class="text-white m-2">{{ t('ai.title') }}</h3>
+    <div class="container px-3 mb-4">
+      <div class="bg-warning p-1 rounded">
+        <h3 class="text-white m-2 p-1">{{ t('ai.title') }}</h3>
+      </div>
     </div>
     <div class="container p-3">
       <div class="recipe-form bg-light p-4">
@@ -21,7 +23,7 @@
               <option value="none" selected>{{ t('ai.diets.none') }}</option>
               <option value="vegetarian">{{ t('ai.diets.vegetarian') }}</option>
               <option value="vegan">{{ t('ai.diets.vegan') }}</option>
-              <option value="lowCarb">{{ t('ai.diets.lowCarb') }}</option>
+              <option value="lowCarb">{{ t('ai.diets.lowcarb') }}</option>
             </select>
           </div>
 
@@ -34,7 +36,7 @@
             </select>
           </div>
 
-          <button class="btn btn-primary" type="submit" :disabled="loading">
+          <button class="btn btn-primary mt-3" type="submit" :disabled="loading">
             {{ loading ? t('ai.buttons.loading') : t('ai.buttons.submit') }}
           </button>
         </form>

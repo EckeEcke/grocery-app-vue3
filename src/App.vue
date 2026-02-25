@@ -37,8 +37,6 @@ import CookBook from './components/CookBookComponent.vue'
 import GroceryList from './components/GroceryList.vue'
 import DetailPage from './components/DetailPageComponent.vue'
 import ScrollTopButton from './components/ScrollTopButton.vue'
-import supplyListData from './static/supplyListData.json'
-import cookBookData from './static/cookBookData.json'
 import runMario from 'running-mario'
 import Konami from 'konami'
 import { computed, onMounted, type Ref, ref, watch } from 'vue'
@@ -115,7 +113,7 @@ onMounted(async () => {
     localStorage.removeItem('grocerylist')
   }
   const groceryListToPush = hasFaultyLocalStorageEntryItemList
-    ? supplyListData
+    ? []
     : JSON.parse(localStorage.getItem('grocerylist') as string)
   listStore.setGroceryList(groceryListToPush)
   const hasFaultyLocalStorageEntryMealPlan =
@@ -127,7 +125,7 @@ onMounted(async () => {
     localStorage.removeItem('mealPlan')
   }
   const mealPlanToPush = hasFaultyLocalStorageEntryMealPlan
-    ? cookBookData
+    ? []
     : JSON.parse(localStorage.getItem('mealPlan') as string)
   listStore.setMealPlan(mealPlanToPush)
   new Konami(() => {

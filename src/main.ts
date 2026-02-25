@@ -71,7 +71,8 @@ const i18n = createI18n({
         addMeal: 'Neue Speise hinzufügen',
         addRecipeLink: 'Rezept Link hinzufügen (optional)',
         addIngredient: 'Zutat hinzufügen (optional)',
-        addQuantity: 'Menge hinzufügen (z.B. 5x, 1kg oder 250ml)'
+        addQuantity: 'Menge hinzufügen (z.B. 5x, 1kg oder 250ml)',
+        addInstructions: 'Anleitung hinzufügen (optional)'
       },
       about: {
         title: 'About',
@@ -175,7 +176,8 @@ const i18n = createI18n({
         addMeal: 'Add new meal',
         addRecipeLink: 'Add recipe link (optional)',
         addIngredient: 'Add ingredient (optional)',
-        addQuantity: 'Add quantity (e.g. 5x, 1kg or 250ml)'
+        addQuantity: 'Add quantity (e.g. 5x, 1kg or 250ml)',
+        addInstructions: 'Add instructions (optional)',
       },
       about: {
         title: 'About',
@@ -277,7 +279,8 @@ const i18n = createI18n({
         addMeal: 'Añadir nueva comida',
         addRecipeLink: 'Añadir enlace de receta (opcional)',
         addIngredient: 'Añadir ingrediente (opcional)',
-        addQuantity: 'Añadir cantidad (ej. 5x, 1kg o 250ml)'
+        addQuantity: 'Añadir cantidad (ej. 5x, 1kg o 250ml)',
+        addInstructions: 'Añadir instrucciones (opcional)'
       },
       about: {
         title: 'About',
@@ -380,7 +383,8 @@ const i18n = createI18n({
         addMeal: 'Ajouter un nouveau repas',
         addRecipeLink: 'Ajouter un lien de recette (facultatif)',
         addIngredient: 'Ajouter un ingrédient (facultatif)',
-        addQuantity: 'Ajouter une quantité (ex. 5x, 1kg ou 250ml)'
+        addQuantity: 'Ajouter une quantité (ex. 5x, 1kg ou 250ml)',
+        addInstructions: 'Ajouter des instructions (facultatif)'
       },
       about: {
         title: 'À Propos',
@@ -485,7 +489,8 @@ const i18n = createI18n({
         addMeal: 'Aggiungi nuovo pasto',
         addRecipeLink: 'Aggiungi link alla ricetta (opzionale)',
         addIngredient: 'Aggiungi ingrediente (opzionale)',
-        addQuantity: 'Aggiungi quantità (es. 5x, 1kg o 250ml)'
+        addQuantity: 'Aggiungi quantità (es. 5x, 1kg o 250ml)',
+        addInstructions: 'Aggiungi istruzioni (opzionale)'
       },
       about: {
         title: 'Informazioni',
