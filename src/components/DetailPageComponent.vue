@@ -69,5 +69,6 @@ const hide = () => useConfigStore().setShowDetailPage(false)
 .instructions {
   max-height: 100px;
   overflow: auto;
+  text-align: left;
 }
 </style>

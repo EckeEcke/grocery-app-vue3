@@ -36,25 +36,6 @@
 
         <div class="row mt-5">
           <div class="col-1 mb-2"></div>
-          <h5 class="col-10" @click="() => (showInstructions = !showInstructions)">
-            {{ t('buttons.instructions') }}
-          </h5>
-          <h5 class="col-1 px-0" @click="showInstructions = !showInstructions">
-            <font-awesome-icon
-              :icon="['fas', 'chevron-up']"
-              class="accordion-icon"
-              :class="{ flipped: !showInstructions }"
-            />
-          </h5>
-        </div>
-        <transition name="slide-fade">
-          <p v-if="showInstructions" class="dish-text px-4">
-            {{ randomMeal.data.meals[0].strInstructions }}
-          </p>
-        </transition>
-        <hr class="mb-2" />
-        <div class="row">
-          <div class="col-1 mb-2"></div>
           <h5 class="col-10" @click="() => (showIngredients = !showIngredients)">
             {{ t('buttons.ingredients') }}
           </h5>
@@ -77,6 +58,27 @@
               </li>
             </ul>
           </div>
+        </transition>
+
+        <hr class="mb-2" />
+
+        <div class="row">
+          <div class="col-1 mb-2"></div>
+          <h5 class="col-10" @click="() => (showInstructions = !showInstructions)">
+            {{ t('buttons.instructions') }}
+          </h5>
+          <h5 class="col-1 px-0" @click="showInstructions = !showInstructions">
+            <font-awesome-icon
+              :icon="['fas', 'chevron-up']"
+              class="accordion-icon"
+              :class="{ flipped: !showInstructions }"
+            />
+          </h5>
+        </div>
+        <transition name="slide-fade">
+          <p v-if="showInstructions" class="dish-text px-4">
+            {{ randomMeal.data.meals[0].strInstructions }}
+          </p>
         </transition>
         <hr />
       </div>

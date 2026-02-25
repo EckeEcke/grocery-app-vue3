@@ -40,11 +40,19 @@
         </form>
 
         <div v-if="recipe" class="result">
-          <h4>{{ recipe.name }}</h4>
-          <ul>
-            <li v-for="ing in recipe.ingredients" :key="ing">{{ ing }}</li>
-          </ul>
-          <p class="instructions">{{ recipe.instructions }}</p>
+          <h4 class="mb-3">{{ recipe.name }}</h4>
+          <hr />
+          <div class="py-2">
+            <h5 class="my-2">{{ t('buttons.ingredients') }}</h5>
+            <ul>
+              <li v-for="ing in recipe.ingredients" :key="ing">{{ ing }}</li>
+            </ul>
+          </div>
+          <hr />
+          <div class="py-2">
+            <h5 class="my-2">{{ t('buttons.instructions') }}</h5>
+            <p class="instructions">{{ recipe.instructions }}</p>
+          </div>
           <button class="btn btn-primary my-2" @click="addRecipeToCookbook">{{ t('ai.buttons.add') }}</button>
           <button class="btn btn-outline-secondary" @click="resetForm">{{ t('ai.buttons.another') }}</button>
         </div>
@@ -183,5 +191,6 @@ img {
 .instructions {
   max-height: 100px;
   overflow: auto;
+  text-align: left;
 }
 </style>
