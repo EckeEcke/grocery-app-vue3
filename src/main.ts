@@ -130,7 +130,7 @@ const i18n = createI18n({
       confirmDeleteMeal: 'Soll {meal} aus dem Kochbuch gelöscht werden?',
       confirmDeleteItem: 'Soll {item} von der Artikelliste gelöscht werden?'
     },
-    gb: {
+    en: {
       mealPlan: 'Meal Plan',
       groceryList: 'Grocery List',
       cookbook: 'Cookbook',

@@ -9,7 +9,7 @@
             <router-link :to="{ params: { locale: 'de' }, query: route.query }" class="option">
               <span class="fi fi-de"></span>
             </router-link>
-            <router-link :to="{ params: { locale: 'gb' }, query: route.query }" class="option">
+            <router-link :to="{ params: { locale: 'en' }, query: route.query }" class="option">
               <span class="fi fi-gb"></span>
             </router-link>
             <router-link :to="{ params: { locale: 'es' }, query: route.query }" class="option">
