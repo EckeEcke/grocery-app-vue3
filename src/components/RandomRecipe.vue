@@ -85,11 +85,12 @@
         <hr />
       </div>
       <div class="card-footer no-br-mobile border-0 bg-white text-end">
-        <button v-if="!requestFailed" class="btn btn-primary my-2" aria-label="add recipe" @click="addRecipe">
-          <font-awesome-icon :icon="['fas', 'plus']" />{{ t('buttons.addToCookbook') }}
-        </button>
         <button class="btn btn-outline-secondary" aria-label="load recipe idea" @click="loadRecipe">
           {{ t('buttons.loadNewRecipe') }}
+        </button>
+        <button v-if="!requestFailed" class="btn btn-primary my-2" aria-label="add recipe" @click="addRecipe">
+          {{ t('buttons.addToCookbook') }}
+          <font-awesome-icon :icon="['fas', 'plus']" />
         </button>
       </div>
     </div>

@@ -67,8 +67,8 @@
               aria-label="add new meal"
               @click="formSubmit"
             >
-              <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
               {{ t('buttons.addMeal') }}
+              <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
             </button>
           </div>
         </div>

@@ -4,8 +4,8 @@
       <NewMealModal />
       <div class="px-3 py-4 bg-warning">
         <button class="btn col-12 btn-primary search-btn" aria-label="add new meal" @click="addNewMeal">
-          <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
           {{ t('buttons.addMeal') }}
+          <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
         </button>
       </div>
       <div v-if="!plannedItems || plannedItems.length == 0">
@@ -30,8 +30,8 @@
         </transition-group>
         <div class="d-flex justify-content-end">
           <button class="btn btn-outline-secondary my-4" aria-label="copy mealplan" @click="copyList">
-            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
             {{ t('buttons.copyPlan') }}
+            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
           </button>
         </div>
       </div>
@@ -59,8 +59,8 @@
             aria-label="delete cookbook"
             @click="deleteCookbook"
           >
-            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
             {{ t('buttons.deleteAll') }}
+            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
           </button>
         </div>
       </div>

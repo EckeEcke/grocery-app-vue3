@@ -2,7 +2,10 @@
   <div class="mb-4">
     <div class="container px-3 mb-4">
       <div class="bg-warning p-1 rounded">
-        <h3 class="text-white m-2 p-1">{{ t('ai.title') }}</h3>
+        <h3 class="text-white m-2 p-1">
+        {{ t('ai.title') }}
+        <font-awesome-icon :icon="['fas', 'robot']" class="ml-2" />
+        </h3>
       </div>
     </div>
     <div class="container p-3">
@@ -38,6 +41,7 @@
 
           <button class="btn btn-primary mt-3" type="submit" :disabled="loading || cooldown">
             {{ loading ? t('ai.buttons.loading') : t('ai.buttons.submit') }}
+            <font-awesome-icon v-if="!loading" :icon="['fas', 'robot']" class="search-icon" />
           </button>
         </form>
 
@@ -55,7 +59,10 @@
             <h5 class="my-2">{{ t('buttons.instructions') }}</h5>
             <p class="instructions">{{ recipe.instructions }}</p>
           </div>
-          <button class="btn btn-primary my-2" @click="addRecipeToCookbook">{{ t('ai.buttons.add') }}</button>
+          <button class="btn btn-primary my-2" @click="addRecipeToCookbook">
+            {{ t('ai.buttons.add') }}
+            <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+          </button>
           <button class="btn btn-outline-secondary" @click="resetForm">{{ t('ai.buttons.another') }}</button>
         </div>
       </div>
@@ -168,6 +175,12 @@ const showErrorToast = () => {
 </script>
 
 <style scoped>
+h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .field {
   margin-bottom: 1rem;
 }

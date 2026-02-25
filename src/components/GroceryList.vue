@@ -23,8 +23,8 @@
         </transition-group>
         <div class="d-flex justify-content-end">
           <button class="btn btn-outline-secondary my-4" aria-label="copy list" @click="copyList">
-            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
             {{ t('buttons.copyList') }}
+            <font-awesome-icon :icon="['fas', 'copy']" class="trash-icon-item" />
           </button>
         </div>
       </div>
@@ -51,8 +51,8 @@
             aria-label="delete grocery list"
             @click="deleteGrocerylist"
           >
-            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
             {{ t('buttons.deleteAll') }}
+            <font-awesome-icon :icon="['fas', 'trash-alt']" class="trash-icon-item" />
           </button>
         </div>
       </div>
