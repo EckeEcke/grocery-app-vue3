@@ -4,7 +4,7 @@
       <div class="mt-2">
         <h3 class="m-2 p-2">{{ t('about.title') }}</h3>
       </div>
-      <div class="card-body p-2 pt-0">
+      <div class="card-body p-2 px-md-3 pt-0">
         <div class="p-3 pt-0">
           <p>
             {{ t('about.intro') }}
