@@ -16,7 +16,7 @@
             </transition-group>
           </div>
         </div>
-        <div class="col-12 col-md-10 col-lg-6 col-xl-5 mx-auto bg-white box-shadow">
+        <div class="col-12 col-md-10 col-lg-6 col-xl-5 mx-auto box-shadow">
           <AboutContent />
         </div>
       </div>

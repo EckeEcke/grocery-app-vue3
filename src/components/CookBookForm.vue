@@ -37,7 +37,7 @@
                 />
                 <div class="input-group-append">
                   <button class="btn btn-primary col-12" aria-label="add ingredient" @click="pushIngredient">
-                    <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+                    <font-awesome-icon :icon="['fas', 'square-plus']" />
                   </button>
                 </div>
               </div>
@@ -68,7 +68,7 @@
               @click="formSubmit"
             >
               {{ t('buttons.addMeal') }}
-              <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+              <font-awesome-icon :icon="['fas', 'square-plus']" class="search-icon" />
             </button>
           </div>
         </div>

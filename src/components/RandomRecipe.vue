@@ -3,7 +3,10 @@
     <div class="card bg-white border-0">
       <div class="container px-3 mb-4">
         <div class="bg-warning p-1 rounded">
-          <h3 class="text-white m-2 p-1">{{ t('randomRecipe') }}</h3>
+          <h3 class="text-white m-2 p-1">
+            {{ t('randomRecipe') }}
+            <font-awesome-icon :icon="['fas', 'dice']" class="" />
+          </h3>
         </div>
       </div>
       <div v-if="isLoading" class="card-body container">
@@ -90,7 +93,7 @@
         </button>
         <button v-if="!requestFailed" class="btn btn-primary my-2" aria-label="add recipe" @click="addRecipe">
           {{ t('buttons.addToCookbook') }}
-          <font-awesome-icon :icon="['fas', 'plus']" />
+          <font-awesome-icon :icon="['fas', 'square-plus']" />
         </button>
       </div>
     </div>

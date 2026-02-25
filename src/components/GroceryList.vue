@@ -31,7 +31,10 @@
 
       <div class="container px-3 mb-4">
         <div class="bg-warning p-1 rounded">
-          <h3 class="text-white m-2 p-1">{{ t('itemList') }}</h3>
+          <h3 class="text-white m-2 p-1">
+            {{ t('itemList') }}
+            <font-awesome-icon :icon="['fas', 'cart-shopping']" />
+          </h3>
         </div>
       </div>
 

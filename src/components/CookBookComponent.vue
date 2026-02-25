@@ -5,7 +5,7 @@
       <div class="px-3 py-4 bg-warning">
         <button class="btn col-12 btn-primary search-btn" aria-label="add new meal" @click="addNewMeal">
           {{ t('buttons.addMeal') }}
-          <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+          <font-awesome-icon :icon="['fas', 'square-plus']" />
         </button>
       </div>
       <div v-if="!plannedItems || plannedItems.length == 0">
@@ -40,7 +40,11 @@
 
       <div class="container px-3 mb-4">
         <div class="bg-warning p-1 rounded">
-          <h3 class="text-white m-2 p-1">{{ t('cookbook') }}</h3>
+          <h3 class="text-white m-2 p-1">
+            {{ t('cookbook') }}
+            <font-awesome-icon :icon="['fas', 'book']" class="" />
+
+          </h3>
         </div>
       </div>
       <div class="container">
@@ -107,6 +111,7 @@ const deleteCookbook = () => {
   const confirmed = confirm(t('toasts.confirmDeleteCookbook'))
   if (confirmed) {
     localStorage.removeItem('mealPlan')
+    listStore.setMealPlan([])
     toast.success(t('toasts.cookbookDeleted'), {
       autoClose: 1000
     })

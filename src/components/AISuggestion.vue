@@ -41,7 +41,7 @@
 
           <button class="btn btn-primary mt-3" type="submit" :disabled="loading || cooldown">
             {{ loading ? t('ai.buttons.loading') : t('ai.buttons.submit') }}
-            <font-awesome-icon v-if="!loading" :icon="['fas', 'robot']" class="search-icon" />
+            <font-awesome-icon v-if="!loading" :icon="['fas', 'robot']" />
           </button>
         </form>
 
@@ -61,7 +61,7 @@
           </div>
           <button class="btn btn-primary my-2" @click="addRecipeToCookbook">
             {{ t('ai.buttons.add') }}
-            <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+            <font-awesome-icon :icon="['fas', 'square-plus']" class="search-icon" />
           </button>
           <button class="btn btn-outline-secondary" @click="resetForm">{{ t('ai.buttons.another') }}</button>
         </div>
@@ -179,6 +179,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 }
 
 .field {

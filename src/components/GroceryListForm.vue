@@ -11,7 +11,7 @@
         >
         </textarea>
         <button class="btn btn-primary" aria-label="add list of items" @click="emitManualList">
-          <font-awesome-icon :icon="['fas', 'plus']" class="search-icon" />
+          <font-awesome-icon :icon="['fas', 'square-plus']" class="mx-0" />
         </button>
       </div>
       <div
