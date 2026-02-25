@@ -50,6 +50,7 @@ function toggleDropdown() {
 }
 
 function getFlagForValue(value: string) {
+  if (value === 'en') return `<span class="fi fi-gb"></span>`
   return `<span class="fi fi-${value}"></span>`
 }
 
