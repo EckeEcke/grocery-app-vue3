@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/main.scss'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { createI18n } from 'vue-i18n'
@@ -88,7 +88,8 @@ const i18n = createI18n({
         feature7: 'Anzeigen zufälliger Rezepte (gefetched von API), die direkt dem Kochbuch hinzugefügt werden können',
         feature8: 'Installierbar als Progressive Web App',
         feature9: 'Konami Code 😉',
-        githubLink: ' Vue Mealplanner auf '
+        githubLink: ' Vue Mealplanner auf ',
+        ai: 'KI Rezeptvorschläge (Google Gemini)'
       },
       userModal: {
         headline: 'Online Liste erstellen',
@@ -190,7 +191,8 @@ const i18n = createI18n({
         feature7: 'Display random recipes (fetched from API) that can be directly added to the cookbook',
         feature8: 'Installable as a Progressive Web App',
         feature9: 'Konami Code',
-        githubLink: ' Vue Mealplanner on '
+        githubLink: ' Vue Mealplanner on ',
+        ai: 'AI Recipe Suggestions (Google Gemini)'
       },
       userModal: {
         headline: 'Create online list',
@@ -291,7 +293,8 @@ const i18n = createI18n({
         feature7: 'Mostrar recetas aleatorias (obtenidas de API) que pueden añadirse directamente al recetario',
         feature8: 'Instalable como una Aplicación Web Progresiva',
         feature9: 'Código Konami',
-        githubLink: ' Meal Planner en '
+        githubLink: ' Meal Planner en ',
+        ai: 'Sugerencias de recetas por IA (Google Gemini)'
       },
       userModal: {
         headline: 'Crear lista en línea',
@@ -395,7 +398,8 @@ const i18n = createI18n({
           'Afficher des recettes aléatoires (obtenues via API) qui peuvent être directement ajoutées au livre de recettes',
         feature8: 'Installable comme une Application Web Progressive',
         feature9: 'Code Konami',
-        githubLink: ' Meal Planner sur '
+        githubLink: ' Meal Planner sur ',
+        ai: 'Suggestions de recettes par IA (Google Gemini)'
       },
       userModal: {
         headline: 'Créer une liste en ligne',
@@ -498,7 +502,8 @@ const i18n = createI18n({
           'Visualizzare ricette casuali (recuperate tramite API) che possono essere aggiunte direttamente al ricettario',
         feature8: 'Installabile come App Web Progressiva',
         feature9: 'Codice Konami',
-        githubLink: ' Meal Planner su '
+        githubLink: ' Meal Planner su ',
+        ai: 'Suggerimenti ricette IA (Google Gemini)'
       },
       userModal: {
         headline: 'Crea lista online',

@@ -15,6 +15,7 @@
           </p>
 
           <ul class="list-about">
+            <li>{{ t('about.ai') }}</li>
             <li>{{ t('about.feature1') }}</li>
             <li>{{ t('about.feature2') }}</li>
             <li>{{ t('about.feature3') }}</li>

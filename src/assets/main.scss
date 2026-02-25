@@ -4,6 +4,13 @@
   src: url('./niceFont.ttf');
 }
 
+$primary: #134e4a;
+$success: #198754;
+
+$border-radius: 0.5rem;
+
+@import "bootstrap/scss/bootstrap";
+
 header {
   background-image: url('./header.webp');
   background-size: cover;

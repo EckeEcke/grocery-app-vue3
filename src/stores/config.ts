@@ -10,7 +10,7 @@ export const useConfigStore = defineStore('config', () => {
   const showQuantityInput = ref(false)
   const itemToShow = ref<undefined | ListItem>(undefined)
   const showNavMenu = ref(false)
-  const displayedTab = ref(Tab.groceries)
+  const displayedTab = ref(Tab.cookbook)
   const showUserIdModal = ref(false)
   const userId = ref<undefined | string>(undefined)
   const userName = ref<undefined | string>(undefined)
