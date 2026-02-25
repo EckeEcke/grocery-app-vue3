@@ -36,7 +36,7 @@
             </select>
           </div>
 
-          <button class="btn btn-primary mt-3" type="submit" :disabled="loading">
+          <button class="btn btn-primary mt-3" type="submit" :disabled="loading || cooldown">
             {{ loading ? t('ai.buttons.loading') : t('ai.buttons.submit') }}
           </button>
         </form>
@@ -84,6 +84,7 @@ const showIntro = ref(true)
 
 const recipe = ref<Meal | null>(null)
 const loading = ref(false)
+const cooldown = ref(false)
 const error = ref<string | null>(null)
 
 const submitForm = async () => {
@@ -118,13 +119,21 @@ const submitForm = async () => {
       })
     })
 
+    if (response.status === 429) {
+      throw new Error('429')
+    }
+
     const data = await response.json()
     if (data.error) {
       error.value = data.error
     } else {
       recipe.value = data
     }
-  } catch (e) {
+  } catch (e: any) {
+    if (e.message === '429') {
+      cooldown.value = true
+      showErrorToast()
+    }
     error.value = `Fehler bei der Verbindung zur API: ${e}`
   } finally {
     loading.value = false
@@ -147,6 +156,12 @@ const resetForm = () => {
 
 const showToast = () => {
   toast.success(t('toasts.ai'), {
+    autoClose: 1000
+  })
+}
+
+const showErrorToast = () => {
+  toast.error(t('toasts.aiError'), {
     autoClose: 1000
   })
 }

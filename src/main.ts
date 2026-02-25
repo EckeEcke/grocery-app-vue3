@@ -64,7 +64,8 @@ const i18n = createI18n({
         confirmDeleteList: 'Soll die Artikelliste wirklich gelöscht werden?',
         confirmDeleteCookbook: 'Soll das Kochbuch wirklich gelöscht werden?',
         entryDeleted: '{entry} wurde gelöscht',
-        ai: 'Rezept zum Kochbuch hinzugefügt'
+        ai: 'Rezept zum Kochbuch hinzugefügt',
+        aiError: 'Aktuell zu viele KI Anfragen. Versuche es später noch einmal.'
       },
       placeholders: {
         addArticle: 'Artikel hinzufügen - trennbar durch Komma oder Zeilenumbruch',
@@ -169,7 +170,8 @@ const i18n = createI18n({
         confirmDeleteList: 'Are you sure you want to delete the item list?',
         confirmDeleteCookbook: 'Are you sure you want to delete the cookbook?',
         entryDeleted: '{entry} was deleted',
-        ai: 'Recipe added to cookbook'
+        ai: 'Recipe added to cookbook',
+        aiError: 'Too many AI requests right now. Please try again later.'
       },
       placeholders: {
         addArticle: 'Add article - separable by comma or line break',
@@ -177,7 +179,7 @@ const i18n = createI18n({
         addRecipeLink: 'Add recipe link (optional)',
         addIngredient: 'Add ingredient (optional)',
         addQuantity: 'Add quantity (e.g. 5x, 1kg or 250ml)',
-        addInstructions: 'Add instructions (optional)',
+        addInstructions: 'Add instructions (optional)'
       },
       about: {
         title: 'About',
@@ -272,7 +274,8 @@ const i18n = createI18n({
         confirmDeleteList: '¿Estás seguro de que quieres eliminar la lista de artículos?',
         confirmDeleteCookbook: '¿Estás seguro de que quieres eliminar el recetario?',
         entryDeleted: '{entry} fue eliminado',
-        ai: 'Receta añadida al libro de cocina'
+        ai: 'Receta añadida al libro de cocina',
+        aiError: 'Demasiadas solicitudes de IA en este momento. Inténtalo de nuevo más tarde.'
       },
       placeholders: {
         addArticle: 'Añadir artículo - separable por coma o salto de línea',
@@ -376,7 +379,8 @@ const i18n = createI18n({
         confirmDeleteList: "Êtes-vous sûr de vouloir supprimer la liste d'articles ?",
         confirmDeleteCookbook: 'Êtes-vous sûr de vouloir supprimer le livre de recettes ?',
         entryDeleted: '{entry} a été supprimé',
-        ai: 'Receta añadida al libro de cocina'
+        ai: 'Receta añadida al libro de cocina',
+        aiError: 'Trop de requêtes IA pour le moment. Veuillez réessayer plus tard.'
       },
       placeholders: {
         addArticle: 'Ajouter un article - séparable par virgule ou saut de ligne',
@@ -482,7 +486,8 @@ const i18n = createI18n({
         confirmDeleteList: "Sei sicuro di voler eliminare l'elenco articoli?",
         confirmDeleteCookbook: 'Sei sicuro di voler eliminare il ricettario?',
         entryDeleted: '{entry} è stato eliminato',
-        ai: 'Recette ajoutée au livre de cuisine'
+        ai: 'Recette ajoutée au livre de cuisine',
+        aiError: 'Troppe richieste IA al momento. Riprova più tardi.'
       },
       placeholders: {
         addArticle: 'Aggiungi articolo - separabile con virgola o a capo',
