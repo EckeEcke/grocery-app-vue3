@@ -69,7 +69,7 @@ import type { Meal } from '@/types/meal'
 import { useI18n } from 'vue-i18n'
 
 const listStore = useListsStore()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const savedDishes = computed(() => listStore.mealPlan)
 
@@ -111,7 +111,7 @@ const submitForm = async () => {
       body: JSON.stringify({
         diet: formData.diet,
         time: formData.time,
-        language: 'de',
+        language: locale.value,
         inspiration: savedDishes.value
       })
     })
