@@ -97,13 +97,13 @@ const searchForId = async () => {
 }
 
 router.beforeEach((to, from, next) => {
-  locale.value = (to.params.locale as string) || 'de'
+  locale.value = (to.params.locale as string) || 'en'
   next()
 })
 
 onMounted(async () => {
   await searchForId()
-  locale.value = (route.query.locale as string) || 'de'
+  locale.value = (route.query.locale as string) || 'en'
   const hasFaultyLocalStorageEntryItemList =
     localStorage.getItem('grocerylist') === 'undefined' ||
     localStorage.getItem('grocerylist') === undefined ||
