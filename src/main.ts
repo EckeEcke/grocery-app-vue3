@@ -23,8 +23,8 @@ const router = createRouter({
 })
 
 const i18n = createI18n({
-  locale: 'de',
-  fallbackLocale: 'de',
+  locale: 'en',
+  fallbackLocale: 'en',
   messages: {
     de: {
       mealPlan: 'Speiseplan',
